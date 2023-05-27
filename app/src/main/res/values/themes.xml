@@ -1,16 +1,29 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.IMA" parent="Theme.Material3.DayNight.NoActionBar">
-        <item   name="colorPrimary">@color/colorPrimary</item>
-        <item   name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item   name="colorAccent">@color/colorAccent</item>
-        <item   name="colorControlHighlight">@color/colorControlHighlight</item>
-        <item   name="colorControlNormal">@color/colorControlNormal</item>
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/blue_600</item>
+        <item name="colorPrimaryVariant">@color/blue_500</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/blue_600</item>
+        <item name="colorSecondaryVariant">@color/blue_100</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/grey_200</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <!-- Customize your theme here. -->
     </style>
     <style  name="AppTheme.FullScreen"  parent="Base.Theme.IMA">
         <item   name="android:windowFullscreen">true</item>
         <item   name="android:windowContentOverlay">@null</item>
     </style>
 
+    <style name="ButtonSuccess" parent="android:style/Widget.Button">
+        <item name="backgroundTint">@null</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/back_btn_success</item>
+    </style>
     <style name="Theme.IMA" parent="Base.Theme.IMA" />
 </resources>
