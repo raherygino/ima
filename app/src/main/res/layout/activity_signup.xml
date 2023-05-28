@@ -78,6 +78,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:drawableStart="@drawable/ic_accounts"
+                        android:focusable="false"
+                        android:text="@string/male"
                         style="@style/MaterialEditText" />
 
                 </com.google.android.material.textfield.TextInputLayout>

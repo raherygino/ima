@@ -2,8 +2,11 @@ package mg.lwdeveloper.ima;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.PopupMenu;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +16,7 @@ public class SignupActivity extends AppCompatActivity {
 
     Toolbar topAppBarSignup;
     Button btnSignup, btnLogin;
+    EditText genre;
     Utils utils;
 
     @Override
@@ -28,12 +32,14 @@ public class SignupActivity extends AppCompatActivity {
         btnSignup = findViewById(R.id.btn_signup);
         btnLogin = findViewById(R.id.btn_login);
         topAppBarSignup = findViewById(R.id.topAppBarSignup);
+        genre = findViewById(R.id.genre);
     }
 
     private void viewListener() {
         btnLogin.setOnClickListener(new onClick());
         btnSignup.setOnClickListener(new onClick());
         topAppBarSignup.setNavigationOnClickListener(new onClick());
+        genre.setOnClickListener(new onClick());
     }
 
     private void showLoginActivity() {
@@ -59,6 +65,19 @@ public class SignupActivity extends AppCompatActivity {
                 Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
+            } else if (id == R.id.genre) {
+
+                PopupMenu popupMenu = new PopupMenu(SignupActivity.this, view);
+                popupMenu.getMenuInflater().inflate(R.menu.gender, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        EditText genderEditText = (EditText) view;
+                        genderEditText.setText(menuItem.getTitle());
+                        return true;
+                    }
+                });
+                popupMenu.show();
             }
         }
     }
