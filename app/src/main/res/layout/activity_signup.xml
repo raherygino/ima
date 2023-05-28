@@ -234,6 +234,7 @@
                 <Button
                     android:id="@+id/btn_signup"
                     android:layout_width="match_parent"
+                    android:layout_marginTop="14dp"
                     android:text="@string/signup"
                     style="@style/ButtonPrimary"/>
 
@@ -256,6 +257,7 @@
                 <Button
                     android:id="@+id/btn_login"
                     android:layout_width="match_parent"
+                    android:layout_marginTop="14dp"
                     android:text="@string/login"
                     style="@style/ButtonPrimarySoft" />
 
