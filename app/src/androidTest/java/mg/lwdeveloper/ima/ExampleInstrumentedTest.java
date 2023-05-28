@@ -1,4 +1,4 @@
-package mg.lwbdeveloper.ima;
+package mg.lwdeveloper.ima;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("mg.lwbdeveloper.ima", appContext.getPackageName());
+        assertEquals("mg.lwdeveloper.ima", appContext.getPackageName());
     }
 }

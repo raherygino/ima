@@ -1,4 +1,4 @@
-package mg.lwbdeveloper.ima;
+package mg.lwdeveloper.ima;
 
 import androidx.appcompat.app.AppCompatActivity;
 
