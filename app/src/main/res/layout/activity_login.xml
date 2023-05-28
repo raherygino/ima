@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="130dp"
-        app:cardCornerRadius="25dp"
+        app:cardCornerRadius="2dp"
         app:cardElevation="0dp"
         app:cardBackgroundColor="@color/grey_100"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,15 +54,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:drawableStart="@drawable/ic_phone"
-                    android:drawableTint="@color/grey_600"
-                    android:drawablePadding="5dp"
-                    android:fontFamily="sans-serif-light"
-                    android:inputType="phone"
-                    android:paddingStart="15dp"
-                    android:paddingTop="0dp"
-                    android:paddingBottom="0dp"
-                    android:singleLine="true"
-                    android:textSize="14sp" />
+                    style="@style/MaterialEditText"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -80,15 +72,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:drawableStart="@drawable/ic_lock"
-                    android:drawableTint="@color/grey_600"
-                    android:drawablePadding="5dp"
-                    android:fontFamily="sans-serif-light"
-                    android:inputType="textPassword"
-                    android:paddingStart="15dp"
-                    android:paddingTop="0dp"
-                    android:paddingBottom="0dp"
-                    android:singleLine="true"
-                    android:textSize="14sp" />
+                    style="@style/MaterialEditText" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -105,12 +89,8 @@
             <Button
                 android:id="@+id/btn_login"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/back_btn_primary"
-                android:fontFamily="sans-serif-light"
                 android:text="@string/login"
-                tools:ignore="RtlSymmetry" />
+                style="@style/ButtonPrimary"/>
 
             <View
                 android:layout_width="match_parent"
@@ -129,15 +109,11 @@
                 android:text="@string/or" />
 
             <Button
-                android:id="@+id/btn_register"
-                style="@style/ButtonPrimarySoft"
+                android:id="@+id/btn_signup"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="12dp"
-                android:drawableTint="@color/white"
-                android:fontFamily="sans-serif-light"
+                android:layout_marginTop="10dp"
                 android:text="@string/signup"
-                tools:ignore="RtlSymmetry" />
+                style="@style/ButtonPrimarySoft" />
 
         </LinearLayout>
 

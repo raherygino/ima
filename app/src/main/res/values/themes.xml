@@ -19,6 +19,26 @@
         <item   name="android:windowContentOverlay">@null</item>
     </style>
 
+    <!-- EditText -->
+    <style name="MaterialEditText" parent="android:style/Widget.EditText">
+        <item name="android:drawableTint">@color/grey_600</item>
+        <item name="android:drawablePadding">5dp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:paddingStart">15dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="ButtonPrimary" parent="android:style/Widget.Button">
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:background">@drawable/back_btn_primary</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
     <style name="ButtonSuccess" parent="android:style/Widget.Button">
         <item name="backgroundTint">@null</item>
         <item name="android:padding">0dp</item>
@@ -27,10 +47,20 @@
     </style>
 
     <style name="ButtonPrimarySoft" parent="android:style/Widget.Button">
+        <item name="android:layout_height">40dp</item>
         <item name="backgroundTint">@null</item>
         <item name="android:padding">0dp</item>
         <item name="android:textColor">@color/blue_600</item>
         <item name="android:background">@drawable/back_btn_soft_primary</item>
+    </style>
+
+    <style name="TextAppearance.App.CollapsingToolbar.Expanded" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:background">?attr/colorPrimary</item>
+    </style>
+
+    <style name="TextAppearance.App.CollapsingToolbar.Collapsed" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textColor">?attr/colorOnPrimary</item>
     </style>
 
     <style name="Theme.IMA" parent="Base.Theme.IMA" />

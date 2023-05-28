@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class LoginActivity extends AppCompatActivity {
 
     private Utils utils;
-    private Button buttonLogin, buttonRegister;
+    private Button buttonLogin, buttonSignup;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,12 +24,12 @@ public class LoginActivity extends AppCompatActivity {
     private void initView () {
         utils = new Utils(this);
         buttonLogin = findViewById(R.id.btn_login);
-        buttonRegister = findViewById(R.id.btn_register);
+        buttonSignup = findViewById(R.id.btn_signup);
     }
 
     private void viewListener() {
         buttonLogin.setOnClickListener(new onClick());
-        buttonRegister.setOnClickListener(new onClick());
+        buttonSignup.setOnClickListener(new onClick());
     }
 
     class onClick implements View.OnClickListener {
@@ -41,6 +41,10 @@ public class LoginActivity extends AppCompatActivity {
 
             if (id == R.id.btn_login) {
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            } else if (id == R.id.btn_signup) {
+                Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
                 startActivity(intent);
                 finish();
             }
