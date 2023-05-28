@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import mg.lwdeveloper.ima.dialog.ConfirmDialog;
+
 public class LoginActivity extends AppCompatActivity {
 
     private Utils utils;
@@ -55,8 +57,16 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(LoginActivity.this, ForgotActivity.class);
                 startActivity(intent);
                 finish();
-
+            } else if (id == R.id.btn_ok) {
+                finish();
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        ConfirmDialog confirmDialog = new ConfirmDialog(this, "Quitter", "Voulez-vous quitter vraiment ?");
+        confirmDialog.btnOk.setOnClickListener(new onClick());
+        confirmDialog.show();
     }
 }

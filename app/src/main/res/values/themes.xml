@@ -19,6 +19,11 @@
         <item   name="android:windowContentOverlay">@null</item>
     </style>
 
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/dialog_in</item>
+        <item name="android:windowExitAnimation">@anim/dialog_out</item>
+    </style>
+
     <!-- EditText -->
     <style name="MaterialEditText" parent="android:style/Widget.EditText">
         <item name="android:drawableTint">@color/grey_600</item>
