@@ -7,37 +7,33 @@ import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
-public class SignupActivity extends AppCompatActivity {
+public class ForgotActivity extends AppCompatActivity {
 
-    Toolbar topAppBarSignup;
-    Button btnSignup, btnLogin;
-    Utils utils;
+    private Button ButtonSend, ButtonCancel;
+    private Utils utils;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
+        setContentView(R.layout.activity_forgot_pass);
         initView();
         viewListener();
     }
 
     private void initView() {
         utils = new Utils(this);
-        btnSignup = findViewById(R.id.btn_signup);
-        btnLogin = findViewById(R.id.btn_login);
-        topAppBarSignup = findViewById(R.id.topAppBarSignup);
+        ButtonSend = findViewById(R.id.btn_send);
+        ButtonCancel = findViewById(R.id.btn_cancel);
     }
 
     private void viewListener() {
-        btnLogin.setOnClickListener(new onClick());
-        btnSignup.setOnClickListener(new onClick());
-        topAppBarSignup.setNavigationOnClickListener(new onClick());
+        ButtonSend.setOnClickListener(new onClick());
+        ButtonCancel.setOnClickListener(new onClick());
     }
 
     private void showLoginActivity() {
-        Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+        Intent intent = new Intent(ForgotActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
     }
@@ -53,12 +49,8 @@ public class SignupActivity extends AppCompatActivity {
             int id = view.getId();
             utils.btnClick(view);
 
-            if (id == R.id.topAppBarSignup || id == R.id.btn_login) {
+            if (id == R.id.btn_cancel) {
                 showLoginActivity();
-            } else if (id == R.id.btn_signup) {
-                Intent intent = new Intent(SignupActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
             }
         }
     }

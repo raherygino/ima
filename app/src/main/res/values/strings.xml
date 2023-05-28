@@ -143,4 +143,5 @@
     <string name="app_version">Version 1.0 ---- ©2023</string>
     <string name="gender">Genre</string>
     <string name="email">E-mail</string>
+    <string name="cancel">Annuler</string>
 </resources>
