@@ -3,9 +3,11 @@ package mg.lwdeveloper.ima;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -21,6 +23,10 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -38,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private Utils utils;
     private BluetoothAdapter bluetoothAdapter;
     private final int REQUEST_ENABLE_BT = 24;
+    private static final int READ_REQUEST_CODE = 42;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,12 +90,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_ENABLE_BT) {
             if (resultCode == RESULT_OK) {
-                // Bluetooth is enabled successfully
-                // Perform any operations related to Bluetooth
+                Toast.makeText(MainActivity.this, "Bluetooth is enabled successfully", Toast.LENGTH_SHORT).show();
             } else {
-                // User declined or failed to enable Bluetooth
-                // Handle the case accordingly
+                Toast.makeText(MainActivity.this, "User declined", Toast.LENGTH_SHORT).show();
             }
+        }
+
+        if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            Toast.makeText(MainActivity.this, data.getDataString(), Toast.LENGTH_SHORT).show();
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -152,6 +161,14 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
 
+
+    public void showFileChooser() {
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("*/*");
+        startActivityForResult(intent, READ_REQUEST_CODE);
+    }
+
     class onClick implements View.OnClickListener {
         @SuppressLint("NonConstantResourceId")
         @Override
@@ -191,6 +208,9 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View view) {
             utils.btnClick(view);
             switch (position) {
+                case 1:
+                    showFileChooser();
+                    break;
                 case 2:
                     setBluetooth();
                     break;
