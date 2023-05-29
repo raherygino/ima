@@ -144,4 +144,6 @@
     <string name="gender">Genre</string>
     <string name="email">E-mail</string>
     <string name="cancel">Annuler</string>
+    <string name="logout">Déconnexion</string>
+    <string name="about">A propos</string>
 </resources>

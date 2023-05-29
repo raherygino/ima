@@ -54,7 +54,7 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@drawable/ic_home_rounded_32"
+                        android:src="@drawable/ic_home_24"
                         app:tint="@color/grey_600"/>
                     <TextView
                         android:layout_width="wrap_content"
@@ -71,12 +71,12 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@drawable/ic_wallet"
+                        android:src="@drawable/ic_folder_open"
                         app:tint="@color/grey_600"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/transfer"
+                        android:text="Fichier"
                         android:textSize="10dp"
                         android:textColor="@color/grey_600"/>
                 </LinearLayout>
@@ -92,12 +92,12 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@drawable/ic_bell_outline"
+                        android:src="@drawable/ic_bluetooth"
                         app:tint="@color/grey_600"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="project"
+                        android:text="Bluetooth"
                         android:textSize="10dp"
                         android:textColor="@color/grey_600"/>
                 </LinearLayout>
@@ -109,7 +109,7 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@drawable/ic_account_outline"
+                        android:src="@drawable/user"
                         app:tint="@color/grey_600"/>
                     <TextView
                         android:layout_width="wrap_content"
