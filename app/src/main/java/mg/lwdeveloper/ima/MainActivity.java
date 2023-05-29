@@ -181,15 +181,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             } else if (id == R.id.btn_more ) {
-                PopupMenu popupMenu = new PopupMenu(MainActivity.this, view);
-                popupMenu.getMenuInflater().inflate(R.menu.options, popupMenu.getMenu());
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem menuItem) {
-                        return true;
-                    }
-                });
-                popupMenu.show();
+                AlertDialog dialog = new AlertDialog(MainActivity.this, "Question ou Problème", getString(R.string.help_title)+"\n033 91 346 87\n032 51 422 84");
+                dialog.onCancel(dialog.btnOk.getId());
+                dialog.btnOk.setText("Ok");
+                dialog.show();
+
             } else if (id == R.id.fab_add) {
                 AlertDialog dialog = new AlertDialog(MainActivity.this, "IMA Scan", "Pour continuer, installer IMASCan v1.0");
                 dialog.onCancel(dialog.btnOk.getId());

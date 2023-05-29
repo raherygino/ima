@@ -10,7 +10,7 @@
         android:id="@+id/title_dialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Title"
+        android:text="@string/title_connecting"
         android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,8 +22,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:text="Description"
+        android:text="@string/help_title"
         android:textSize="14sp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
         app:layout_constraintTop_toBottomOf="@+id/title_dialog" />
 
     <View
