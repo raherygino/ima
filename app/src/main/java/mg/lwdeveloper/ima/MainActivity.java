@@ -10,6 +10,9 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -45,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
     private BluetoothAdapter bluetoothAdapter;
     private final int REQUEST_ENABLE_BT = 24;
     private static final int READ_REQUEST_CODE = 42;
+    private onChangeEditText imaChangeEditText;
+    private onChangeEditText mgChangeEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,6 +157,12 @@ public class MainActivity extends AppCompatActivity {
         btnOffer.setOnClickListener(new onClick());
         btnConfirm.setOnClickListener(new onClick());
         fab.setOnClickListener(new onClick());
+
+        imaChangeEditText = new onChangeEditText(imaValue);
+        mgChangeEditText = new onChangeEditText(mgValue);
+
+        imaValue.setOnFocusChangeListener(new onFocusEditText());
+        mgValue.setOnFocusChangeListener(new onFocusEditText());
     }
 
     @Override
@@ -169,12 +180,66 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, READ_REQUEST_CODE);
     }
 
+    class onFocusEditText implements View.OnFocusChangeListener {
+        @Override
+        public void onFocusChange(View view, boolean isFocused) {
+            int id = view.getId();
+            mgValue.removeTextChangedListener(mgChangeEditText);
+            imaValue.removeTextChangedListener(imaChangeEditText);
+
+            if (isFocused) {
+                if (id == R.id.ima_value) {
+                    imaValue.addTextChangedListener(imaChangeEditText);
+                } else if (id == R.id.mg_value) {
+                    mgValue.addTextChangedListener(mgChangeEditText);
+                }
+            }
+        }
+    }
+
+    class onChangeEditText implements TextWatcher {
+
+        private View view;
+        public onChangeEditText(View mView) {
+            this.view = mView;
+        }
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            if (view.getId() == R.id.ima_value) {
+                if (charSequence.length() != 0 ) {
+                    double ima = Double.parseDouble(String.valueOf(charSequence));
+                    mgValue.setText(String.valueOf(ima * 200));
+                } else {
+                    mgValue.setText("0");
+                }
+            } else {
+                if (charSequence.length() != 0 ) {
+                    double mga = Double.parseDouble(String.valueOf(charSequence));
+                    imaValue.setText(String.valueOf(mga / 200));
+                } else {
+                    imaValue.setText("0");
+                }
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+        }
+    }
+
     class onClick implements View.OnClickListener {
         @SuppressLint("NonConstantResourceId")
         @Override
         public void onClick(View view) {
             utils.btnClick(view);
             int id = view.getId();
+
 
             if (id == R.id.btn_ok) {
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
@@ -191,6 +256,10 @@ public class MainActivity extends AppCompatActivity {
                 dialog.onCancel(dialog.btnOk.getId());
                 dialog.btnOk.setText("Installer maintenant");
                 dialog.show();
+            } else if (id == R.id.ima_value) {
+                imaValue.addTextChangedListener(imaChangeEditText);
+            } else if (id == R.id.mg_value) {
+                mgValue.addTextChangedListener(mgChangeEditText);
             }
         }
     }
