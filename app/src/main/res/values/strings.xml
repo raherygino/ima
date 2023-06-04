@@ -1,8 +1,12 @@
 <resources>
     <string name="app_name">Homework</string>
-    <string name="hello_world">Hello world</string>
-    <string name="search">Search</string>
-    <string name="address">Address</string>
-    <string name="city">City</string>
-    <string name="clear">Clear</string>
+    <!-- Title -->
+    <string name="login">Login</string>
+    <string name="signup">Signup</string>
+    <string name="forgot">Forget password?</string>
+    <!-- Form -->
+    <string name="phone">Phone</string>
+    <string name="password">Password</string>
+    <!-- Text -->
+    <string name="or">or</string>
 </resources>

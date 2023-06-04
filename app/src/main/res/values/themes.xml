@@ -1,26 +1,75 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Homework" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.Ima" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/teal_700</item>
-        <item name="colorPrimaryVariant">@color/teal_200</item>
+        <item name="colorPrimary">@color/blue_600</item>
+        <item name="colorPrimaryVariant">@color/blue_500</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorSecondary">@color/green_400</item>
+        <item name="colorSecondaryVariant">@color/green_400</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/grey_200</item>
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
         <item name="android:windowLightStatusBar">true</item>
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="Theme.Homework.NoActionBar">
+    <style name="Theme.Ima.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.Homework.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.Ima.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="Theme.Homework.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Theme.Ima.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <!--style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/dialog_in</item>
+        <item name="android:windowExitAnimation">@anim/dialog_out</item>
+    </style-->
+
+    <!-- EditText -->
+    <style name="MaterialEditText" parent="android:style/Widget.EditText">
+        <item name="android:drawableTint">@color/grey_600</item>
+        <item name="android:drawablePadding">@dimen/pd_drawable</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:paddingStart">@dimen/ps_edit_text</item>
+        <item name="android:paddingTop">@dimen/py_edit_text</item>
+        <item name="android:paddingBottom">@dimen/ps_edit_text</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">@dimen/text_size_edit_text</item>
+    </style>
+
+    <style name="ButtonPrimary" parent="android:style/Widget.Button">
+        <item name="android:layout_height">@dimen/btn_height</item>
+        <item name="android:background">@drawable/back_btn_primary</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="ButtonSuccess" parent="android:style/Widget.Button">
+        <item name="backgroundTint">@null</item>
+        <item name="android:padding">@dimen/py_edit_text</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/back_btn_success</item>
+    </style>
+
+    <style name="ButtonPrimarySoft" parent="android:style/Widget.Button">
+        <item name="android:layout_height">@dimen/btn_height</item>
+        <item name="backgroundTint">@null</item>
+        <item name="android:padding">@dimen/py_edit_text</item>
+        <item name="android:textColor">@color/blue_600</item>
+        <item name="android:background">@drawable/back_btn_soft_primary</item>
+    </style>
+
+    <style name="TextAppearance.App.CollapsingToolbar.Expanded" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:background">?attr/colorPrimary</item>
+    </style>
+
+    <style name="TextAppearance.App.CollapsingToolbar.Collapsed" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+    </style>
 </resources>

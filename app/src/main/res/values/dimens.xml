@@ -1,3 +1,11 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <!-- EditText -->
+    <dimen name="pd_drawable">5dp</dimen>
+    <dimen name="ps_edit_text">15dp</dimen>
+    <dimen name="py_edit_text">0dp</dimen>
+    <dimen name="text_size_edit_text">14sp</dimen>
+    <!-- Button -->
+    <dimen name="btn_height">40dp</dimen>
+    <dimen name="btn_radius">8dp</dimen>
 </resources>

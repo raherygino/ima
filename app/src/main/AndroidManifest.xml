@@ -13,13 +13,13 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Homework"
+        android:theme="@style/Theme.Ima"
         tools:targetApi="31">
         <activity
-            android:name=".view.activities.MainActivity"
+            android:name=".view.activities.LoginActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Homework.NoActionBar">
+            android:theme="@style/Theme.Ima.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
