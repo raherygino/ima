@@ -1,252 +1,128 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/grey_200">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/title_username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:layout_marginStart="14dp"
-        android:textSize="16sp"
-        android:text="Hi, Georginot Armelin"
-        android:textColor="@color/grey_600"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="com.gsoft.ima.viewmodel.MainViewModel" />
+    </data>
 
-    <TextView
-        android:id="@+id/title_welcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:textSize="12sp"
-        android:text="Welcome Back to IMA"
-        android:textColor="@color/grey_400"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_username" />
-
-    <ImageView
-        android:id="@+id/btn_more"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:padding="8dp"
-        android:src="@drawable/ic_question_mark"
-        android:background="@drawable/back_btn_outline_grey"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="12dp"
-        app:tint="@color/grey_600"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="0.5dp"
-        app:layout_constraintTop_toBottomOf="@+id/title_welcome"
-        tools:layout_editor_absoluteX="14dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/grey_200"
+        android:padding="10dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_search"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp">
+            android:layout_height="45dp"
+            android:hint="@string/search"
+            android:layout_marginBottom="8dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-            <TextView
-                android:id="@+id/title_actif"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Actif"
-                android:textColor="@color/blue_600"
-                android:textSize="17sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/actif_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="10 000"
-                android:textColor="@color/grey_600"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/title_actif" />
-
-
-            <TextView
-                android:id="@+id/title_suspend"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Suspendu"
-                android:textColor="@color/grey_600"
-                android:textSize="17sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/suspend_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textColor="@color/grey_600"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/title_suspend" />
-
-            <View
-                android:id="@+id/line_horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/grey_300"
-                app:layout_constraintTop_toBottomOf="@+id/actif_value" />
-
-            <TableLayout
-                android:id="@+id/conversion"
+            <AutoCompleteTextView
+                android:id="@+id/input_search"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:shrinkColumns="*"
-                android:stretchColumns="*"
-                app:layout_constraintTop_toBottomOf="@+id/line_horizontal">
+                android:singleLine="true"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                android:paddingStart="12dp"
+                android:completionThreshold="1"
+                android:text="@={viewModel.queryValue}"
+                android:textSize="14sp"/>
 
-                <TableRow>
+        </com.google.android.material.textfield.TextInputLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="3dp"
-                        android:background="@drawable/back_input_grey"
-                        android:orientation="horizontal"
-                        android:paddingStart="4dp">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_city"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginBottom="8dp"
+            android:hint="@string/city"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/to_ima"
-                            android:layout_width="30dp"
-                            android:layout_height="40dp"
-                            android:src="@drawable/ic_launcher_ima"
-                            app:civ_border_color="@color/grey_200"
-                            app:civ_border_overlay="true"
-                            app:civ_border_width="1dp"
-                            app:civ_circle_background_color="#ffffffff" />
-
-                        <EditText
-                            android:id="@+id/ima_value"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/transparent"
-                            android:padding="8dp"
-                            android:singleLine="true"
-                            android:inputType="numberDecimal"
-                            android:text="0" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="3dp"
-                        android:background="@drawable/back_input_grey"
-                        android:orientation="horizontal"
-                        android:paddingStart="4dp">
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/to_mg"
-                            android:layout_width="30dp"
-                            android:layout_height="40dp"
-                            android:src="@drawable/malagasy_flag"
-                            app:civ_border_color="@color/grey_200"
-                            app:civ_border_overlay="true"
-                            app:civ_border_width="1dp"
-                            app:civ_circle_background_color="#ffffffff" />
-
-                        <EditText
-                            android:id="@+id/mg_value"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/transparent"
-                            android:padding="8dp"
-                            android:singleLine="true"
-                            android:inputType="numberDecimal"
-                            android:text="0" />
-
-                    </LinearLayout>
-                </TableRow>
-            </TableLayout>
-
-            <TextView
-                android:id="@+id/update_data_title"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_city"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/update_data_title"
-                android:textSize="12sp"
-                app:layout_constraintTop_toBottomOf="@+id/conversion" />
+                android:layout_height="match_parent"
+                android:singleLine="true"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                android:paddingStart="12dp"
+                android:text="@={ viewModel.city }"
+                android:textSize="14sp"/>
 
-            <Button
-                android:id="@+id/btn_update"
-                style="@style/ButtonPrimarySoft"
-                android:layout_width="match_parent"
-                android:layout_marginTop="8dp"
-                android:text="Mettre à jour maintenant"
-                app:layout_constraintTop_toBottomOf="@+id/update_data_title" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="0.5dp"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2"
-        android:layout_marginTop="10dp">
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="20dp"
+            android:layout_centerInParent="true"
+            android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp">
+            android:gravity="end"
+            android:orientation="horizontal">
 
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:stretchColumns="*"
-                android:shrinkColumns="*">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:layout_gravity="end"
+                android:textAllCaps="false"
+                app:backgroundTint="@null"
+                android:background="@drawable/back_btn_white"
+                android:textColor="@color/teal_700"
+                android:fontFamily="sans-serif-light"
+                android:layout_marginEnd="5dp"
+                android:text="@string/clear"
+                android:onClick="@{ (view) -> viewModel.clearResult() }"
+                android:visibility="@{viewModel.venues.size() > 0 ? View.VISIBLE : View.GONE}"/>
 
-                <TableRow>
-                    <Button
-                        android:id="@+id/offer"
-                        android:layout_width="wrap_content"
-                        android:layout_height="38dp"
-                        style="@style/ButtonPrimary"
-                        android:layout_marginEnd="5dp"
-                        android:text="Offrir"/>
-
-                    <Button
-                        android:id="@+id/confirm"
-                        android:layout_width="match_parent"
-                        android:layout_height="38dp"
-                        android:layout_marginStart="5dp"
-                        style="@style/ButtonSuccess"
-                        android:text="Confirmer"/>
-                </TableRow>
-            </TableLayout>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:layout_gravity="end"
+                android:textAllCaps="false"
+                app:backgroundTint="@null"
+                android:background="@drawable/back_btn_teal"
+                android:fontFamily="sans-serif-light"
+                android:onClick="@{ (view) -> viewModel.searchVenues() }"
+                android:visibility="@{viewModel.isLoading ? View.GONE : View.VISIBLE}"
+                android:text="@string/search"/>
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
 
-    <include layout="@layout/activity_main_nav" />
-</androidx.constraintlayout.widget.ConstraintLayout>
 
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/grey_200"
+            android:layout_marginTop="10dp"
+            android:dividerHeight="1dp"
+            android:clipToPadding="false"
+            android:background="@android:color/white"
+            android:visibility="@{viewModel.venues.size() > 0 ? View.VISIBLE : View.GONE}" />
+
+        <TextView
+            android:id="@+id/emptyTextView"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@{ viewModel.snackbarMessage }"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:visibility="@{viewModel.venues.size() == 0 ? View.VISIBLE : View.GONE}" />
+
+    </LinearLayout>
+</layout>
