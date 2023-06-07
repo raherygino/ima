@@ -101,6 +101,11 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.gsoft.ima.view.components.CustomEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:customFont="SF_PRO_BOLD.otf"/>
+
             <TextView
                 android:id="@+id/forgot"
                 android:layout_width="wrap_content"

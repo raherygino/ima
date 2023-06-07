@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomEditText">
+        <attr name="customFont" format="string" />
+        <attr name="customTextSize" format="dimension" />
+    </declare-styleable>
+</resources>
