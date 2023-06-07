@@ -14,6 +14,8 @@ public class CustomEditText extends AppCompatEditText {
     public CustomEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(attrs);
+        this.setBackground(getResources().getDrawable(R.drawable.back_input));
+        this.setPadding(22,22,20,22);
     }
     private void init(AttributeSet attrs) {
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.CustomEditText);

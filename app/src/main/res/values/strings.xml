@@ -9,4 +9,10 @@
     <string name="password">Password</string>
     <!-- Text -->
     <string name="or">or</string>
+    <!-- Fonts -->
+    <string name="bold">SF_PRO_BOLD.otf</string>
+    <string name="medium">SF_PRO_MEDIUM.otf</string>
+    <string name="light">SF_PRO_LIGHT.otf</string>
+    <string name="regular">SF_PRO_REGULAR.otf</string>
+    <string name="semi_bold">SF_PRO_SEMI_BOLD.otf</string>
 </resources>

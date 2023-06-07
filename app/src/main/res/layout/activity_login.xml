@@ -65,53 +65,35 @@
                 android:textColor="?attr/colorPrimaryDark"
                 android:textSize="16sp" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layout_phone"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <com.gsoft.ima.view.components.CustomEditText
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginBottom="12dp"
-                android:hint="@string/phone">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/phone"
-                    style="@style/MaterialEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@={ viewModel.number }"
-                    android:drawableStart="@drawable/ic_phone" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layout_password"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginBottom="12dp"
-                android:hint="@string/password"
-                app:passwordToggleEnabled="true">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/password"
-                    style="@style/MaterialEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:drawableStart="@drawable/ic_lock" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                android:hint="@string/phone"
+                android:drawableTint="@color/grey_600"
+                android:drawableStart="@drawable/ic_phone"
+                android:drawablePadding="@dimen/pd_drawable"
+                android:textSize="@dimen/text_size_edit_text"
+                android:singleLine="true"
+                app:customFont="@string/light"/>
 
             <com.gsoft.ima.view.components.CustomEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:customFont="SF_PRO_BOLD.otf"/>
+                android:layout_marginTop="@dimen/mt_edit_text"
+                android:hint="@string/password"
+                android:drawableTint="@color/grey_600"
+                android:drawableStart="@drawable/ic_lock"
+                android:drawablePadding="@dimen/pd_drawable"
+                android:textSize="@dimen/text_size_edit_text"
+                android:singleLine="true"
+                android:inputType="textPassword"
+                app:customFont="@string/light"/>
 
             <TextView
                 android:id="@+id/forgot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:layout_marginTop="-10dp"
                 android:fontFamily="sans-serif-light"
                 android:text="@string/forgot"
                 android:textColor="@color/grey_400"
