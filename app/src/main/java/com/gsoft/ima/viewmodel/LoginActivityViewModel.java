@@ -1,6 +1,15 @@
 package com.gsoft.ima.viewmodel;
 
-import androidx.lifecycle.ViewModel;
+import android.content.Context;
 
-public class LoginActivityViewModel extends ViewModel {
+import androidx.databinding.BaseObservable;
+import androidx.databinding.ObservableField;
+
+public class LoginActivityViewModel extends BaseObservable {
+
+    private Context context;
+    public ObservableField<String> number = new ObservableField<>();
+    public LoginActivityViewModel(Context mContext) {
+        this.context = mContext;
+    }
 }

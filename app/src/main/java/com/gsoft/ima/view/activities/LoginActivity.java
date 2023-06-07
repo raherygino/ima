@@ -6,6 +6,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.gsoft.ima.databinding.ActivityLoginBinding;
+import com.gsoft.ima.viewmodel.LoginActivityViewModel;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -16,5 +17,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        LoginActivityViewModel viewModel = new LoginActivityViewModel(this);
+        binding.setViewModel(viewModel);
     }
 }
