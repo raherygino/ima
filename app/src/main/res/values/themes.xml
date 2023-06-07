@@ -36,8 +36,8 @@
         <item name="android:drawablePadding">@dimen/pd_drawable</item>
         <item name="android:fontFamily">sans-serif-light</item>
         <item name="android:paddingStart">@dimen/ps_edit_text</item>
-        <item name="android:paddingTop">@dimen/py_edit_text</item>
-        <item name="android:paddingBottom">@dimen/ps_edit_text</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
         <item name="android:singleLine">true</item>
         <item name="android:textSize">@dimen/text_size_edit_text</item>
     </style>
