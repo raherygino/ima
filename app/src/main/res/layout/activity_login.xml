@@ -34,15 +34,15 @@
                 android:src="@drawable/ic_launcher_ima"
                 android:contentDescription="@string/app_name" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <com.gsoft.ima.view.components.CustomTextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="-10dp"
-                android:text="@string/app_name"
-                android:textSize="18sp"
+                android:textAlignment="center"
+                android:textSize="@dimen/headline_3"
                 android:textColor="@color/white"
-                android:fontFamily="sans-serif-black"
-                android:layout_gravity="center_horizontal"/>
+                android:text="@string/app_name"
+                app:customFont="@string/bold"
+                android:layout_marginBottom="@dimen/mt_edit_text"/>
 
         </LinearLayout>
 
@@ -53,17 +53,14 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
             android:padding="10dp">
 
-            <TextView
-                android:id="@+id/title_login"
+            <com.gsoft.ima.view.components.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="sans-serif-black"
-                android:text="@string/login"
                 android:textAlignment="center"
-                android:textColor="?attr/colorPrimaryDark"
-                android:textSize="16sp" />
+                android:textSize="@dimen/headline_3"
+                android:text="@string/login"
+                app:customFont="@string/regular"
+                android:layout_marginBottom="@dimen/mt_edit_text"/>
 
             <com.gsoft.ima.view.components.CustomEditText
                 android:layout_width="match_parent"
@@ -73,6 +70,7 @@
                 android:drawableStart="@drawable/ic_phone"
                 android:drawablePadding="@dimen/pd_drawable"
                 android:textSize="@dimen/text_size_edit_text"
+                android:inputType="number"
                 android:singleLine="true"
                 app:customFont="@string/light"/>
 
@@ -89,15 +87,14 @@
                 android:inputType="textPassword"
                 app:customFont="@string/light"/>
 
-            <TextView
-                android:id="@+id/forgot"
-                android:layout_width="wrap_content"
+            <com.gsoft.ima.view.components.CustomTextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:fontFamily="sans-serif-light"
+                android:gravity="end"
+                android:textSize="@dimen/headline_5"
                 android:text="@string/forgot"
-                android:textColor="@color/grey_400"
-                android:textSize="11sp" />
+                app:customFont="@string/light"
+                android:layout_marginBottom="@dimen/mt_edit_text"/>
 
             <Button
                 android:id="@+id/btn_login"
