@@ -65,6 +65,7 @@
             <com.gsoft.ima.view.components.CustomEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:maxLength="10"
                 android:hint="@string/phone"
                 android:drawableTint="@color/grey_600"
                 android:drawableStart="@drawable/ic_phone"
@@ -96,12 +97,11 @@
                 app:customFont="@string/light"
                 android:layout_marginBottom="@dimen/mt_edit_text"/>
 
-            <Button
-                android:id="@+id/btn_login"
-                style="@style/ButtonPrimary"
+            <com.gsoft.ima.view.components.Button
                 android:layout_width="match_parent"
-                android:layout_marginTop="14dp"
-                android:text="@string/login" />
+                android:layout_height="@dimen/btn_height"
+                app:customFont="@string/regular"
+                android:text="@string/login"/>
 
             <View
                 android:layout_width="match_parent"
@@ -119,12 +119,13 @@
                 android:paddingEnd="8dp"
                 android:text="@string/or" />
 
-            <Button
-                android:id="@+id/btn_signup"
-                style="@style/ButtonPrimarySoft"
+            <com.gsoft.ima.view.components.Button
                 android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
-                android:text="@string/signup" />
+                android:layout_height="@dimen/btn_height"
+                app:customFont="@string/regular"
+                app:variant="soft_primary"
+                android:layout_marginTop="@dimen/mt_edit_text"
+                android:text="@string/signup"/>
 
         </LinearLayout>
 

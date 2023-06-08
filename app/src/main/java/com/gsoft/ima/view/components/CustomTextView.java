@@ -17,9 +17,9 @@ public class CustomTextView extends AppCompatTextView {
 
     private void setFont(AttributeSet attrs) {
         @SuppressLint("CustomViewStyleable")
-        TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.CustomEditText);
+        TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.CustomView);
 
-        String customFont = typedArray.getString(R.styleable.CustomEditText_customFont);
+        String customFont = typedArray.getString(R.styleable.CustomView_customFont);
         if (customFont != null) {
             Typeface typeface = Typeface.createFromAsset(getContext().getAssets(), customFont);
             setTypeface(typeface);
