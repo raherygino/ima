@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.view.View" />
         <variable
             name="viewModel"
             type="com.gsoft.ima.viewmodel.LoginActivityViewModel" />
@@ -16,7 +17,7 @@
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="@dimen/height_auth_header"
             android:background="?attr/colorPrimary"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
@@ -25,10 +26,10 @@
 
             <ImageView
                 android:id="@+id/ic_logo"
-                android:layout_width="190dp"
-                android:layout_height="90dp"
+                android:layout_width="@dimen/width_auth_logo"
+                android:layout_height="@dimen/height_auth_logo"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/mt_edit_text"
                 android:padding="0dp"
                 app:tint="@color/white"
                 android:src="@drawable/ic_launcher_ima"
@@ -51,7 +52,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            android:padding="10dp">
+            android:padding="@dimen/pd_10">
 
             <com.gsoft.ima.view.components.CustomTextView
                 android:layout_width="match_parent"
@@ -67,10 +68,12 @@
                 android:layout_height="wrap_content"
                 android:maxLength="10"
                 android:hint="@string/phone"
+                android:layout_marginTop="@dimen/mt_edit_text"
                 android:drawableTint="@color/grey_600"
                 android:drawableStart="@drawable/ic_phone"
                 android:drawablePadding="@dimen/pd_drawable"
                 android:textSize="@dimen/text_size_edit_text"
+                android:text="@={ viewModel.phone }"
                 android:inputType="number"
                 android:singleLine="true"
                 app:customFont="@string/light"/>
@@ -81,9 +84,10 @@
                 android:layout_marginTop="@dimen/mt_edit_text"
                 android:hint="@string/password"
                 android:drawableTint="@color/grey_600"
-                android:drawableStart="@drawable/ic_lock"
+                android:drawableStart="@drawable/ic_orbit_lock"
                 android:drawablePadding="@dimen/pd_drawable"
                 android:textSize="@dimen/text_size_edit_text"
+                android:text="@={ viewModel.password }"
                 android:singleLine="true"
                 android:inputType="textPassword"
                 app:customFont="@string/light"/>
@@ -100,6 +104,8 @@
             <com.gsoft.ima.view.components.Button
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/btn_height"
+                android:layout_marginTop="@dimen/mt_edit_text"
+                android:onClick="@{ (view) -> viewModel.loginListener() }"
                 app:customFont="@string/regular"
                 android:text="@string/login"/>
 
@@ -109,14 +115,16 @@
                 android:layout_marginTop="23dp"
                 android:background="@color/grey_400" />
 
-            <TextView
+            <com.gsoft.ima.view.components.CustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="-12dp"
+                android:layout_marginTop="-11dp"
                 android:background="@color/grey_100"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp"
+                android:paddingStart="@dimen/mx_8"
+                android:paddingEnd="@dimen/mx_8"
+                android:textSize="@dimen/headline_5"
+                app:customFont="@string/light"
                 android:text="@string/or" />
 
             <com.gsoft.ima.view.components.Button
