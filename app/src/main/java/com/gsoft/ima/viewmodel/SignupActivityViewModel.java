@@ -5,31 +5,27 @@ import android.content.Context;
 import android.content.Intent;
 
 import androidx.databinding.BaseObservable;
-import androidx.databinding.ObservableField;
 
 import com.gsoft.ima.view.activities.LoginActivity;
 import com.gsoft.ima.view.activities.MainActivity;
 import com.gsoft.ima.view.activities.SignupActivity;
 
-public class LoginActivityViewModel extends BaseObservable {
+public class SignupActivityViewModel extends BaseObservable {
 
-    private final Context context;
     private final Activity activity;
-    public ObservableField<String> phone = new ObservableField<>();
-    public ObservableField<String> password = new ObservableField<>();
-    public LoginActivityViewModel(Context mContext) {
-        this.context = mContext;
+
+    public SignupActivityViewModel(Context context) {
         this.activity = (Activity) context;
     }
 
-    public void loginListener() {
+    public void signupListener() {
         Intent intent = new Intent(activity, MainActivity.class);
         activity.startActivity(intent);
         activity.finish();
     }
 
-    public void signupListener() {
-        Intent intent = new Intent(activity, SignupActivity.class);
+    public void loginListener() {
+        Intent intent = new Intent(activity, LoginActivity.class);
         activity.startActivity(intent);
         activity.finish();
     }

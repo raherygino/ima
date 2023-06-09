@@ -130,6 +130,7 @@
             <com.gsoft.ima.view.components.Button
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/btn_height"
+                android:onClick="@{ (view) -> viewModel.signupListener() }"
                 app:customFont="@string/regular"
                 app:variant="soft_primary"
                 android:layout_marginTop="@dimen/mt_edit_text"

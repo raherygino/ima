@@ -5,10 +5,22 @@
     <string name="signup">Signup</string>
     <string name="forgot">Forget password?</string>
     <!-- Form -->
+    <string name="lastname">Lastname</string>
+    <string name="firstname">Firstname</string>
     <string name="phone">Phone</string>
     <string name="password">Password</string>
+    <string name="gender">Gender</string>
+    <string name="birth_date">Birthday</string>
+    <string name="birth_place">Birth place</string>
+    <string name="cin">ID Card</string>
+    <string name="city">City</string>
+    <string name="region">Region</string>
+    <string name="country">Country</string>
+    <string name="email">Email</string>
+    <string name="confirm_password">Confirm password</string>
     <!-- Text -->
     <string name="or">or</string>
+    <string name="accepting_signup">Je confirme que ces informations sont véritables et j\'accepte les termes et les conditions d\'utilisation des services affiliés à la plateforme IMA.</string>
     <!-- Fonts -->
     <string name="bold">SF_PRO_BOLD.otf</string>
     <string name="medium">SF_PRO_MEDIUM.otf</string>

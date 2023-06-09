@@ -30,6 +30,11 @@
         <activity
             android:name=".view.activities.MainActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".view.activities.SignupActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>
