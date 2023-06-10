@@ -76,9 +76,9 @@ public class SweetDialog{
         });
     }
 
-    public void dismiss()
+    public void cancel()
     {
-        dialog.dismiss();
+        dialog.cancel();
     }
 }
 

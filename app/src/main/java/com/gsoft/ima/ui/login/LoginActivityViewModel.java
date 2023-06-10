@@ -3,6 +3,9 @@ package com.gsoft.ima.ui.login;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.ObservableField;
@@ -41,7 +44,14 @@ public class LoginActivityViewModel extends BaseObservable {
                 activity.getString(R.string.forgot_pass_info)
         );
         dialog.btnOk.setText(activity.getString(R.string.send));
-        dialog.editText.setText("email");
+        dialog.btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String email = dialog.editText.getText().toString();
+                Toast.makeText(context, "Email sent to "+email+" successfully", Toast.LENGTH_SHORT).show();
+                dialog.cancel();
+            }
+        });
         dialog.show();
     }
 }

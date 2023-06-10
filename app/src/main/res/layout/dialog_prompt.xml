@@ -34,6 +34,7 @@
         android:id="@+id/edit_query"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="@string/email"
         android:layout_marginStart="@dimen/pd_10"
         android:layout_marginEnd="@dimen/pd_10"
         android:layout_marginTop="@dimen/mt_edit_text"
