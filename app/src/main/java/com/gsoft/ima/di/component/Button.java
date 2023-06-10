@@ -33,6 +33,8 @@ public class Button extends AppCompatButton {
         } else if (variant.equals("soft_primary")) {
             this.setBackground(getResources().getDrawable(R.drawable.back_btn_soft_primary));
             this.setTextColor(getResources().getColor(R.color.blue_500));
+        } else if (variant.equals("text_primary")) {
+            this.setTextColor(getResources().getColor(R.color.blue_500));
         }
 
         typedArray.recycle();

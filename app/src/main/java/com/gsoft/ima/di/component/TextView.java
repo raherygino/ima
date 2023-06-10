@@ -9,8 +9,8 @@ import androidx.appcompat.widget.AppCompatTextView;
 
 import com.gsoft.ima.R;
 
-public class CustomTextView extends AppCompatTextView {
-    public CustomTextView(Context context, AttributeSet attrs) {
+public class TextView extends AppCompatTextView {
+    public TextView(Context context, AttributeSet attrs) {
         super(context, attrs);
         setFont(attrs);
     }

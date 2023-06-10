@@ -1,9 +1,14 @@
 <resources>
     <string name="app_name">IMA</string>
+    <!-- Button -->
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="send">Send</string>
     <!-- Title -->
     <string name="login">Login</string>
     <string name="signup">Signup</string>
     <string name="forgot">Forget password?</string>
+    <string name="forgot_pass_info">Enter your email to create a new password</string>
     <!-- Form -->
     <string name="lastname">Lastname</string>
     <string name="firstname">Firstname</string>

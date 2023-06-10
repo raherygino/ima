@@ -35,7 +35,7 @@
                 android:src="@drawable/ic_launcher_ima"
                 android:contentDescription="@string/app_name" />
 
-            <com.gsoft.ima.di.component.CustomTextView
+            <com.gsoft.ima.di.component.TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
@@ -54,7 +54,7 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
             android:padding="@dimen/pd_10">
 
-            <com.gsoft.ima.di.component.CustomTextView
+            <com.gsoft.ima.di.component.TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
@@ -63,7 +63,7 @@
                 app:customFont="@string/regular"
                 android:layout_marginBottom="@dimen/mt_edit_text"/>
 
-            <com.gsoft.ima.di.component.CustomEditText
+            <com.gsoft.ima.di.component.EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLength="10"
@@ -78,13 +78,13 @@
                 android:singleLine="true"
                 app:customFont="@string/light"/>
 
-            <com.gsoft.ima.di.component.CustomEditText
+            <com.gsoft.ima.di.component.EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/mt_edit_text"
                 android:hint="@string/password"
                 android:drawableTint="@color/grey_600"
-                android:drawableStart="@drawable/ic_orbit_lock"
+                android:drawableStart="@drawable/ic_lock_outlined"
                 android:drawablePadding="@dimen/pd_drawable"
                 android:textSize="@dimen/text_size_edit_text"
                 android:text="@={ viewModel.password }"
@@ -92,9 +92,10 @@
                 android:inputType="textPassword"
                 app:customFont="@string/light"/>
 
-            <com.gsoft.ima.di.component.CustomTextView
+            <com.gsoft.ima.di.component.TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="@{ (view) -> viewModel.forgotPassListener() }"
                 android:gravity="end"
                 android:textSize="@dimen/headline_5"
                 android:text="@string/forgot"
@@ -115,7 +116,7 @@
                 android:layout_marginTop="23dp"
                 android:background="@color/grey_400" />
 
-            <com.gsoft.ima.di.component.CustomTextView
+            <com.gsoft.ima.di.component.TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"

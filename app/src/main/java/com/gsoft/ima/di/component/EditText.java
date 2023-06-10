@@ -10,9 +10,9 @@ import androidx.appcompat.widget.AppCompatEditText;
 
 import com.gsoft.ima.R;
 
-public class CustomEditText extends AppCompatEditText {
+public class EditText extends AppCompatEditText {
     @SuppressLint("UseCompatLoadingForDrawables")
-    public CustomEditText(Context context, AttributeSet attrs) {
+    public EditText(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(attrs);
         this.setBackground(getResources().getDrawable(R.drawable.back_input));
