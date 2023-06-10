@@ -1,4 +1,4 @@
-package com.gsoft.ima.view.components;
+package com.gsoft.ima.di.component;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

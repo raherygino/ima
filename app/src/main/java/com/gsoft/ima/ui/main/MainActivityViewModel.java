@@ -1,4 +1,4 @@
-package com.gsoft.ima.viewmodel;
+package com.gsoft.ima.ui.main;
 
 import android.content.Context;
 

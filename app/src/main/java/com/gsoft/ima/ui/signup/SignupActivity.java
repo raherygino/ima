@@ -1,11 +1,11 @@
-package com.gsoft.ima.view.activities;
+package com.gsoft.ima.ui.signup;
 
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.gsoft.ima.databinding.ActivitySignupBinding;
-import com.gsoft.ima.viewmodel.SignupActivityViewModel;
+import com.gsoft.ima.ui.login.LoginActivity;
 
 public class SignupActivity extends AppCompatActivity {
 

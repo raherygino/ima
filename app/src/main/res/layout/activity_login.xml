@@ -7,7 +7,7 @@
         <import type="android.view.View" />
         <variable
             name="viewModel"
-            type="com.gsoft.ima.viewmodel.LoginActivityViewModel" />
+            type="com.gsoft.ima.ui.login.LoginActivityViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,7 +35,7 @@
                 android:src="@drawable/ic_launcher_ima"
                 android:contentDescription="@string/app_name" />
 
-            <com.gsoft.ima.view.components.CustomTextView
+            <com.gsoft.ima.di.component.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
@@ -54,7 +54,7 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
             android:padding="@dimen/pd_10">
 
-            <com.gsoft.ima.view.components.CustomTextView
+            <com.gsoft.ima.di.component.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
@@ -63,7 +63,7 @@
                 app:customFont="@string/regular"
                 android:layout_marginBottom="@dimen/mt_edit_text"/>
 
-            <com.gsoft.ima.view.components.CustomEditText
+            <com.gsoft.ima.di.component.CustomEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLength="10"
@@ -78,7 +78,7 @@
                 android:singleLine="true"
                 app:customFont="@string/light"/>
 
-            <com.gsoft.ima.view.components.CustomEditText
+            <com.gsoft.ima.di.component.CustomEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/mt_edit_text"
@@ -92,7 +92,7 @@
                 android:inputType="textPassword"
                 app:customFont="@string/light"/>
 
-            <com.gsoft.ima.view.components.CustomTextView
+            <com.gsoft.ima.di.component.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="end"
@@ -101,7 +101,7 @@
                 app:customFont="@string/light"
                 android:layout_marginBottom="@dimen/mt_edit_text"/>
 
-            <com.gsoft.ima.view.components.Button
+            <com.gsoft.ima.di.component.Button
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/btn_height"
                 android:layout_marginTop="@dimen/mt_edit_text"
@@ -115,7 +115,7 @@
                 android:layout_marginTop="23dp"
                 android:background="@color/grey_400" />
 
-            <com.gsoft.ima.view.components.CustomTextView
+            <com.gsoft.ima.di.component.CustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -127,7 +127,7 @@
                 app:customFont="@string/light"
                 android:text="@string/or" />
 
-            <com.gsoft.ima.view.components.Button
+            <com.gsoft.ima.di.component.Button
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/btn_height"
                 android:onClick="@{ (view) -> viewModel.signupListener() }"

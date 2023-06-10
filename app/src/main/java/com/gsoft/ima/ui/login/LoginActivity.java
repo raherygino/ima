@@ -1,12 +1,9 @@
-package com.gsoft.ima.view.activities;
+package com.gsoft.ima.ui.login;
 
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.gsoft.ima.databinding.ActivityLoginBinding;
-import com.gsoft.ima.viewmodel.LoginActivityViewModel;
 
 public class LoginActivity extends AppCompatActivity {
 

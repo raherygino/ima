@@ -1,4 +1,4 @@
-package com.gsoft.ima.viewmodel;
+package com.gsoft.ima.ui.login;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,9 +7,8 @@ import android.content.Intent;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.ObservableField;
 
-import com.gsoft.ima.view.activities.LoginActivity;
-import com.gsoft.ima.view.activities.MainActivity;
-import com.gsoft.ima.view.activities.SignupActivity;
+import com.gsoft.ima.ui.main.MainActivity;
+import com.gsoft.ima.ui.signup.SignupActivity;
 
 public class LoginActivityViewModel extends BaseObservable {
 
