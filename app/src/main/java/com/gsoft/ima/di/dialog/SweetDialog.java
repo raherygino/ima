@@ -27,10 +27,13 @@ public class SweetDialog{
         this.idLay = idLay;
         this.initDialog();
         this.BTN_OK = dialog.findViewById(R.id.btn_ok);
-        TextView title = dialog.findViewById(R.id.title_dialog);
-        title.setText(valueTitle);
-        TextView desc = dialog.findViewById(R.id.description_dialog);
-        desc.setText(valueDesc);
+        if (valueTitle != null) {
+            TextView title = dialog.findViewById(R.id.title_dialog);
+            title.setText(valueTitle);
+            TextView desc = dialog.findViewById(R.id.description_dialog);
+            desc.setText(valueDesc);
+        }
+
     }
 
     private void initDialog(){

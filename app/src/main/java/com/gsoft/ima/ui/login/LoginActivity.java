@@ -15,8 +15,10 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
         LoginActivityViewModel viewModel = new LoginActivityViewModel(this);
         binding.setViewModel(viewModel);
+
         viewModel.phone.set("0346500700");
         viewModel.password.set("1234567890");
     }

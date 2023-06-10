@@ -15,6 +15,7 @@
     <color name="yellow_400">#FFC107</color>
     <color name="purple_400">#ab2cd2</color>
     <color name="transparent">#00ffffff</color>
+    <color name="black_trans">#44000000</color>
     <color name="grey_50">#FAFAFA</color>
     <color name="grey_100">#FDFDFD</color>
     <color name="grey_200">#EEEEEE</color>
