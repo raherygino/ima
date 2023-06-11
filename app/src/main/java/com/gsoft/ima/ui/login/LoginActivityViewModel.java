@@ -11,9 +11,18 @@ import androidx.databinding.BaseObservable;
 import androidx.databinding.ObservableField;
 
 import com.gsoft.ima.R;
+import com.gsoft.ima.api.RetrofitClient;
 import com.gsoft.ima.di.dialog.PromptDialog;
+import com.gsoft.ima.models.User;
 import com.gsoft.ima.ui.main.MainActivity;
 import com.gsoft.ima.ui.signup.SignupActivity;
+
+import java.io.IOException;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivityViewModel extends BaseObservable {
 
@@ -27,9 +36,10 @@ public class LoginActivityViewModel extends BaseObservable {
     }
 
     public void loginListener() {
-        Intent intent = new Intent(activity, MainActivity.class);
-        activity.startActivity(intent);
-        activity.finish();
+                        /*
+                        Intent intent = new Intent(activity, MainActivity.class);
+                        activity.startActivity(intent);
+                        activity.finish();*/
     }
 
     public void signupListener() {
