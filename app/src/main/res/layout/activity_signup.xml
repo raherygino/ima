@@ -94,17 +94,18 @@
                 app:customFont="@string/light"/>
 
             <com.gsoft.ima.di.component.EditText
+                android:id="@+id/gender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:elevation="0dp"
                 android:layout_marginTop="@dimen/mt_edit_text"
+                android:focusable="false"
                 android:hint="@string/gender"
                 android:drawableTint="@color/grey_600"
                 android:drawableStart="@drawable/ic_round_group"
                 android:drawablePadding="@dimen/pd_drawable"
                 android:textSize="@dimen/text_size_edit_text"
                 android:singleLine="true"
-                android:text="@={ viewModel.gender }"
+                android:text="@string/male"
                 app:customFont="@string/light"/>
 
             <TableLayout

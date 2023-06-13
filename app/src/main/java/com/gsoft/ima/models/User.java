@@ -38,4 +38,44 @@ public class User {
         this.email = email;
         this.password = password;
     }
+
+    public boolean isValidate() {
+        boolean isValidate = true;
+        if (this.lastname.isEmpty()) {
+            isValidate = false;
+        }
+        if (this.lastname.isEmpty()) {
+            isValidate = false;
+        }
+        if (this.gender.isEmpty()) {
+            isValidate = false;
+        }
+        if (this.birthday.isEmpty()) {
+            isValidate = false;
+        }
+        if (this.birthplace.isEmpty()) {
+            isValidate = false;
+        }
+        if (this.id_card.isEmpty()) {
+            isValidate = false;
+        }
+        if (this.country.isEmpty()) {
+            isValidate = false;
+        }
+        if (this.city.isEmpty()) {
+            isValidate = false;
+        }
+
+        if (this.phone.isEmpty()) {
+            isValidate = false;
+        }
+        if (this.email.isEmpty()) {
+            isValidate = false;
+        }
+        if (this.password.isEmpty()) {
+            isValidate = false;
+        }
+
+        return isValidate;
+    }
 }

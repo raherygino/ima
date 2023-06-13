@@ -3,8 +3,10 @@ package com.gsoft.ima.ui.signup;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.ObservableField;
 
@@ -25,18 +27,18 @@ public class SignupActivityViewModel extends BaseObservable {
     private final Activity activity;
     private final Context context;
 
-    public ObservableField<String> lastname = new ObservableField<>();
-    public ObservableField<String> firstname = new ObservableField<>();
-    public ObservableField<String> gender = new ObservableField<>();
-    public ObservableField<String> birthday = new ObservableField<>();
-    public ObservableField<String> birthplace = new ObservableField<>();
-    public ObservableField<String> id_card = new ObservableField<>();
-    public ObservableField<String> country = new ObservableField<>();
-    public ObservableField<String> city = new ObservableField<>();
-    public ObservableField<String> phone = new ObservableField<>();
-    public ObservableField<String> email = new ObservableField<>();
-    public ObservableField<String> password = new ObservableField<>();
-    public ObservableField<String> confirmPassword = new ObservableField<>();
+    public ObservableField<String> lastname = new ObservableField<>("");
+    public ObservableField<String> firstname = new ObservableField<>("");
+    public ObservableField<String> gender = new ObservableField<>("");
+    public ObservableField<String> birthday = new ObservableField<>("");
+    public ObservableField<String> birthplace = new ObservableField<>("");
+    public ObservableField<String> id_card = new ObservableField<>("");
+    public ObservableField<String> country = new ObservableField<>("");
+    public ObservableField<String> city = new ObservableField<>("");
+    public ObservableField<String> phone = new ObservableField<>("");
+    public ObservableField<String> email = new ObservableField<>("");
+    public ObservableField<String> password = new ObservableField<>("");
+    public ObservableField<String> confirmPassword = new ObservableField<>("");
 
 
 
@@ -45,10 +47,7 @@ public class SignupActivityViewModel extends BaseObservable {
         this.context = context;
     }
 
-    public void signupListener() {/*
-        Intent intent = new Intent(activity, MainActivity.class);
-        activity.startActivity(intent);
-        activity.finish();*/
+    public void signupListener() {
 
         User user = new User(
                 lastname.get(),
@@ -64,27 +63,30 @@ public class SignupActivityViewModel extends BaseObservable {
                 password.get()
         );
 
-        Call<ResponseBody> createUser = RetrofitClient.createUser(user);
-        createUser.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.isSuccessful()) {
-                    try {
-                        Toast.makeText(context, response.body().source().readUtf8(), Toast.LENGTH_SHORT).show();
-                    } catch (IOException e) {
-                        Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+        if (user.isValidate()) {
+            Call<ResponseBody> createUser = RetrofitClient.createUser(user);
+            createUser.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    if (response.isSuccessful()) {
+                        try {
+                            Toast.makeText(context, response.body().source().readUtf8(), Toast.LENGTH_SHORT).show();
+                        } catch (IOException e) {
+                            Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(context, response.errorBody().toString(), Toast.LENGTH_SHORT).show();
                     }
-                } else {
-                    Toast.makeText(context, response.errorBody().toString(), Toast.LENGTH_SHORT).show();
-                    ;
                 }
-            }
 
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                    Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            Toast.makeText(context, "Field required", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void loginListener() {

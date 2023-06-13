@@ -15,7 +15,6 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -34,6 +33,7 @@ android {
     }
 }
 
+
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
@@ -41,6 +41,21 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.navigation:navigation-fragment:2.5.3'
     implementation 'androidx.navigation:navigation-ui:2.5.3'
+
+    //implementation 'com.github.yuriy-budiyev:code-scanner:2.3.2'
+   // implementation 'me.dm7.barcodescanner:zxing:1.9.13'
+    //implementation 'com.dlazaro66.qrcodereaderview:qrcodereaderview:2.0.3'
+    // mety -> implementation 'com.dlazaro66.qrcodereaderview:qrcodereaderview:2.0.2'
+
+    //implementation 'com.github.androidmads:QRGenerator:1.0.1'
+    // a essayer implementation 'com.github.androidmads:QRGenerator:1.0.0'
+/*
+    implementation 'io.reactivex:rxjava:1.1.5'
+    implementation 'io.reactivex:rxandroid:1.2.0'
+    implementation 'com.google.zxing:core:3.2.1'
+    implementation 'com.github.thepacific:mvc:0.0.2'*/
+
+   // implementation 'com.github.ybq:Android-SpinKit:1.4.0'
 
     implementation 'com.google.android.gms:play-services-location:17.0.0'
 
