@@ -42,7 +42,6 @@ public class LoginActivity extends AppCompatActivity {
             if (checkSelfPermission(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
                 String phoneNumber = telephonyManager.getLine1Number();
                 viewModel.phone.set(phoneNumber);
-                // Do something with the phone number
             }
         }
     }
