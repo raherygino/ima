@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import com.gsoft.ima.databinding.ActivityMainBinding;
-import com.gsoft.ima.ui.login.LoginActivity;
+import com.gsoft.ima.ui.auth.AuthActivity;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-         startActivity(new Intent(MainActivity.this, LoginActivity.class));
+         startActivity(new Intent(MainActivity.this, AuthActivity.class));
          finish();
     }
 }

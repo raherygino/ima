@@ -2,8 +2,6 @@ package com.gsoft.ima.ui.signup;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -12,8 +10,6 @@ import androidx.databinding.ObservableField;
 
 import com.gsoft.ima.api.RetrofitClient;
 import com.gsoft.ima.models.User;
-import com.gsoft.ima.ui.login.LoginActivity;
-import com.gsoft.ima.ui.main.MainActivity;
 
 import java.io.IOException;
 
@@ -90,8 +86,6 @@ public class SignupActivityViewModel extends BaseObservable {
     }
 
     public void loginListener() {
-        Intent intent = new Intent(activity, LoginActivity.class);
-        activity.startActivity(intent);
-        activity.finish();
+        //
     }
 }

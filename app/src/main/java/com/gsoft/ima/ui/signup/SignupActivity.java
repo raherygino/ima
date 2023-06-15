@@ -1,7 +1,6 @@
 package com.gsoft.ima.ui.signup;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,8 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.gsoft.ima.R;
 import com.gsoft.ima.databinding.ActivitySignupBinding;
-import com.gsoft.ima.ui.login.LoginActivity;
-import com.gsoft.ima.ui.main.MainActivity;
 import com.gsoft.ima.utils.eventlistener.DateSet;
 import java.util.Calendar;
 
@@ -67,8 +64,6 @@ public class SignupActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-        finish();
+        super.onBackPressed();
     }
 }

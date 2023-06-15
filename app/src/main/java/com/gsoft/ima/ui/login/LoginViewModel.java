@@ -4,33 +4,24 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.ObservableField;
 
 import com.gsoft.ima.R;
-import com.gsoft.ima.api.RetrofitClient;
 import com.gsoft.ima.di.dialog.PromptDialog;
-import com.gsoft.ima.models.User;
-import com.gsoft.ima.ui.main.MainActivity;
+import com.gsoft.ima.ui.auth.AuthActivity;
 import com.gsoft.ima.ui.signup.SignupActivity;
 
-import java.io.IOException;
-
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-public class LoginActivityViewModel extends BaseObservable {
+public class LoginViewModel extends BaseObservable {
 
     private final Context context;
     private final Activity activity;
     public ObservableField<String> phone = new ObservableField<>();
     public ObservableField<String> password = new ObservableField<>();
-    public LoginActivityViewModel(Context mContext) {
+
+    public LoginViewModel(Context mContext) {
         this.context = mContext;
         this.activity = (Activity) context;
     }
@@ -42,10 +33,12 @@ public class LoginActivityViewModel extends BaseObservable {
                         activity.finish();*/
     }
 
-    public void signupListener() {
+    public void signupListener() {/*
         Intent intent = new Intent(activity, SignupActivity.class);
         activity.startActivity(intent);
-        activity.finish();
+        activity.finish();*/
+        AuthActivity authActivity = (AuthActivity) activity;
+        authActivity.mssg("hello world");
     }
 
     public void forgotPassListener() {
