@@ -38,6 +38,7 @@
         android:layout_marginStart="@dimen/pd_10"
         android:layout_marginEnd="@dimen/pd_10"
         android:layout_marginTop="@dimen/mt_edit_text"
+        android:singleLine="true"
         app:customFont="@string/regular"
         app:layout_constraintTop_toBottomOf="@+id/description_dialog"  />
 
