@@ -10,6 +10,8 @@ import androidx.databinding.ObservableField;
 
 import com.gsoft.ima.api.RetrofitClient;
 import com.gsoft.ima.models.User;
+import com.gsoft.ima.ui.auth.AuthActivity;
+import com.gsoft.ima.ui.login.LoginFragment;
 
 import java.io.IOException;
 
@@ -86,6 +88,7 @@ public class SignupViewModel extends BaseObservable {
     }
 
     public void loginListener() {
-        //
+        AuthActivity authActivity = (AuthActivity) activity;
+        authActivity.setFragment(new LoginFragment());
     }
 }

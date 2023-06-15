@@ -1,5 +1,6 @@
 package com.gsoft.ima.ui.auth;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ import com.gsoft.ima.ui.signup.SignupFragment;
 
 public class AuthActivity extends AppCompatActivity {
     private ActivityAuthBinding binding;
+    private String currentFragment;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,9 +27,19 @@ public class AuthActivity extends AppCompatActivity {
     }
 
     public void setFragment(Fragment fragment) {
+        currentFragment =  fragment.getClass().toString().replace("class", "");
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.replace(R.id.nav_host_fragment_auth_main, fragment);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (currentFragment.contains("SignupFragment")) {
+            setFragment(new LoginFragment());
+        } else {
+            super.onBackPressed();
+        }
     }
 }
