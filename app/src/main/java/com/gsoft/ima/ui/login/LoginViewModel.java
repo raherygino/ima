@@ -2,7 +2,6 @@ package com.gsoft.ima.ui.login;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.view.View;
 import android.widget.Toast;
 
@@ -12,7 +11,7 @@ import androidx.databinding.ObservableField;
 import com.gsoft.ima.R;
 import com.gsoft.ima.di.dialog.PromptDialog;
 import com.gsoft.ima.ui.auth.AuthActivity;
-import com.gsoft.ima.ui.signup.SignupActivity;
+import com.gsoft.ima.ui.signup.SignupFragment;
 
 public class LoginViewModel extends BaseObservable {
 
@@ -27,18 +26,12 @@ public class LoginViewModel extends BaseObservable {
     }
 
     public void loginListener() {
-                        /*
-                        Intent intent = new Intent(activity, MainActivity.class);
-                        activity.startActivity(intent);
-                        activity.finish();*/
+        //
     }
 
-    public void signupListener() {/*
-        Intent intent = new Intent(activity, SignupActivity.class);
-        activity.startActivity(intent);
-        activity.finish();*/
+    public void signupListener() {
         AuthActivity authActivity = (AuthActivity) activity;
-        authActivity.mssg("hello world");
+        authActivity.setFragment(new SignupFragment());
     }
 
     public void forgotPassListener() {

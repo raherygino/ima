@@ -18,7 +18,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SignupActivityViewModel extends BaseObservable {
+public class SignupViewModel extends BaseObservable {
 
     private final Activity activity;
     private final Context context;
@@ -38,7 +38,7 @@ public class SignupActivityViewModel extends BaseObservable {
 
 
 
-    public SignupActivityViewModel(Context context) {
+    public SignupViewModel(Context context) {
         this.activity = (Activity) context;
         this.context = context;
     }

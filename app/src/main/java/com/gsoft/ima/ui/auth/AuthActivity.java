@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.gsoft.ima.R;
 import com.gsoft.ima.databinding.ActivityAuthBinding;
 import com.gsoft.ima.ui.login.LoginFragment;
+import com.gsoft.ima.ui.signup.SignupFragment;
 
 public class AuthActivity extends AppCompatActivity {
     private ActivityAuthBinding binding;
@@ -20,13 +21,13 @@ public class AuthActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityAuthBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        Fragment fragment = new LoginFragment();
+        setFragment(new LoginFragment());
+    }
+
+    public void setFragment(Fragment fragment) {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.replace(R.id.nav_host_fragment_auth_main, fragment);
         fragmentTransaction.commit();
-    }
-    public void mssg(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }
