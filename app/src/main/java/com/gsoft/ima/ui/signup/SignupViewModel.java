@@ -28,7 +28,7 @@ public class SignupViewModel extends BaseObservable {
     public ObservableField<String> lastname = new ObservableField<>("");
     public ObservableField<String> firstname = new ObservableField<>("");
     public ObservableField<String> gender = new ObservableField<>("");
-    public ObservableField<String> birthday = new ObservableField<>("");
+    public ObservableField<String> birthday = new ObservableField<>("01-01-1980");
     public ObservableField<String> birthplace = new ObservableField<>("");
     public ObservableField<String> id_card = new ObservableField<>("");
     public ObservableField<String> country = new ObservableField<>("");

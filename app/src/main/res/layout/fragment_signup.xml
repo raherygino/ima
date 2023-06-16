@@ -117,7 +117,7 @@
                     <com.gsoft.ima.di.component.EditText
                         android:id="@+id/birthday"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/height_edit_text"
                         android:layout_marginTop="@dimen/mt_edit_text"
                         android:hint="@string/birth_date"
                         android:drawableTint="@color/grey_600"
@@ -154,6 +154,7 @@
                 android:drawablePadding="@dimen/pd_drawable"
                 android:textSize="@dimen/text_size_edit_text"
                 android:singleLine="true"
+                android:inputType="number"
                 android:text="@={ viewModel.id_card }"
                 app:customFont="@string/light"/>
 
@@ -165,7 +166,7 @@
                 <TableRow>
                     <com.gsoft.ima.di.component.EditText
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/height_edit_text"
                         android:layout_marginTop="@dimen/mt_edit_text"
                         android:hint="@string/country"
                         android:drawableTint="@color/grey_600"
