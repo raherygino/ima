@@ -1,7 +1,9 @@
 package com.gsoft.ima.ui.register;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.view.MenuItem;
 import android.widget.PopupMenu;
 import android.widget.Toast;
@@ -15,9 +17,11 @@ import com.gsoft.ima.R;
 import com.gsoft.ima.api.RetrofitClient;
 import com.gsoft.ima.databinding.FragmentRegisterBinding;
 import com.gsoft.ima.di.dialog.WebViewDialog;
+import com.gsoft.ima.model.database.DatabaseHelper;
 import com.gsoft.ima.model.models.User;
 import com.gsoft.ima.ui.auth.AuthActivity;
 import com.gsoft.ima.ui.login.LoginFragment;
+import com.gsoft.ima.ui.main.MainActivity;
 import com.gsoft.ima.utils.DateSet;
 
 import org.json.JSONException;
@@ -120,14 +124,18 @@ public class RegisterViewModel extends ViewModel {
                 if (response.isSuccessful()) {
                     try {
                         String result = response.body().source().readUtf8();
+                        DatabaseHelper db = new DatabaseHelper(context);
                         if (result.contains("created")) {
-                            JSONObject object = new JSONObject(result);
-                            Toast.makeText(context, object.getString("message"), Toast.LENGTH_LONG).show();
+                            if (db.createUser(user)!= -1) {
+                                Activity activity = (Activity) context;
+                                activity.startActivity(new Intent(context, MainActivity.class));
+                                activity.finish();
+                            }
                         } else {
                             WebViewDialog dialog = new WebViewDialog(context, "Result", response.body().source().readUtf8());
                             dialog.show();
                         }
-                    } catch (IOException | JSONException e) {
+                    } catch (IOException e) {
                         Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 } else {
