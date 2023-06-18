@@ -6,18 +6,31 @@ import android.view.MenuItem;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.ObservableField;
 import androidx.lifecycle.ViewModel;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.gsoft.ima.R;
+import com.gsoft.ima.api.RetrofitClient;
 import com.gsoft.ima.databinding.FragmentRegisterBinding;
+import com.gsoft.ima.di.dialog.WebViewDialog;
 import com.gsoft.ima.model.models.User;
 import com.gsoft.ima.ui.auth.AuthActivity;
 import com.gsoft.ima.ui.login.LoginFragment;
 import com.gsoft.ima.utils.DateSet;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.Calendar;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RegisterViewModel extends ViewModel {
 
@@ -92,9 +105,40 @@ public class RegisterViewModel extends ViewModel {
                 email.get(),password.get(), confirmPassword.get());
 
         if (user.isValidate(context, binding) && binding.acceptSignup.isChecked()) {
-            ///
+            register(user);
         } else {
             Snackbar.make(binding.getRoot(), context.getString(R.string.check_the_form), Snackbar.LENGTH_LONG).show();
         }
+    }
+
+    private void register(User user) {
+
+        Call<ResponseBody> createUser = RetrofitClient.createUser(user);
+        createUser.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    try {
+                        String result = response.body().source().readUtf8();
+                        if (result.contains("created")) {
+                            JSONObject object = new JSONObject(result);
+                            Toast.makeText(context, object.getString("message"), Toast.LENGTH_LONG).show();
+                        } else {
+                            WebViewDialog dialog = new WebViewDialog(context, "Result", response.body().source().readUtf8());
+                            dialog.show();
+                        }
+                    } catch (IOException | JSONException e) {
+                        Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(context, response.errorBody().toString(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

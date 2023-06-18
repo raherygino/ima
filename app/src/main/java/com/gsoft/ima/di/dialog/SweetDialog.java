@@ -32,6 +32,8 @@ public class SweetDialog{
         if (valueTitle != null) {
             TextView title = dialog.findViewById(R.id.title_dialog);
             title.setText(valueTitle);
+        }
+        if (valueDesc != null) {
             TextView desc = dialog.findViewById(R.id.description_dialog);
             desc.setText(valueDesc);
         }
