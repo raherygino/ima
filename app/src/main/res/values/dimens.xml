@@ -6,7 +6,7 @@
     <dimen name="py_edit_text">0dp</dimen>
     <dimen name="text_size_edit_text">16sp</dimen>
     <dimen name="mt_edit_text">12dp</dimen>
-    <dimen name="height_edit_text">40dp</dimen>
+    <dimen name="height_edit_text">47dp</dimen>
     <!-- Button -->
     <dimen name="btn_height">40dp</dimen>
     <dimen name="btn_radius">4dp</dimen>

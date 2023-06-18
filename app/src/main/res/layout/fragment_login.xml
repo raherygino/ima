@@ -61,32 +61,36 @@
             <com.gsoft.ima.di.components.Label
                 android:layout_marginTop="@dimen/mt_edit_text"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/height_edit_text"
                 app:text="@string/phone">
                 <com.gsoft.ima.di.components.EditText
                     android:id="@+id/phone"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:fontFamily="@font/sf_pro_light"
                     android:textSize="@dimen/headline_5"
                     android:inputType="number"
                     android:singleLine="true"
+                    android:paddingTop="@dimen/pd_10"
+                    android:layout_alignParentBottom="true"
                     android:background="@color/transparent"/>
             </com.gsoft.ima.di.components.Label>
 
             <com.gsoft.ima.di.components.Label
                 android:layout_marginTop="@dimen/mt_edit_text"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/height_edit_text"
                 app:text="@string/password">
                 <com.gsoft.ima.di.components.EditText
                     android:id="@+id/password"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:fontFamily="@font/sf_pro_light"
                     android:textSize="@dimen/headline_5"
                     android:inputType="textPassword"
                     android:singleLine="true"
+                    android:paddingTop="@dimen/pd_10"
+                    android:layout_alignParentBottom="true"
                     android:background="@color/transparent"/>
             </com.gsoft.ima.di.components.Label>
 

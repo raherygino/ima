@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.view.MenuItem;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import androidx.databinding.ObservableField;
 import androidx.lifecycle.ViewModel;
@@ -44,6 +45,7 @@ public class RegisterViewModel extends ViewModel {
         DatePickerDialog dialog = new DatePickerDialog(context, new DateSet(birthday, binding.birthDate), calendar.get(Calendar.YEAR)-40, 0, 1);
         dialog.setCancelable(true);
         dialog.show();
+        Toast.makeText(context, lastname.get(), Toast.LENGTH_SHORT).show();
     }
 
     public void setChooseGender() {
@@ -67,5 +69,19 @@ public class RegisterViewModel extends ViewModel {
     public void loginListener() {
         AuthActivity authActivity = (AuthActivity) context;
         authActivity.setFragment(new LoginFragment());
+    }
+
+    public void registerListener() {
+        lastname.set(binding.lastname.getText().toString());
+        firstname.set(binding.firstname.getText().toString());
+        birthplace.set(binding.birthPlace.getText().toString());
+        id_card.set(binding.cin.getText().toString());
+        country.set(binding.country.getText().toString());
+        city.set(binding.city.getText().toString());
+        phone.set(binding.phone.getText().toString());
+        email.set(binding.email.getText().toString());
+        password.set(binding.password.getText().toString());
+        confirmPassword.set(binding.confirmPassword.getText().toString());
+        Toast.makeText(context, lastname.get()+" "+firstname.get(), Toast.LENGTH_SHORT).show();
     }
 }

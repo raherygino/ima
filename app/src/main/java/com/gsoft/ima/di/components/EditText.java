@@ -3,6 +3,9 @@ package com.gsoft.ima.di.components;
 import android.content.Context;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import androidx.appcompat.widget.AppCompatEditText;
 
@@ -23,9 +26,13 @@ public class EditText extends AppCompatEditText {
         if (focused) {
             layoutLabel.setBackground(mContext.getDrawable(R.drawable.back_input_hover));
             label.setTextColor(getColor(R.color.blue_500));
+            label.animate().translationY(-8).setDuration(100).start();
         } else {
             layoutLabel.setBackground(mContext.getDrawable(R.drawable.back_input));
             label.setTextColor(getColor(R.color.grey_400));
+            if (this.getText().toString().isEmpty()) {
+                label.animate().translationY(22).start();
+            }
         }
     }
 

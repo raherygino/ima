@@ -47,7 +47,7 @@
         <!-- Note: A RecyclerView can also be used -->
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <LinearLayout
@@ -59,103 +59,111 @@
                 <com.gsoft.ima.di.components.Label
                     android:layout_marginTop="@dimen/mt_edit_text"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/height_edit_text"
                     app:text="@string/lastname">
 
                     <com.gsoft.ima.di.components.EditText
                         android:id="@+id/lastname"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:fontFamily="@font/sf_pro_regular"
                         android:textSize="@dimen/headline_5"
                         android:singleLine="true"
                         android:background="@color/transparent"
-                        tools:hint="@string/lastname"/>
+                        tools:hint="@string/lastname"
+                        android:paddingTop="@dimen/pd_10"
+                        android:layout_alignParentBottom="true"/>
 
                 </com.gsoft.ima.di.components.Label>
 
                 <com.gsoft.ima.di.components.Label
                     android:layout_marginTop="@dimen/mt_edit_text"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/height_edit_text"
                     app:text="@string/firstname">
 
                     <com.gsoft.ima.di.components.EditText
                         android:id="@+id/firstname"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:fontFamily="@font/sf_pro_regular"
                         android:textSize="@dimen/headline_5"
                         android:singleLine="true"
                         android:background="@color/transparent"
-                        tools:hint="@string/firstname"/>
+                        tools:hint="@string/firstname"
+                        android:paddingTop="@dimen/pd_10"
+                        android:layout_alignParentBottom="true"/>
 
                 </com.gsoft.ima.di.components.Label>
 
                 <com.gsoft.ima.di.components.Label
                     android:layout_marginTop="@dimen/mt_edit_text"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/height_edit_text"
                     app:text="@string/gender">
 
                     <com.gsoft.ima.di.components.EditText
                         android:id="@+id/gender"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:fontFamily="@font/sf_pro_regular"
                         android:textSize="@dimen/headline_5"
                         android:text="@string/male"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:background="@color/transparent"/>
+                        android:background="@color/transparent"
+                        android:paddingTop="@dimen/pd_10"
+                        android:layout_alignParentBottom="true"/>
 
                 </com.gsoft.ima.di.components.Label>
-
 
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/mt_edit_text"
                     android:stretchColumns="*"
                     android:shrinkColumns="*">
                     <TableRow>
 
                         <com.gsoft.ima.di.components.Label
-                            android:layout_marginTop="@dimen/mt_edit_text"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="@dimen/height_edit_text"
                             android:layout_marginEnd="3dp"
                             app:text="@string/birth_date">
 
                             <com.gsoft.ima.di.components.EditText
                                 android:id="@+id/birth_date"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:fontFamily="@font/sf_pro_regular"
                                 android:textSize="@dimen/headline_5"
                                 tools:hint="@string/birth_date"
                                 android:focusable="false"
                                 android:singleLine="true"
                                 android:text="01/01/1970"
-                                android:background="@color/transparent"/>
+                                android:background="@color/transparent"
+                                android:paddingTop="@dimen/pd_10"
+                                android:layout_alignParentBottom="true"/>
 
                         </com.gsoft.ima.di.components.Label>
 
                         <com.gsoft.ima.di.components.Label
-                            android:layout_marginTop="@dimen/mt_edit_text"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="@dimen/height_edit_text"
                             android:layout_marginStart="3dp"
                             app:text="@string/birth_place">
 
                             <com.gsoft.ima.di.components.EditText
                                 android:id="@+id/birth_place"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:fontFamily="@font/sf_pro_regular"
                                 android:textSize="@dimen/headline_5"
                                 tools:hint="@string/birth_place"
                                 android:singleLine="true"
-                                android:background="@color/transparent"/>
+                                android:background="@color/transparent"
+                                android:paddingTop="@dimen/pd_10"
+                                android:layout_alignParentBottom="true"/>
 
                         </com.gsoft.ima.di.components.Label>
                     </TableRow>
@@ -164,19 +172,21 @@
                 <com.gsoft.ima.di.components.Label
                     android:layout_marginTop="@dimen/mt_edit_text"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/height_edit_text"
                     app:text="@string/cin">
 
                     <com.gsoft.ima.di.components.EditText
                         android:id="@+id/cin"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:fontFamily="@font/sf_pro_regular"
                         android:textSize="@dimen/headline_5"
                         android:singleLine="true"
                         android:inputType="number"
                         android:background="@color/transparent"
-                        tools:hint="@string/cin"/>
+                        tools:hint="@string/cin"
+                        android:paddingTop="@dimen/pd_10"
+                        android:layout_alignParentBottom="true"/>
 
                 </com.gsoft.ima.di.components.Label>
 
@@ -190,38 +200,42 @@
                         <com.gsoft.ima.di.components.Label
                             android:layout_marginTop="@dimen/mt_edit_text"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="@dimen/height_edit_text"
                             app:text="@string/country">
 
                             <com.gsoft.ima.di.components.EditText
                                 android:id="@+id/country"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:fontFamily="@font/sf_pro_regular"
                                 android:textSize="@dimen/headline_5"
                                 android:layout_marginEnd="3dp"
                                 tools:hint="@string/country"
                                 android:singleLine="true"
-                                android:background="@color/transparent"/>
+                                android:background="@color/transparent"
+                                android:paddingTop="@dimen/pd_10"
+                                android:layout_alignParentBottom="true"/>
 
                         </com.gsoft.ima.di.components.Label>
 
                         <com.gsoft.ima.di.components.Label
                             android:layout_marginTop="@dimen/mt_edit_text"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="@dimen/height_edit_text"
                             android:layout_marginStart="3dp"
                             app:text="@string/city">
 
                             <com.gsoft.ima.di.components.EditText
                                 android:id="@+id/city"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:fontFamily="@font/sf_pro_regular"
                                 android:textSize="@dimen/headline_5"
                                 tools:hint="@string/city"
                                 android:singleLine="true"
-                                android:background="@color/transparent"/>
+                                android:background="@color/transparent"
+                                android:paddingTop="@dimen/pd_10"
+                                android:layout_alignParentBottom="true"/>
 
                         </com.gsoft.ima.di.components.Label>
                     </TableRow>
@@ -230,77 +244,84 @@
                 <com.gsoft.ima.di.components.Label
                     android:layout_marginTop="@dimen/mt_edit_text"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/height_edit_text"
                     app:text="@string/phone">
 
                     <com.gsoft.ima.di.components.EditText
                         android:id="@+id/phone"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:fontFamily="@font/sf_pro_regular"
                         android:textSize="@dimen/headline_5"
                         tools:hint="@string/phone"
                         android:singleLine="true"
                         android:inputType="number"
-                        android:background="@color/transparent"/>
+                        android:background="@color/transparent"
+                        android:paddingTop="@dimen/pd_10"
+                        android:layout_alignParentBottom="true"/>
 
                 </com.gsoft.ima.di.components.Label>
 
                 <com.gsoft.ima.di.components.Label
                     android:layout_marginTop="@dimen/mt_edit_text"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/height_edit_text"
                     app:text="@string/email">
 
                     <com.gsoft.ima.di.components.EditText
                         android:id="@+id/email"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:fontFamily="@font/sf_pro_regular"
                         android:textSize="@dimen/headline_5"
                         tools:hint="@string/email"
                         android:inputType="textEmailAddress"
                         android:singleLine="true"
-                        android:background="@color/transparent"/>
+                        android:background="@color/transparent"
+                        android:paddingTop="@dimen/pd_10"
+                        android:layout_alignParentBottom="true"/>
 
                 </com.gsoft.ima.di.components.Label>
 
                 <com.gsoft.ima.di.components.Label
                     android:layout_marginTop="@dimen/mt_edit_text"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/height_edit_text"
                     app:text="@string/password">
 
                     <com.gsoft.ima.di.components.EditText
                         android:id="@+id/password"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:fontFamily="@font/sf_pro_regular"
                         android:textSize="@dimen/headline_5"
                         tools:hint="@string/password"
                         android:inputType="textPassword"
                         android:singleLine="true"
-                        android:background="@color/transparent"/>
+                        android:background="@color/transparent"
+                        android:paddingTop="@dimen/pd_10"
+                        android:layout_alignParentBottom="true"/>
 
                 </com.gsoft.ima.di.components.Label>
-
 
                 <com.gsoft.ima.di.components.Label
                     android:layout_marginTop="@dimen/mt_edit_text"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:text="@string/password">
+                    android:layout_height="@dimen/height_edit_text"
+                    app:text="@string/confirm_password">
 
                     <com.gsoft.ima.di.components.EditText
                         android:id="@+id/confirm_password"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:fontFamily="@font/sf_pro_regular"
                         android:textSize="@dimen/headline_5"
                         tools:hint="@string/confirm_password"
                         android:inputType="textPassword"
                         android:singleLine="true"
-                        android:background="@color/transparent"/>
+                        android:background="@color/transparent"
+                        android:paddingTop="@dimen/pd_10"
+                        android:layout_alignParentBottom="true"/>
 
                 </com.gsoft.ima.di.components.Label>
 
