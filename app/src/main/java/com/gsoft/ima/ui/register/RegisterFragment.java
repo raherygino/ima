@@ -26,6 +26,7 @@ public class RegisterFragment extends Fragment {
         this.binding.btnRegister.setOnClickListener(new onClick());
         this.setOnHoverLabel(binding.birthDate);
         this.setOnHoverLabel(binding.gender);
+        this.setOnHoverLabel(binding.country);
         this.viewModel = new RegisterViewModel(this);
         return binding.getRoot();
     }

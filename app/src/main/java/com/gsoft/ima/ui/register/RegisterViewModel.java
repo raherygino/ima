@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.gsoft.ima.R;
 import com.gsoft.ima.databinding.FragmentRegisterBinding;
+import com.gsoft.ima.model.models.User;
 import com.gsoft.ima.ui.auth.AuthActivity;
 import com.gsoft.ima.ui.login.LoginFragment;
 import com.gsoft.ima.utils.DateSet;
@@ -82,6 +83,17 @@ public class RegisterViewModel extends ViewModel {
         email.set(binding.email.getText().toString());
         password.set(binding.password.getText().toString());
         confirmPassword.set(binding.confirmPassword.getText().toString());
-        Toast.makeText(context, lastname.get()+" "+firstname.get(), Toast.LENGTH_SHORT).show();
+
+        User user = new User(
+                lastname.get(), firstname.get(),
+                gender.get(), birthday.get(), birthplace.get(),
+                id_card.get(), country.get(), city.get(), phone.get(),
+                email.get(),password.get(), confirmPassword.get());
+
+        if (user.isValidate(context, binding)) {
+            Toast.makeText(context, "Welcome "+ lastname.get()+" "+firstname.get(), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Check the form", Toast.LENGTH_SHORT).show();
+        }
     }
 }
