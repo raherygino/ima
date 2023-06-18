@@ -126,6 +126,7 @@
                 android:text="@string/or" />
 
             <com.gsoft.ima.di.components.Button
+                android:id="@+id/btn_register"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/btn_height"
                 app:variant="soft_primary"

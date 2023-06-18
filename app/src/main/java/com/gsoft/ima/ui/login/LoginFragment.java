@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment;
 
 import com.gsoft.ima.R;
 import com.gsoft.ima.databinding.FragmentLoginBinding;
-import com.gsoft.ima.di.dialog.PromptDialog;
 
 public class LoginFragment extends Fragment {
     public FragmentLoginBinding binding;
@@ -25,6 +24,7 @@ public class LoginFragment extends Fragment {
     private void setOnClickListener() {
         binding.forgotPass.setOnClickListener(new onClick());
         binding.btnLogin.setOnClickListener(new onClick());
+        binding.btnRegister.setOnClickListener(new onClick());
     }
 
     class onClick implements View.OnClickListener {
@@ -34,12 +34,9 @@ public class LoginFragment extends Fragment {
             if (id == R.id.btn_login) {
                 viewModel.loginListener();
             } else if (id == R.id.forgot_pass) {
-                PromptDialog dialog = new PromptDialog(
-                        getContext(),
-                        getString(R.string.forgot),
-                        getString(R.string.forgot_pass_info),
-                        getString(R.string.email));
-                dialog.show();
+                viewModel.forgotPassListener();
+            } else if (id == R.id.btn_register) {
+                viewModel.registerListener();
             }
         }
     }

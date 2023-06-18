@@ -2,13 +2,16 @@ package com.gsoft.ima.ui.login;
 
 import android.app.Activity;
 import android.content.Context;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.ObservableField;
 import androidx.fragment.app.FragmentManager;
 
+import com.gsoft.ima.R;
 import com.gsoft.ima.databinding.FragmentLoginBinding;
+import com.gsoft.ima.di.dialog.PromptDialog;
 import com.gsoft.ima.ui.auth.AuthActivity;
 import com.gsoft.ima.ui.register.RegisterFragment;
 
@@ -32,15 +35,16 @@ public class LoginViewModel extends BaseObservable {
         Toast.makeText(context, password.get()+" "+phone.get(), Toast.LENGTH_LONG).show();
     }
 
-    public void signupListener() {
+    public void registerListener() {
         AuthActivity authActivity = (AuthActivity) activity;
         authActivity.setFragment(new RegisterFragment());
     }
 
-    public void forgotPassListener() {/*
+    public void forgotPassListener() {
         PromptDialog dialog = new PromptDialog(context,
                 activity.getString(R.string.forgot),
-                activity.getString(R.string.forgot_pass_info)
+                activity.getString(R.string.forgot_pass_info),
+                activity.getString(R.string.email)
         );
         dialog.btnOk.setText(activity.getString(R.string.send));
         dialog.btnOk.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +55,6 @@ public class LoginViewModel extends BaseObservable {
                 dialog.cancel();
             }
         });
-        dialog.show();*/
+        dialog.show();
     }
 }
