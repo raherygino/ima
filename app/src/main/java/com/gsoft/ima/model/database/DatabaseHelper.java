@@ -3,6 +3,7 @@ package com.gsoft.ima.model.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -64,6 +65,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_NUMBER, user.phone);
         values.put(COLUMN_EMAIL, user.email);
         return db.insert(TABLE_USER, null, values);
+    }
+    public boolean isLogged() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM "+TABLE_USER;
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.getColumnCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 
