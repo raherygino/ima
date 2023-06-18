@@ -10,15 +10,19 @@ import androidx.fragment.app.Fragment;
 import com.gsoft.ima.databinding.FragmentLoginBinding;
 
 public class LoginFragment extends Fragment {
-    private FragmentLoginBinding binding;
+    public FragmentLoginBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentLoginBinding.inflate(inflater, container, false);
-        LoginViewModel viewModel = new LoginViewModel(getContext());
-        View root = binding.getRoot();
-        //binding.setViewModel(viewModel);
-        return root;
+        LoginViewModel viewModel = new LoginViewModel(this);
+        binding.btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewModel.loginListener();
+            }
+        });
+        return binding.getRoot();
     }
 
     @Override

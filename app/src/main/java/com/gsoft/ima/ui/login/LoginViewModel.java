@@ -2,9 +2,13 @@ package com.gsoft.ima.ui.login;
 
 import android.app.Activity;
 import android.content.Context;
+import android.widget.Toast;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.ObservableField;
+import androidx.fragment.app.FragmentManager;
+
+import com.gsoft.ima.databinding.FragmentLoginBinding;
 import com.gsoft.ima.ui.auth.AuthActivity;
 import com.gsoft.ima.ui.register.RegisterFragment;
 
@@ -14,14 +18,18 @@ public class LoginViewModel extends BaseObservable {
     private final Activity activity;
     public ObservableField<String> phone = new ObservableField<>();
     public ObservableField<String> password = new ObservableField<>();
+    private FragmentLoginBinding binding;
 
-    public LoginViewModel(Context mContext) {
-        this.context = mContext;
+    public LoginViewModel(LoginFragment fragment) {
+        this.context = fragment.getContext();
         this.activity = (Activity) context;
+        this.binding = fragment.binding;
     }
 
     public void loginListener() {
-        //
+        phone.set(binding.phone.getText().toString());
+        password.set(binding.password.getText().toString());
+        Toast.makeText(context, password.get()+" "+phone.get(), Toast.LENGTH_LONG).show();
     }
 
     public void signupListener() {

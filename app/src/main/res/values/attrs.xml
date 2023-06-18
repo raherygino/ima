@@ -4,4 +4,7 @@
         <attr name="customFont" format="string" />
         <attr name="text" format="string" />
     </declare-styleable>
+    <declare-styleable name="Button">
+        <attr name="variant" format="string" />
+    </declare-styleable>
 </resources>
