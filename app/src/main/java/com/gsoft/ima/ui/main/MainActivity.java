@@ -6,13 +6,33 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.gsoft.ima.R;
+import com.gsoft.ima.databinding.ActivityMainBinding;
 
 
 public class MainActivity extends AppCompatActivity {
+    private ActivityMainBinding binding;
+    private BottomSheetBehavior<View> bottomSheetBehavior;
+    private boolean state;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        state = true;
+        bottomSheetBehavior = BottomSheetBehavior.from(binding.designBottomSheet);
+        binding.sendMoney.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (state) {
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                    state = false;
+                } else {
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                    state = true;
+                }
+            }
+        });
     }
 }

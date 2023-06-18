@@ -10,6 +10,7 @@
     <!-- Button -->
     <dimen name="btn_height">40dp</dimen>
     <dimen name="btn_radius">4dp</dimen>
+    <dimen name="btn_rounded_radius">18dp</dimen>
     <!-- TextView -->
     <dimen name="headline_1">30sp</dimen>
     <dimen name="headline_2">26sp</dimen>
