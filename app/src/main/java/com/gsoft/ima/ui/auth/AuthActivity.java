@@ -1,6 +1,7 @@
 package com.gsoft.ima.ui.auth;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.gsoft.ima.R;
 import com.gsoft.ima.databinding.ActivityAuthBinding;
+import com.gsoft.ima.di.dialog.AlertDialog;
 import com.gsoft.ima.ui.login.LoginFragment;
 
 public class AuthActivity extends AppCompatActivity {
@@ -36,7 +38,14 @@ public class AuthActivity extends AppCompatActivity {
         if (currentFragment.contains("RegisterFragment")) {
             setFragment(new LoginFragment());
         } else {
-            super.onBackPressed();
+            AlertDialog dialog = new AlertDialog(this, getString(R.string.close_app), getString(R.string.close_app_details));
+            dialog.btnOk.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    finish();
+                }
+            });
+            dialog.show();
         }
     }
 }

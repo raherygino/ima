@@ -20,6 +20,7 @@ public class SweetDialog{
     private final int idLay;
 
     public Button BTN_OK;
+    public Button BTN_CANCEL;
 
     public SweetDialog(Context ctx, int idLay, String valueTitle, String valueDesc){
         this.activity = (Activity) ctx;
@@ -27,6 +28,7 @@ public class SweetDialog{
         this.idLay = idLay;
         this.initDialog();
         this.BTN_OK = dialog.findViewById(R.id.btn_ok);
+        this.BTN_CANCEL = dialog.findViewById(R.id.btn_cancel);
         if (valueTitle != null) {
             TextView title = dialog.findViewById(R.id.title_dialog);
             title.setText(valueTitle);

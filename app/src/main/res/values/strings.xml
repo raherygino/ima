@@ -2,6 +2,8 @@
     <string name="app_name">IMA</string>
     <!-- Button -->
     <string name="ok">Ok</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
     <string name="cancel">Cancel</string>
     <string name="send">Send</string>
     <!-- Title -->
@@ -9,6 +11,7 @@
     <string name="signup">Signup</string>
     <string name="register">Register</string>
     <string name="forgot">Forget password?</string>
+    <string name="close_app">Exit?</string>
     <string name="forgot_pass_info">Enter your email to create a new password</string>
     <!-- Form -->
     <string name="lastname">Lastname</string>
@@ -29,5 +32,6 @@
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="loading">Loading...</string>
+    <string name="close_app_details">You want to exit the app?</string>
     <string name="accepting_signup">Je confirme que ces informations sont véritables et j\'accepte les termes et les conditions d\'utilisation des services affiliés à la plateforme IMA.</string>
 </resources>
