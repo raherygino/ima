@@ -16,7 +16,7 @@
         <com.gsoft.ima.di.components.EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/medium"
+            android:fontFamily="@font/sf_pro_light"
             android:textSize="15sp"
             android:background="@color/transparent"/>
     </com.gsoft.ima.di.components.Label>

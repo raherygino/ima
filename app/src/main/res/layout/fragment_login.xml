@@ -67,7 +67,7 @@
                     android:id="@+id/phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/medium"
+                    android:fontFamily="@font/sf_pro_light"
                     android:textSize="@dimen/headline_5"
                     android:inputType="number"
                     android:singleLine="true"
@@ -83,7 +83,7 @@
                     android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/medium"
+                    android:fontFamily="@font/sf_pro_light"
                     android:textSize="@dimen/headline_5"
                     android:inputType="textPassword"
                     android:singleLine="true"
@@ -95,7 +95,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/forgot"
-                android:fontFamily="@font/medium"
+                android:fontFamily="@font/sf_pro_regular"
                 android:textSize="@dimen/headline_5"
                 android:layout_gravity="end"/>
 
@@ -104,7 +104,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/btn_height"
                 android:layout_marginTop="@dimen/mt_edit_text"
-                android:fontFamily="@font/medium"
+                android:fontFamily="@font/sf_pro_regular"
                 android:text="@string/login"/>
 
             <View
@@ -121,7 +121,7 @@
                 android:background="@color/grey_100"
                 android:paddingStart="@dimen/mx_8"
                 android:paddingEnd="@dimen/mx_8"
-                android:fontFamily="@font/medium"
+                android:fontFamily="@font/sf_pro_semi_bold"
                 android:textSize="@dimen/headline_5"
                 android:text="@string/or" />
 
@@ -130,7 +130,7 @@
                 android:layout_height="@dimen/btn_height"
                 app:variant="soft_primary"
                 android:layout_marginTop="@dimen/mt_edit_text"
-                android:fontFamily="@font/medium"
+                android:fontFamily="@font/sf_pro_regular"
                 android:text="@string/register"/>
 
         </LinearLayout>

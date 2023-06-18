@@ -34,7 +34,11 @@ public class LoginFragment extends Fragment {
             if (id == R.id.btn_login) {
                 viewModel.loginListener();
             } else if (id == R.id.forgot_pass) {
-                PromptDialog dialog = new PromptDialog(getContext(), getString(R.string.forgot), getString(R.string.forgot_pass_info));
+                PromptDialog dialog = new PromptDialog(
+                        getContext(),
+                        getString(R.string.forgot),
+                        getString(R.string.forgot_pass_info),
+                        getString(R.string.email));
                 dialog.show();
             }
         }
