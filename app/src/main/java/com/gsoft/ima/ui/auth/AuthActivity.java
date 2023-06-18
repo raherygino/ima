@@ -30,4 +30,13 @@ public class AuthActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.nav_host_fragment_auth_main, fragment);
         fragmentTransaction.commit();
     }
+
+    @Override
+    public void onBackPressed() {
+        if (currentFragment.contains("RegisterFragment")) {
+            setFragment(new LoginFragment());
+        } else {
+            super.onBackPressed();
+        }
+    }
 }
