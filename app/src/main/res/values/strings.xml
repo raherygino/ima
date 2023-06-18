@@ -7,6 +7,7 @@
     <!-- Title -->
     <string name="login">Login</string>
     <string name="signup">Signup</string>
+    <string name="register">Register</string>
     <string name="forgot">Forget password?</string>
     <string name="forgot_pass_info">Enter your email to create a new password</string>
     <!-- Form -->

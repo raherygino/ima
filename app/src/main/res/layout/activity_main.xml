@@ -12,27 +12,10 @@
         android:layout_marginTop="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:text="Lastname"
-        tools:ignore="MissingConstraints">
+        app:text="@string/lastname">
         <com.gsoft.ima.di.components.EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Lastname"
-            android:fontFamily="@font/medium"
-            android:textSize="13sp"
-            android:background="@color/transparent"/>
-    </com.gsoft.ima.di.components.Label>
-
-    <com.gsoft.ima.di.components.Label
-        android:layout_marginTop="12dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:text="Lastname"
-        tools:ignore="MissingConstraints">
-        <com.gsoft.ima.di.components.EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Lastname"
             android:fontFamily="@font/medium"
             android:textSize="15sp"
             android:background="@color/transparent"/>
