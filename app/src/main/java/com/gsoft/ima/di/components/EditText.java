@@ -2,18 +2,14 @@ package com.gsoft.ima.di.components;
 
 import android.content.Context;
 import android.graphics.Rect;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.AppCompatEditText;
 
 import com.gsoft.ima.R;
 
 public class EditText extends AppCompatEditText {
-    private Context mContext;
+    private final Context mContext;
     public EditText(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.mContext = context;
