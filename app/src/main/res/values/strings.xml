@@ -41,4 +41,5 @@
     <string name="password_must">Password must contain 6 character minimum</string>
     <string name="phone_invalid">Phone number invalid</string>
     <string name="cin_invalid">CIN invalid</string>
+    <string name="check_the_form">Check the form</string>
 </resources>

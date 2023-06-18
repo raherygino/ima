@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.databinding.ObservableField;
 import androidx.lifecycle.ViewModel;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.gsoft.ima.R;
 import com.gsoft.ima.databinding.FragmentRegisterBinding;
 import com.gsoft.ima.model.models.User;
@@ -90,10 +91,10 @@ public class RegisterViewModel extends ViewModel {
                 id_card.get(), country.get(), city.get(), phone.get(),
                 email.get(),password.get(), confirmPassword.get());
 
-        if (user.isValidate(context, binding)) {
-            Toast.makeText(context, "Welcome "+ lastname.get()+" "+firstname.get(), Toast.LENGTH_SHORT).show();
+        if (user.isValidate(context, binding) && binding.acceptSignup.isChecked()) {
+            ///
         } else {
-            Toast.makeText(context, "Check the form", Toast.LENGTH_SHORT).show();
+            Snackbar.make(binding.getRoot(), context.getString(R.string.check_the_form), Snackbar.LENGTH_LONG).show();
         }
     }
 }
