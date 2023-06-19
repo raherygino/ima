@@ -27,11 +27,11 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 try{
                     sleep(2*1000);
-                    if (database.isLogged()) {
+                  //  if (database.isLogged()) {
                         startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                    } else {
+                   /* } else {
                         startActivity(new Intent(SplashActivity.this, AuthActivity.class));
-                    }
+                    }*/
                     finish();
                 }catch (Exception e){
                     Log.d("Exception", e.getMessage());

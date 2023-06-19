@@ -135,14 +135,16 @@
         android:layout_height="400dp"
         android:background="@drawable/back_dialog"
         app:behavior_hideable="true"
-        app:behavior_peekHeight="80dp"
+        app:behavior_peekHeight="60dp"
         app:layout_behavior="@string/bottom_sheet_behavior"
         android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingEnd="@dimen/pd_10"
+        android:paddingStart="@dimen/pd_10">
 
         <ImageView
             android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_height="30dp"
             android:background="@drawable/back_btn_white_rounded"
             android:src="@drawable/ic_chevron_left"
             android:rotation="90"
@@ -153,8 +155,54 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/transfert"
-            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textAppearance="?attr/textAppearanceBody1"
             android:fontFamily="@font/sf_pro_regular" />
 
+        <com.gsoft.ima.di.components.Label
+            android:layout_marginTop="@dimen/mt_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_edit_text"
+            app:text="@string/phone">
+            <com.gsoft.ima.di.components.EditText
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/sf_pro_light"
+                android:textSize="@dimen/headline_5"
+                android:inputType="number"
+                android:singleLine="true"
+                android:paddingTop="@dimen/pd_10"
+                android:layout_alignParentBottom="true"
+                android:background="@color/transparent"/>
+        </com.gsoft.ima.di.components.Label>
+
+        <com.gsoft.ima.di.components.Label
+            android:layout_marginTop="@dimen/mt_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_edit_text"
+            app:text="@string/amount">
+            <com.gsoft.ima.di.components.EditText
+                android:id="@+id/amount"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/sf_pro_light"
+                android:textSize="@dimen/headline_5"
+                android:inputType="number"
+                android:singleLine="true"
+                android:paddingTop="@dimen/pd_10"
+                android:layout_alignParentBottom="true"
+                android:background="@color/transparent"/>
+        </com.gsoft.ima.di.components.Label>
+
+        <com.gsoft.ima.di.components.Button
+            android:id="@+id/btn_send_money"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/btn_height"
+            android:fontFamily="@font/sf_pro_regular"
+            android:layout_marginTop="@dimen/mt_edit_text"
+            android:layout_gravity="end"
+            android:text="@string/send"/>
+
     </LinearLayout>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

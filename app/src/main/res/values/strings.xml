@@ -30,6 +30,7 @@
     <string name="email">Email</string>
     <string name="confirm_password">Confirm password</string>
     <string name="madagascar">Madagascar</string>
+    <string name="amount">Amount</string>
     <!-- Text -->
     <string name="or">or</string>
     <string name="male">Male</string>
