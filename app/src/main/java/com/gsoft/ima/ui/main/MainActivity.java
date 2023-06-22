@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setFragment(new FragmentHome());
         BottomNav nav = new BottomNav(this);
         nav.setConfig();
+        nav.setItemActivate(0);
     }
 
     public void setFragment(Fragment fragment) {

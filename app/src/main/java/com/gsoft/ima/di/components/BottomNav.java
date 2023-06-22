@@ -5,6 +5,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
@@ -78,6 +80,11 @@ public class BottomNav
         Utils.setColor(mActivity, itemIcon, color);
     }
 
+    private void effectClick(View view) {
+        final Animation anim = AnimationUtils.loadAnimation(mActivity, R.anim.btn_click);
+        view.startAnimation(anim);
+    }
+
     public void setConfig() {
         for (int i = 0 ; i < getAllItems().size(); i++) {
             final int index = i;
@@ -85,7 +92,7 @@ public class BottomNav
             item.getView().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                  //  utils.btnClick(view);
+                    effectClick(view);
                     setItemActivate(index);
                 }
             });
