@@ -66,15 +66,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_EMAIL, user.email);
         return db.insert(TABLE_USER, null, values);
     }
-    public boolean isLogged() {
+
+    public Cursor selectUser() {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM "+TABLE_USER;
-        Cursor cursor = db.rawQuery(query, null);
-        if (cursor.getColumnCount() > 0) {
+        return db.rawQuery(query, null);
+    }
+
+    public boolean isLogged() {
+        if (selectUser().getColumnCount() > 0) {
             return true;
         } else {
             return false;
         }
+    }
+
+    public double deleteUser() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String id = "";
+        Cursor cursor = selectUser();
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            id = cursor.getString(0);
+        }
+        return db.delete(TABLE_USER, COLUMN_ID+" = ?", new String[]{id});
     }
 }
 

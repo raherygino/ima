@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import com.gsoft.ima.databinding.FragmentScanBinding;
 
-public class FragmentScan extends Fragment {
+public class ScanFragment extends Fragment {
 
     FragmentScanBinding binding;
 

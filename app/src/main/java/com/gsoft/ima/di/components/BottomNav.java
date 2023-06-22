@@ -1,9 +1,7 @@
 package com.gsoft.ima.di.components;
 
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -16,10 +14,10 @@ import android.widget.TextView;
 import com.gsoft.ima.R;
 import com.gsoft.ima.model.models.NavItem;
 import com.gsoft.ima.ui.main.MainActivity;
-import com.gsoft.ima.ui.main.home.FragmentHome;
-import com.gsoft.ima.ui.main.profile.FragmentProfile;
-import com.gsoft.ima.ui.main.scan.FragmentScan;
-import com.gsoft.ima.ui.main.setting.FragmentSetting;
+import com.gsoft.ima.ui.main.home.HomeFragment;
+import com.gsoft.ima.ui.main.profile.ProfileFragment;
+import com.gsoft.ima.ui.main.scan.ScanFragment;
+import com.gsoft.ima.ui.main.SettingFragment.FragmentSetting;
 import com.gsoft.ima.utils.NavIcon;
 import com.gsoft.ima.utils.Utils;
 
@@ -97,13 +95,13 @@ public class BottomNav
                     effectClick(view);
                     setItemActivate(index);
                     if (index == 0) {
-                        mActivity.setFragment(new FragmentHome());
+                        mActivity.setFragment(new HomeFragment());
                     } else if (index == 1) {
-                        mActivity.setFragment(new FragmentScan());
+                        mActivity.setFragment(new ScanFragment());
                     } else if (index == 2) {
                         mActivity.setFragment(new FragmentSetting());
                     } else {
-                        mActivity.setFragment(new FragmentProfile());
+                        mActivity.setFragment(new ProfileFragment());
                     }
                 }
             });
