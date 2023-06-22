@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.gsoft.ima.databinding.ActivitySplashBinding;
 import com.gsoft.ima.model.database.DatabaseHelper;
 import com.gsoft.ima.ui.main.MainActivity;
+import com.gsoft.ima.utils.Utils;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -20,6 +21,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivitySplashBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        Utils.setColorBarStatus(this);
 
         DatabaseHelper database = new DatabaseHelper(this);
         Thread splash=new Thread() {
