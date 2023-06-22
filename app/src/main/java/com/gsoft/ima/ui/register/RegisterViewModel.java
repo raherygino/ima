@@ -21,17 +21,13 @@ import com.gsoft.ima.model.database.DatabaseHelper;
 import com.gsoft.ima.model.models.User;
 import com.gsoft.ima.ui.auth.AuthActivity;
 import com.gsoft.ima.ui.login.LoginFragment;
-import com.gsoft.ima.ui.main.MainActivity;
+import com.gsoft.ima.ui.main.MainActivityOld;
 import com.gsoft.ima.utils.DateSet;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.Calendar;
 
 import okhttp3.ResponseBody;
-import retrofit2.Call;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -128,7 +124,7 @@ public class RegisterViewModel extends ViewModel {
                         if (result.contains("created")) {
                             if (db.createUser(user)!= -1) {
                                 Activity activity = (Activity) context;
-                                activity.startActivity(new Intent(context, MainActivity.class));
+                                activity.startActivity(new Intent(context, MainActivityOld.class));
                                 activity.finish();
                             }
                         } else {

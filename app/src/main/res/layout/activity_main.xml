@@ -1,208 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".ui.main.MainActivity"
-        android:background="@color/grey_200">
-
-        <ImageView
-            android:id="@+id/btn_menu"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="@dimen/pd_10"
-            android:layout_marginTop="@dimen/pd_10"
-            android:background="@drawable/back_btn_white_rounded"
-            android:padding="@dimen/pd_10"
-            android:src="@drawable/ic_orbit_menu_hamburger"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/grey_600" />
-
-        <ImageView
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="@dimen/pd_10"
-            android:layout_marginEnd="@dimen/pd_10"
-            android:background="@drawable/back_btn_white_rounded"
-            android:padding="@dimen/pd_10"
-            android:src="@drawable/ic_notifications_outline"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/grey_600" />
-
-        <TextView
-            android:id="@+id/title_overview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/ps_edit_text"
-            android:layout_marginTop="@dimen/pd_10"
-            android:text="Overview"
-            android:textSize="@dimen/headline_1"
-            android:textColor="@color/grey_600"
-            android:fontFamily="@font/sf_pro_semi_bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_menu" />
-
-        <TextView
-            android:id="@+id/title_welcome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/btn_rounded_radius"
-            android:text="Hi Georgino, welcome back!"
-            android:textColor="@color/grey_600"
-            android:textSize="@dimen/headline_4"
-            android:fontFamily="@font/sf_pro_light"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title_overview" />
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/title_welcome"
-            android:layout_margin="8dp"
-            app:strokeWidth="1dp"
-            app:strokeColor="@color/blue_500"
-            app:cardBackgroundColor="@color/blue_500"
-            app:cardElevation="0dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp">
-
-                    <!-- Title, secondary and supporting text -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/your_balance"
-                        android:textAppearance="?attr/textAppearanceHeadline6"
-                        android:textColor="@color/grey_100" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/amount_placeholder"
-                        android:textAppearance="?attr/textAppearanceHeadline3"
-                        android:textColor="@color/white"
-                        android:fontFamily="@font/sf_pro_semi_bold" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/phone"
-                            android:textAppearance="?attr/textAppearanceBody1"
-                            android:textColor="@color/grey_50"
-                            android:fontFamily="@font/sf_pro_semi_bold"
-                            />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="034 65 007 00"
-                            android:textAppearance="?attr/textAppearanceBody1"
-                            android:textColor="@color/white"
-                            android:fontFamily="@font/sf_pro_regular"
-                            android:layout_marginStart="5dp"
-                            />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        app:tint="@color/grey_600"
+        android:src="@drawable/ic_user_large"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:id="@+id/design_bottom_sheet"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:background="@drawable/back_dialog"
-        app:behavior_hideable="true"
-        app:behavior_peekHeight="60dp"
-        app:layout_behavior="@string/bottom_sheet_behavior"
-        android:gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingEnd="@dimen/pd_10"
-        android:paddingStart="@dimen/pd_10">
-
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="30dp"
-            android:background="@drawable/back_btn_white_rounded"
-            android:src="@drawable/ic_chevron_left"
-            android:rotation="90"
-            app:tint="@color/grey_600" />
+        android:layout_marginTop="13dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/send_money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/transfert"
-            android:textAppearance="?attr/textAppearanceBody1"
-            android:fontFamily="@font/sf_pro_regular" />
-
-        <com.gsoft.ima.di.components.Label
-            android:layout_marginTop="@dimen/mt_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/height_edit_text"
-            app:text="@string/phone">
-            <com.gsoft.ima.di.components.EditText
-                android:id="@+id/phone"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/sf_pro_light"
-                android:textSize="@dimen/headline_5"
-                android:inputType="number"
-                android:singleLine="true"
-                android:paddingTop="@dimen/pd_10"
-                android:layout_alignParentBottom="true"
-                android:background="@color/transparent"/>
-        </com.gsoft.ima.di.components.Label>
-
-        <com.gsoft.ima.di.components.Label
-            android:layout_marginTop="@dimen/mt_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/height_edit_text"
-            app:text="@string/amount">
-            <com.gsoft.ima.di.components.EditText
-                android:id="@+id/amount"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/sf_pro_light"
-                android:textSize="@dimen/headline_5"
-                android:inputType="number"
-                android:singleLine="true"
-                android:paddingTop="@dimen/pd_10"
-                android:layout_alignParentBottom="true"
-                android:background="@color/transparent"/>
-        </com.gsoft.ima.di.components.Label>
-
-        <com.gsoft.ima.di.components.Button
-            android:id="@+id/btn_send_money"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/btn_height"
+            android:textColor="@color/grey_600"
+            android:layout_marginStart="2dp"
+            android:text="Hello"
             android:fontFamily="@font/sf_pro_regular"
-            android:layout_marginTop="@dimen/mt_edit_text"
-            android:layout_gravity="end"
-            android:text="@string/send"/>
+            android:textSize="12sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_600"
+            android:text="Georginot"
+            android:fontFamily="@font/sf_pro_semi_bold"
+            android:textSize="18sp"
+            android:layout_marginTop="-5dp"/>
 
     </LinearLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="8dp"
+        android:src="@drawable/ic_logout"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="12dp"
+        app:tint="@color/grey_600"
+        android:background="@drawable/back_btn_outline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

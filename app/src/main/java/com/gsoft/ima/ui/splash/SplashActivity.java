@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.gsoft.ima.databinding.ActivitySplashBinding;
 import com.gsoft.ima.model.database.DatabaseHelper;
-import com.gsoft.ima.ui.auth.AuthActivity;
 import com.gsoft.ima.ui.main.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
