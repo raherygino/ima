@@ -16,7 +16,6 @@ import android.widget.Toast;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.gsoft.ima.R;
 import com.gsoft.ima.databinding.ActivityMainBinding;
-import com.gsoft.ima.databinding.BottomSheetSendMoneyBinding;
 import com.gsoft.ima.utils.BluetoothHelper;
 import com.gsoft.ima.utils.BluetoothHelperReceiver;
 
