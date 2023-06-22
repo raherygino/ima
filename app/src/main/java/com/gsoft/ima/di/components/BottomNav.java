@@ -16,6 +16,10 @@ import android.widget.TextView;
 import com.gsoft.ima.R;
 import com.gsoft.ima.model.models.NavItem;
 import com.gsoft.ima.ui.main.MainActivity;
+import com.gsoft.ima.ui.main.home.FragmentHome;
+import com.gsoft.ima.ui.main.profile.FragmentProfile;
+import com.gsoft.ima.ui.main.scan.FragmentScan;
+import com.gsoft.ima.ui.main.setting.FragmentSetting;
 import com.gsoft.ima.utils.NavIcon;
 import com.gsoft.ima.utils.Utils;
 
@@ -26,16 +30,14 @@ public class BottomNav
     public MainActivity mActivity;
     private final TableLayout tableLayout;
     private final ArrayList<NavItem> listItems;
-
-    //private final Utils utils;
     private String[] listIconItemsActive;
     private String[] listIconItems;
+
     public BottomNav(Context context) {
         this.initIcon();
         this.mActivity = (MainActivity) context;
         this.tableLayout = mActivity.findViewById(R.id.nav_table_layout);
         this.listItems = getAllItems();
-       // this.utils = new Utils(context);
     }
 
     private void initIcon() {
@@ -94,24 +96,18 @@ public class BottomNav
                 public void onClick(View view) {
                     effectClick(view);
                     setItemActivate(index);
+                    if (index == 0) {
+                        mActivity.setFragment(new FragmentHome());
+                    } else if (index == 1) {
+                        mActivity.setFragment(new FragmentScan());
+                    } else if (index == 2) {
+                        mActivity.setFragment(new FragmentSetting());
+                    } else {
+                        mActivity.setFragment(new FragmentProfile());
+                    }
                 }
             });
         }
     }
-/*
-    public void setupWithViewPager(ViewPager viewPager) {
-        setItemActivate(0);
-        for (int i = 0 ; i < getAllItems().size(); i++) {
-            final int index = i;
-            NavItem item = getAllItems().get(i);
-            item.getView().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    utils.btnClick(view);
-                    viewPager.setCurrentItem(index, true);
-                }
-            });
-        }
-    }*/
 }
 
