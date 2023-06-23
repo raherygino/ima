@@ -11,11 +11,20 @@
     <string name="signup">Signup</string>
     <string name="register">Register</string>
     <string name="forgot">Forget password?</string>
+    <string name="logout">Logout</string>
     <string name="close_app">Exit?</string>
     <string name="forgot_pass_info">Enter your email to create a new password</string>
     <string name="your_balance">Your balance</string>
     <string name="transfert">Send money</string>
+    <string name="converter">Converter</string>
+    <string name="history">History</string>
+    <string name="home">Home</string>
+    <string name="scan">Scan</string>
+    <string name="settings">Settings</string>
+    <string name="profile">Profile</string>
+    <string name="mga">MGA</string>
     <!-- Form -->
+    <string name="username">Username</string>
     <string name="lastname">Lastname</string>
     <string name="firstname">Firstname</string>
     <string name="phone">Phone</string>
@@ -32,11 +41,13 @@
     <string name="madagascar">Madagascar</string>
     <string name="amount">Amount</string>
     <!-- Text -->
+    <string name="hello">Hello</string>
     <string name="or">or</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="loading">Loading...</string>
     <string name="close_app_details">You want to exit the app?</string>
+    <string name="logout_details">You want to logout?</string>
     <string name="accepting_signup">Je confirme que ces informations sont véritables et j\'accepte les termes et les conditions d\'utilisation des services affiliés à la plateforme IMA.</string>
     <string name="amount_placeholder">42 800 000</string>
     <!-- Message -->

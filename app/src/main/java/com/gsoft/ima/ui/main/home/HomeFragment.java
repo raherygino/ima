@@ -65,7 +65,7 @@ public class HomeFragment extends Fragment {
             int id = view.getId();
 
             if (id == R.id.logout) {
-                AlertDialog dialog = new AlertDialog(getContext(),"Logout","You want to logout?");
+                AlertDialog dialog = new AlertDialog(getContext(),getString(R.string.logout),getString(R.string.logout_details));
                 dialog.btnOk.setOnClickListener(this);
                 dialog.show();
             } else if (id == R.id.btn_ok) {
