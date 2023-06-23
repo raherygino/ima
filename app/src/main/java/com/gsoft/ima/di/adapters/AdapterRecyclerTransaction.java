@@ -21,14 +21,12 @@ import java.util.ArrayList;
 public class AdapterRecyclerTransaction extends RecyclerView.Adapter<AdapterRecyclerTransaction.MyHolder> {
 
     private final Context context;
-  //  private final Utils utils;
     private final ArrayList<Transaction> transaction;
     private final RecyclerView recyclerView;
 
     public AdapterRecyclerTransaction(Context context, ArrayList<Transaction> nTransaction, RecyclerView recyclerView) {
         this.context = context;
         this.transaction = nTransaction;
-   //     this.utils = new Utils(context);
         this.recyclerView = recyclerView;
     }
 
