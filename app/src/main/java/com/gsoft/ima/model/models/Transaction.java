@@ -13,6 +13,7 @@ public class Transaction {
     public String sentBy;
     public int idTransaction;
     public String date;
+    public String type;
 
     public Transaction(int idSender, String tokenSender, int idReceiver, String tokenReceiver) {
         this.idSender = idSender;
