@@ -1,6 +1,7 @@
 package com.gsoft.ima.ui.main;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.gsoft.ima.R;
 import com.gsoft.ima.databinding.ActivityMainBinding;
 import com.gsoft.ima.di.components.BottomNav;
+import com.gsoft.ima.di.dialog.SendDialog;
 import com.gsoft.ima.ui.main.home.HomeFragment;
 import com.gsoft.ima.utils.Utils;
 
@@ -29,6 +31,13 @@ public class MainActivity extends AppCompatActivity {
         BottomNav nav = new BottomNav(this);
         nav.setConfig();
         nav.setItemActivate(0);
+        binding.fabSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SendDialog dialog = new SendDialog(MainActivity.this);
+                dialog.show();
+            }
+        });
     }
 
     public void setFragment(Fragment fragment) {

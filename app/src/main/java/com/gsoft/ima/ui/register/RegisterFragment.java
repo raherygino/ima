@@ -14,6 +14,7 @@ import com.gsoft.ima.R;
 import com.gsoft.ima.databinding.FragmentRegisterBinding;
 import com.gsoft.ima.di.components.EditText;
 import com.gsoft.ima.di.components.Label;
+import com.gsoft.ima.utils.Utils;
 
 public class RegisterFragment extends Fragment {
     public FragmentRegisterBinding binding;
@@ -26,17 +27,11 @@ public class RegisterFragment extends Fragment {
         this.binding.gender.setOnClickListener(new onClick());
         this.binding.btnLogin.setOnClickListener(new onClick());
         this.binding.btnRegister.setOnClickListener(new onClick());
-        this.setOnHoverLabel(binding.birthDate);
-        this.setOnHoverLabel(binding.gender);
-        this.setOnHoverLabel(binding.country);
+        Utils.setOnHoverLabel(binding.birthDate);
+        Utils.setOnHoverLabel(binding.gender);
+        Utils.setOnHoverLabel(binding.country);
         this.viewModel = new RegisterViewModel(this);
         return binding.getRoot();
-    }
-
-    private void setOnHoverLabel(EditText editText) {
-        Label layoutLabel = (Label) editText.getParent();
-        TextView label = (TextView) layoutLabel.getChildAt(0);
-        label.animate().translationY(-8).setDuration(100).start();
     }
 
     class onClick implements View.OnClickListener {

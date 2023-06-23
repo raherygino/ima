@@ -1,4 +1,4 @@
-package com.gsoft.ima.ui.main.SettingFragment;
+package com.gsoft.ima.ui.main.setting;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import com.gsoft.ima.databinding.FragmentSettingBinding;
 
-public class FragmentSetting extends Fragment {
+public class SettingFragment extends Fragment {
 
     FragmentSettingBinding binding;
 

@@ -14,6 +14,8 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 
 import com.gsoft.ima.R;
+import com.gsoft.ima.di.components.EditText;
+import com.gsoft.ima.di.components.Label;
 
 public class Utils {
 
@@ -47,5 +49,12 @@ public class Utils {
             TextView txt = (TextView) v;
             txt.setTextColor(ContextCompat.getColor(context, color));
         }
+    }
+
+
+    public static void setOnHoverLabel(EditText editText) {
+        Label layoutLabel = (Label) editText.getParent();
+        TextView label = (TextView) layoutLabel.getChildAt(0);
+        label.animate().translationY(-8).setDuration(100).start();
     }
 }

@@ -17,7 +17,7 @@ import com.gsoft.ima.ui.main.MainActivity;
 import com.gsoft.ima.ui.main.home.HomeFragment;
 import com.gsoft.ima.ui.main.profile.ProfileFragment;
 import com.gsoft.ima.ui.main.scan.ScanFragment;
-import com.gsoft.ima.ui.main.SettingFragment.FragmentSetting;
+import com.gsoft.ima.ui.main.setting.SettingFragment;
 import com.gsoft.ima.utils.NavIcon;
 import com.gsoft.ima.utils.Utils;
 
@@ -99,7 +99,7 @@ public class BottomNav
                     } else if (index == 1) {
                         mActivity.setFragment(new ScanFragment());
                     } else if (index == 2) {
-                        mActivity.setFragment(new FragmentSetting());
+                        mActivity.setFragment(new SettingFragment());
                     } else {
                         mActivity.setFragment(new ProfileFragment());
                     }
