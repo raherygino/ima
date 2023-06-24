@@ -70,7 +70,7 @@ public class AdapterRecyclerSetting extends RecyclerView.Adapter<AdapterRecycler
 
                         break;
                     case 2:
-                        PromptDialog helpDialog = new PromptDialog(context,context.getString(R.string.help) ,context.getString(R.string.help_details),context.getString(R.string.help_details));
+                        PromptDialog helpDialog = new PromptDialog(context,context.getString(R.string.help) ,context.getString(R.string.help_details),context.getString(R.string.message));
                         helpDialog.BTN_OK.setText(context.getString(R.string.send));
                         helpDialog.show();
                         break;

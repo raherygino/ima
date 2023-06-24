@@ -9,7 +9,7 @@
     <dimen name="height_edit_text">47dp</dimen>
     <!-- Button -->
     <dimen name="btn_height">40dp</dimen>
-    <dimen name="btn_radius">4dp</dimen>
+    <dimen name="btn_radius">8dp</dimen>
     <dimen name="btn_rounded_radius">18dp</dimen>
     <!-- TextView -->
     <dimen name="headline_1">30sp</dimen>

@@ -29,6 +29,9 @@ public class Button extends AppCompatButton {
         } else if (variant.equals("success")) {
             this.setBackground(getResources().getDrawable(R.drawable.back_btn_success));
             this.setTextColor(getResources().getColor(R.color.white));
+        } else if (variant.equals("danger")) {
+            this.setBackground(getResources().getDrawable(R.drawable.back_btn_danger));
+            this.setTextColor(getResources().getColor(R.color.white));
         } else if (variant.equals("soft_primary")) {
             this.setBackground(getResources().getDrawable(R.drawable.back_btn_soft_primary));
             this.setTextColor(getResources().getColor(R.color.blue_500));
