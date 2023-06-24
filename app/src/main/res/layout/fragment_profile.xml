@@ -35,7 +35,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/title_setting"
+                android:id="@+id/title_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sf_pro_bold"
@@ -44,7 +44,7 @@
                 android:textSize="26sp" />
 
             <TextView
-                android:id="@+id/detail_setting"
+                android:id="@+id/title_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="-4dp"
@@ -321,27 +321,6 @@
                     android:singleLine="true"
                     android:textSize="@dimen/headline_5"
                     tools:hint="@string/password" />
-
-            </com.gsoft.ima.di.components.Label>
-
-            <com.gsoft.ima.di.components.Label
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/height_edit_text"
-                android:layout_marginTop="@dimen/mt_edit_text"
-                app:text="@string/confirm_password">
-
-                <com.gsoft.ima.di.components.EditText
-                    android:id="@+id/confirm_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/transparent"
-                    android:fontFamily="@font/sf_pro_regular"
-                    android:inputType="textPassword"
-                    android:paddingTop="@dimen/pd_10"
-                    android:singleLine="true"
-                    android:textSize="@dimen/headline_5"
-                    tools:hint="@string/confirm_password" />
 
             </com.gsoft.ima.di.components.Label>
 
