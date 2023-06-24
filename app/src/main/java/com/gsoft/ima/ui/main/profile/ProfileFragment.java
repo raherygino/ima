@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.gsoft.ima.databinding.FragmentProfileBinding;
+import com.gsoft.ima.utils.Utils;
 
 public class ProfileFragment extends Fragment {
 
@@ -19,6 +20,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
+        Utils.setColorBarStatusDefault(getContext());
         return binding.getRoot();
     }
 }

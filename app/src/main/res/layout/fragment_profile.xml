@@ -2,15 +2,397 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Profile"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/nav_bar"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@drawable/back_blue_gradient"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ic_setting"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_user_large"
+            android:tint="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="18dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toEndOf="@+id/ic_setting"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/title_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_bold"
+                android:text="@string/username"
+                android:textColor="@color/white"
+                android:textSize="26sp" />
+
+            <TextView
+                android:id="@+id/detail_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-4dp"
+                android:fontFamily="@font/sf_pro_regular"
+                android:text="@string/email"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Note: A RecyclerView can also be used -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nav_bar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/pd_10">
+
+            <com.gsoft.ima.di.components.Label
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_edit_text"
+                android:layout_marginTop="@dimen/mt_edit_text"
+                app:text="@string/lastname">
+
+                <com.gsoft.ima.di.components.EditText
+                    android:id="@+id/lastname"
+                    tools:hint="@string/lastname"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/transparent"
+                    android:fontFamily="@font/sf_pro_regular"
+                    android:paddingTop="@dimen/pd_10"
+                    android:singleLine="true"
+                    android:textSize="@dimen/headline_5" />
+
+            </com.gsoft.ima.di.components.Label>
+
+            <com.gsoft.ima.di.components.Label
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_edit_text"
+                android:layout_marginTop="@dimen/mt_edit_text"
+                app:text="@string/firstname">
+
+                <com.gsoft.ima.di.components.EditText
+                    android:id="@+id/firstname"
+                    tools:hint="@string/firstname"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/transparent"
+                    android:fontFamily="@font/sf_pro_regular"
+                    android:paddingTop="@dimen/pd_10"
+                    android:singleLine="true"
+                    android:textSize="@dimen/headline_5" />
+
+            </com.gsoft.ima.di.components.Label>
+
+            <com.gsoft.ima.di.components.Label
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_edit_text"
+                android:layout_marginTop="@dimen/mt_edit_text"
+                app:text="@string/gender">
+
+                <com.gsoft.ima.di.components.EditText
+                    android:id="@+id/gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/transparent"
+                    android:focusable="false"
+                    android:fontFamily="@font/sf_pro_regular"
+                    android:paddingTop="@dimen/pd_10"
+                    android:singleLine="true"
+                    android:text="@string/male"
+                    android:textSize="@dimen/headline_5" />
+
+            </com.gsoft.ima.di.components.Label>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/mt_edit_text"
+                android:shrinkColumns="*"
+                android:stretchColumns="*">
+
+                <TableRow>
+
+                    <com.gsoft.ima.di.components.Label
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/height_edit_text"
+                        android:layout_marginEnd="3dp"
+                        app:text="@string/birth_date">
+
+                        <com.gsoft.ima.di.components.EditText
+                            android:id="@+id/birth_date"
+                            tools:hint="@string/birth_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentBottom="true"
+                            android:background="@color/transparent"
+                            android:focusable="false"
+                            android:fontFamily="@font/sf_pro_regular"
+                            android:paddingTop="@dimen/pd_10"
+                            android:singleLine="true"
+                            android:text="01/01/1970"
+                            android:textSize="@dimen/headline_5" />
+
+                    </com.gsoft.ima.di.components.Label>
+
+                    <com.gsoft.ima.di.components.Label
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/height_edit_text"
+                        android:layout_marginStart="3dp"
+                        app:text="@string/birth_place">
+
+                        <com.gsoft.ima.di.components.EditText
+                            android:id="@+id/birth_place"
+                            tools:hint="@string/birth_place"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentBottom="true"
+                            android:background="@color/transparent"
+                            android:fontFamily="@font/sf_pro_regular"
+                            android:paddingTop="@dimen/pd_10"
+                            android:singleLine="true"
+                            android:textSize="@dimen/headline_5" />
+
+                    </com.gsoft.ima.di.components.Label>
+                </TableRow>
+            </TableLayout>
+
+            <com.gsoft.ima.di.components.Label
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_edit_text"
+                android:layout_marginTop="@dimen/mt_edit_text"
+                app:text="@string/cin">
+
+                <com.gsoft.ima.di.components.EditText
+                    android:id="@+id/cin"
+                    tools:hint="@string/cin"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/transparent"
+                    android:fontFamily="@font/sf_pro_regular"
+                    android:inputType="number"
+                    android:paddingTop="@dimen/pd_10"
+                    android:singleLine="true"
+                    android:textSize="@dimen/headline_5" />
+
+            </com.gsoft.ima.di.components.Label>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:shrinkColumns="*"
+                android:stretchColumns="*">
+
+                <TableRow>
+
+                    <com.gsoft.ima.di.components.Label
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/height_edit_text"
+                        android:layout_marginTop="@dimen/mt_edit_text"
+                        app:text="@string/country">
+
+                        <com.gsoft.ima.di.components.EditText
+                            android:id="@+id/country"
+                            tools:hint="@string/country"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginEnd="3dp"
+                            android:background="@color/transparent"
+                            android:focusable="false"
+                            android:fontFamily="@font/sf_pro_regular"
+                            android:paddingTop="@dimen/pd_10"
+                            android:singleLine="true"
+                            android:text="@string/madagascar"
+                            android:textSize="@dimen/headline_5" />
+
+                    </com.gsoft.ima.di.components.Label>
+
+                    <com.gsoft.ima.di.components.Label
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/height_edit_text"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginTop="@dimen/mt_edit_text"
+                        app:text="@string/city">
+
+                        <com.gsoft.ima.di.components.EditText
+                            android:id="@+id/city"
+                            tools:hint="@string/city"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentBottom="true"
+                            android:background="@color/transparent"
+                            android:fontFamily="@font/sf_pro_regular"
+                            android:paddingTop="@dimen/pd_10"
+                            android:singleLine="true"
+                            android:textSize="@dimen/headline_5" />
+
+                    </com.gsoft.ima.di.components.Label>
+                </TableRow>
+            </TableLayout>
+
+            <com.gsoft.ima.di.components.Label
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_edit_text"
+                android:layout_marginTop="@dimen/mt_edit_text"
+                app:text="@string/phone">
+
+                <com.gsoft.ima.di.components.EditText
+                    android:id="@+id/phone"
+                    tools:hint="@string/phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/transparent"
+                    android:fontFamily="@font/sf_pro_regular"
+                    android:inputType="number"
+                    android:paddingTop="@dimen/pd_10"
+                    android:singleLine="true"
+                    android:textSize="@dimen/headline_5" />
+
+            </com.gsoft.ima.di.components.Label>
+
+            <com.gsoft.ima.di.components.Label
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_edit_text"
+                android:layout_marginTop="@dimen/mt_edit_text"
+                app:text="@string/email">
+
+                <com.gsoft.ima.di.components.EditText
+                    android:id="@+id/email"
+                    tools:hint="@string/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/transparent"
+                    android:fontFamily="@font/sf_pro_regular"
+                    android:inputType="textEmailAddress"
+                    android:paddingTop="@dimen/pd_10"
+                    android:singleLine="true"
+                    android:textSize="@dimen/headline_5" />
+
+            </com.gsoft.ima.di.components.Label>
+
+            <com.gsoft.ima.di.components.Label
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_edit_text"
+                android:layout_marginTop="@dimen/mt_edit_text"
+                app:text="@string/password">
+
+                <com.gsoft.ima.di.components.EditText
+                    android:id="@+id/password"
+                    tools:hint="@string/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/transparent"
+                    android:fontFamily="@font/sf_pro_regular"
+                    android:inputType="textPassword"
+                    android:paddingTop="@dimen/pd_10"
+                    android:singleLine="true"
+                    android:textSize="@dimen/headline_5" />
+
+            </com.gsoft.ima.di.components.Label>
+
+            <com.gsoft.ima.di.components.Label
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_edit_text"
+                android:layout_marginTop="@dimen/mt_edit_text"
+                app:text="@string/confirm_password">
+
+                <com.gsoft.ima.di.components.EditText
+                    android:id="@+id/confirm_password"
+                    tools:hint="@string/confirm_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/transparent"
+                    android:fontFamily="@font/sf_pro_regular"
+                    android:inputType="textPassword"
+                    android:paddingTop="@dimen/pd_10"
+                    android:singleLine="true"
+                    android:textSize="@dimen/headline_5" />
+
+            </com.gsoft.ima.di.components.Label>
+
+            <CheckBox
+                android:id="@+id/accept_signup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/mt_edit_text"
+                android:background="@color/grey_200"
+                android:fontFamily="sans-serif-light"
+                android:padding="@dimen/pd_10"
+                android:text="@string/accepting_signup"
+                android:textColor="@color/grey_600"
+                android:textSize="12sp" />
+
+            <com.gsoft.ima.di.components.Button
+                android:id="@+id/btn_register"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/btn_height"
+                android:layout_marginTop="@dimen/mt_edit_text"
+                android:fontFamily="@font/sf_pro_regular"
+                android:text="@string/register" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="23dp"
+                android:background="@color/grey_400" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="-11dp"
+                android:background="@color/grey_100"
+                android:fontFamily="@font/sf_pro_regular"
+                android:paddingStart="@dimen/mx_8"
+                android:paddingEnd="@dimen/mx_8"
+                android:text="@string/or"
+                android:textSize="@dimen/headline_5" />
+
+            <com.gsoft.ima.di.components.Button
+                android:id="@+id/btn_login"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/btn_height"
+                android:layout_marginTop="@dimen/mt_edit_text"
+                android:layout_marginBottom="@dimen/mt_edit_text"
+                android:fontFamily="@font/sf_pro_regular"
+                android:text="@string/login"
+                app:variant="soft_primary" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

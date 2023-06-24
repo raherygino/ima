@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.gsoft.ima.databinding.FragmentScanBinding;
+import com.gsoft.ima.utils.Utils;
 
 public class ScanFragment extends Fragment {
 
@@ -19,6 +20,7 @@ public class ScanFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentScanBinding.inflate(inflater, container, false);
+        Utils.setColorBarStatusDefault(getContext());
         return binding.getRoot();
     }
 }
