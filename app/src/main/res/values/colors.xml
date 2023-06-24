@@ -12,6 +12,7 @@
     <color name="blue_600_trans">#221E88E5</color>
     <color name="red_400">#EF5350</color>
     <color name="green_400">#66BB6A</color>
+    <color name="green_500">#05cd00</color>
     <color name="green_400_trans">#4466BB6A</color>
     <color name="yellow_400">#FFC107</color>
     <color name="purple_400">#ab2cd2</color>
@@ -19,6 +20,7 @@
     <color name="black_trans">#44000000</color>
     <color name="grey_50">#FAFAFA</color>
     <color name="grey_100">#FDFDFD</color>
+    <color name="grey_150">#f4f5f0</color>
     <color name="grey_200">#EEEEEE</color>
     <color name="grey_300">#E0E0E0</color>
     <color name="grey_400">#939393</color>
