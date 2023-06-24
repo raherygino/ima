@@ -1,7 +1,10 @@
 package com.gsoft.ima.model.models;
 
+import android.content.Context;
+
 import androidx.databinding.ObservableField;
 
+import com.gsoft.ima.R;
 import com.gsoft.ima.databinding.FragmentProfileBinding;
 import com.gsoft.ima.databinding.FragmentRegisterBinding;
 import com.gsoft.ima.utils.Utils;
@@ -38,6 +41,7 @@ public class UserData {
     public User getFromView(FragmentProfileBinding binding) {
         lastname.set(binding.lastname.getText().toString());
         firstname.set(binding.firstname.getText().toString());
+        birthday.set(binding.birthDate.getText().toString());
         birthplace.set(binding.birthPlace.getText().toString());
         id_card.set(binding.cin.getText().toString());
         country.set(binding.country.getText().toString());
@@ -48,13 +52,19 @@ public class UserData {
         return setUser();
     }
     
-    public void setToView(FragmentProfileBinding binding, User user) {
+    public void setToView(Context context, FragmentProfileBinding binding, User user) {
 
         binding.titleUsername.setText(user.firstname);
         binding.titleEmail.setText(user.email);
         binding.firstname.setText(user.firstname);
         binding.lastname.setText(user.lastname);
-        binding.gender.setText(user.gender);
+
+        if (user.gender.equals("male")) {
+            binding.gender.setText(context.getString(R.string.male));
+        } else {
+            binding.gender.setText(context.getString(R.string.female));
+        }
+
         binding.birthDate.setText(user.birthday);
         binding.birthPlace.setText(user.birthplace);
         binding.cin.setText(user.id_card);

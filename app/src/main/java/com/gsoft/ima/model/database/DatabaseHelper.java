@@ -53,8 +53,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public long createUser(User user) {
-        SQLiteDatabase db = this.getWritableDatabase();
+    private ContentValues contentValuesUser(User user) {
         ContentValues values = new ContentValues();
         values.put(COLUMN_LASTNAME, user.lastname);
         values.put(COLUMN_FIRSTNAME, user.firstname);
@@ -67,7 +66,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_NUMBER, user.phone);
         values.put(COLUMN_EMAIL, user.email);
         values.put(COLUMN_PASSWORD, user.password);
-        return db.insert(TABLE_USER, null, values);
+        return values;
+    }
+
+    public long createUser(User user) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.insert(TABLE_USER, null, contentValuesUser(user));
     }
 
     public Cursor selectUser() {
@@ -92,6 +96,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 cursor.getString(5), cursor.getString(6), cursor.getString(7),
                 cursor.getString(8), cursor.getString(9), cursor.getString(10), cursor.getString(11), "");
         return user;
+    }
+
+    public long updateUser(User user) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = selectUser();
+        cursor.moveToFirst();
+        return db.update(TABLE_USER, contentValuesUser(user), COLUMN_ID+" = ?", new String[]{cursor.getString(0)});
     }
 
     public double deleteUser() {
