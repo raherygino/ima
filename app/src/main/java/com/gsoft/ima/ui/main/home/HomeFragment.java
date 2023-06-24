@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,11 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.gsoft.ima.R;
 import com.gsoft.ima.databinding.FragmentHomeBinding;
-import com.gsoft.ima.di.adapters.AdapterRecyclerTransaction;
+import com.gsoft.ima.di.adapters.transaction.AdapterRecyclerTransaction;
 import com.gsoft.ima.di.dialog.AlertDialog;
 import com.gsoft.ima.model.models.Transaction;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
@@ -53,6 +51,7 @@ public class HomeFragment extends Fragment {
             transaction.date = "12 Déc 2022";
             transaction.sentBy = "Bluetooth";
             transaction.numReceiver = "034 65 007 00";
+            transaction.amount = 8000*(i+1);
             transaction.type = type;
             listTransaction.add(transaction);
         }

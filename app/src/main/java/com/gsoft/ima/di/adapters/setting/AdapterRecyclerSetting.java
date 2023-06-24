@@ -1,4 +1,4 @@
-package com.gsoft.ima.di.adapters;
+package com.gsoft.ima.di.adapters.setting;
 
 
 import android.annotation.SuppressLint;
@@ -19,11 +19,9 @@ import com.gsoft.ima.R;
 import com.gsoft.ima.di.dialog.AlertDialog;
 import com.gsoft.ima.di.dialog.PromptDialog;
 import com.gsoft.ima.model.models.SettingItem;
-import com.gsoft.ima.model.models.Transaction;
 import com.gsoft.ima.utils.Utils;
 
 import java.util.ArrayList;
-import java.util.Set;
 
 public class AdapterRecyclerSetting extends RecyclerView.Adapter<AdapterRecyclerSetting.MyHolder> {
 

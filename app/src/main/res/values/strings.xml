@@ -65,4 +65,12 @@
     <string name="phone_invalid">Phone number invalid</string>
     <string name="cin_invalid">CIN invalid</string>
     <string name="check_the_form">Check the form</string>
+    <!-- Menu setting -->
+    <string name="update">Update</string>
+    <string name="update_subtitle">Update your data from server</string>
+    <string name="change_language">Change language</string>
+    <string name="help">Help</string>
+    <string name="help_subtitle">You can contact Adminstrator</string>
+    <string name="about">About</string>
+    <string name="about_subtitle">Learn more about IMA</string>
 </resources>
