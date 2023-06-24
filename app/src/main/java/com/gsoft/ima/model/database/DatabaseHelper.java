@@ -74,7 +74,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean isLogged() {
-        if (selectUser().getColumnCount() > 0) {
+        if (selectUser().getCount() > 0) {
             return true;
         } else {
             return false;

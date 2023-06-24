@@ -1,6 +1,5 @@
 package com.gsoft.ima.ui.main.home;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +32,11 @@ public class HomeFragment extends Fragment {
         viewModel = new HomeViewModel(getContext());
         binding.logout.setOnClickListener(new OnClick());
         Utils.setColorBarStatus(getContext());
+        setRecycleViewHistory();
+        return binding.getRoot();
+    }
 
+    private void setRecycleViewHistory() {
         ArrayList<Transaction> listTransaction = seedTransaction(3, "received");
         listTransaction.addAll(seedTransaction(3, "sent"));
         binding.recyclerViewHistory.setHasFixedSize(true);
@@ -41,8 +44,6 @@ public class HomeFragment extends Fragment {
         binding.recyclerViewHistory.setLayoutManager(layoutManagerTransaction);
         AdapterRecyclerTransaction adapterRecyclerTransaction = new AdapterRecyclerTransaction(getContext(), listTransaction, binding.recyclerViewHistory);
         binding.recyclerViewHistory.setAdapter(adapterRecyclerTransaction);
-
-        return binding.getRoot();
     }
 
     private ArrayList<Transaction> seedTransaction(int size,String type) {

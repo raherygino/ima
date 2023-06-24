@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.gsoft.ima.databinding.ActivitySplashBinding;
 import com.gsoft.ima.model.database.DatabaseHelper;
+import com.gsoft.ima.ui.auth.AuthActivity;
 import com.gsoft.ima.ui.main.MainActivity;
 import com.gsoft.ima.utils.Utils;
 
@@ -28,11 +29,11 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 try{
                     sleep(2*1000);
-                  //  if (database.isLogged()) {
+                    if (database.isLogged()) {
                         startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                   /* } else {
+                    } else {
                         startActivity(new Intent(SplashActivity.this, AuthActivity.class));
-                    }*/
+                    }
                     finish();
                 }catch (Exception e){
                     Log.d("Exception", e.getMessage());

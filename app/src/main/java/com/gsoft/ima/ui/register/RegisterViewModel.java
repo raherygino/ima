@@ -21,7 +21,8 @@ import com.gsoft.ima.model.database.DatabaseHelper;
 import com.gsoft.ima.model.models.User;
 import com.gsoft.ima.ui.auth.AuthActivity;
 import com.gsoft.ima.ui.login.LoginFragment;
-import com.gsoft.ima.ui.main.MainActivityOld;
+import com.gsoft.ima.ui.main.MainActivity;
+import com.gsoft.ima.utils.OldCode;
 import com.gsoft.ima.utils.DateSet;
 
 import java.io.IOException;
@@ -112,7 +113,8 @@ public class RegisterViewModel extends ViewModel {
     }
 
     private void register(User user) {
-
+        createUserInLocalDB(user);
+        /*
         Call<ResponseBody> createUser = RetrofitClient.createUser(user);
         createUser.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -120,13 +122,8 @@ public class RegisterViewModel extends ViewModel {
                 if (response.isSuccessful()) {
                     try {
                         String result = response.body().source().readUtf8();
-                        DatabaseHelper db = new DatabaseHelper(context);
                         if (result.contains("created")) {
-                            if (db.createUser(user)!= -1) {
-                                Activity activity = (Activity) context;
-                                activity.startActivity(new Intent(context, MainActivityOld.class));
-                                activity.finish();
-                            }
+                            createUserInLocalDB();
                         } else {
                             WebViewDialog dialog = new WebViewDialog(context, "Result", response.body().source().readUtf8());
                             dialog.show();
@@ -143,6 +140,15 @@ public class RegisterViewModel extends ViewModel {
             public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
                 Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
+    }
+
+    private void createUserInLocalDB(User user) {
+        DatabaseHelper db = new DatabaseHelper(context);
+        if (db.createUser(user)!= -1) {
+            Activity activity = (Activity) context;
+            activity.startActivity(new Intent(context, MainActivity.class));
+            activity.finish();
+        }
     }
 }

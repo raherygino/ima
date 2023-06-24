@@ -1,4 +1,4 @@
-package com.gsoft.ima.ui.main;
+package com.gsoft.ima.utils;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,7 +20,7 @@ import com.gsoft.ima.utils.BluetoothHelper;
 import com.gsoft.ima.utils.BluetoothHelperReceiver;
 
 
-public class MainActivityOld extends AppCompatActivity {/*
+public class OldCode extends AppCompatActivity {/*
     private ActivityMainBinding binding;
     private BottomSheetBehavior<View> bottomSheetBehavior;
 
