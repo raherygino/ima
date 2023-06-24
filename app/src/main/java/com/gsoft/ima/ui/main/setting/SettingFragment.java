@@ -15,6 +15,7 @@ import com.gsoft.ima.R;
 import com.gsoft.ima.databinding.FragmentSettingBinding;
 import com.gsoft.ima.di.adapters.setting.AdapterRecyclerSetting;
 import com.gsoft.ima.model.models.SettingItem;
+import com.gsoft.ima.utils.Utils;
 
 import java.util.ArrayList;
 
@@ -26,7 +27,7 @@ public class SettingFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentSettingBinding.inflate(inflater, container, false);
-
+        Utils.setColorBarStatusDefault(getContext());
         ArrayList<SettingItem> settingItems = new ArrayList<>();
         settingItems.add(new SettingItem(getString(R.string.update), getString(R.string.update_subtitle), "ic_cloud", "back_icon_yellow"));
         settingItems.add(new SettingItem(getString(R.string.change_language), "English", "ic_flag", "back_icon_red"));

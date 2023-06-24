@@ -1,5 +1,6 @@
 package com.gsoft.ima.ui.main.home;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.gsoft.ima.databinding.FragmentHomeBinding;
 import com.gsoft.ima.di.adapters.transaction.AdapterRecyclerTransaction;
 import com.gsoft.ima.di.dialog.AlertDialog;
 import com.gsoft.ima.model.models.Transaction;
+import com.gsoft.ima.utils.Utils;
 
 import java.util.ArrayList;
 
@@ -30,6 +32,7 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         viewModel = new HomeViewModel(getContext());
         binding.logout.setOnClickListener(new OnClick());
+        Utils.setColorBarStatus(getContext());
 
         ArrayList<Transaction> listTransaction = seedTransaction(3, "received");
         listTransaction.addAll(seedTransaction(3, "sent"));

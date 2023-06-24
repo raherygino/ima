@@ -57,7 +57,7 @@ public class AdapterRecyclerSetting extends RecyclerView.Adapter<AdapterRecycler
                 Utils.effectClick(context, view);
                 switch (i) {
                     case 1:
-                        PopupMenu popupMenu = new PopupMenu(context, view);
+                        PopupMenu popupMenu = new PopupMenu(context, myHolder.detail_setting);
                         popupMenu.getMenuInflater().inflate(R.menu.language, popupMenu.getMenu());
                         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                             @Override
@@ -70,12 +70,12 @@ public class AdapterRecyclerSetting extends RecyclerView.Adapter<AdapterRecycler
 
                         break;
                     case 2:
-                        PromptDialog helpDialog = new PromptDialog(context,"Help","Quand vous aurez des problèmes, vous pouvez nous envoyer des messages.","Message");
+                        PromptDialog helpDialog = new PromptDialog(context,context.getString(R.string.help) ,context.getString(R.string.help_details),context.getString(R.string.help_details));
                         helpDialog.BTN_OK.setText(context.getString(R.string.send));
                         helpDialog.show();
                         break;
                     case 3:
-                        AlertDialog dialog = new AlertDialog(context, "About","IMA is application for transfert money\nDesigned & Developped by Gino");
+                        AlertDialog dialog = new AlertDialog(context, context.getString(R.string.about),context.getString(R.string.about_details));
                         dialog.show();
                         break;
                 }
@@ -102,7 +102,7 @@ public class AdapterRecyclerSetting extends RecyclerView.Adapter<AdapterRecycler
     public class MyHolder extends RecyclerView.ViewHolder
     {
         TextView title_setting, detail_setting;
-        ImageView image;
+        ImageView image, chevron_right;
         public View itemView;
 
         public MyHolder(@NonNull View itemView) {
@@ -111,6 +111,7 @@ public class AdapterRecyclerSetting extends RecyclerView.Adapter<AdapterRecycler
             title_setting = itemView.findViewById(R.id.title_setting);
             detail_setting = itemView.findViewById(R.id.detail_setting);
             image = itemView.findViewById(R.id.icon);
+            chevron_right = itemView.findViewById(R.id.chevron_right);
         }
     }
 }

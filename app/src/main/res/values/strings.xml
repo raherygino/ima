@@ -30,6 +30,7 @@
     <string name="sms">SMS</string>
     <string name="network">Network</string>
     <!-- Form -->
+    <string name="message">Message</string>
     <string name="username">Username</string>
     <string name="lastname">Lastname</string>
     <string name="firstname">Firstname</string>
@@ -56,8 +57,10 @@
     <string name="close_app_details">You want to exit the app?</string>
     <string name="logout_details">You want to logout?</string>
     <string name="accepting_signup">Je confirme que ces informations sont véritables et j\'accepte les termes et les conditions d\'utilisation des services affiliés à la plateforme IMA.</string>
+    <string name="help_details">Du problème ou des questions concernant le service IMA? Écrivez-nous sans hésiter (internet requis). Nous vous répondrons à votre adresse e-mail. Ou appelez :</string>
     <string name="amount_placeholder">42 800 000</string>
     <string name="transfert_details">Fill the field below</string>
+    <string name="about_details">IMA v2.0\nDesigned and Developped by Gino</string>
     <!-- Message -->
     <string name="edit_text_required">This field is required</string>
     <string name="password_not_match">Password not match</string>

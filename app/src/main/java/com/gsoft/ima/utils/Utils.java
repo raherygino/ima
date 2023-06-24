@@ -34,6 +34,19 @@ public class Utils {
         }
     }
 
+    public static void setColorBarStatusDefault(Context context) {
+        Activity activity = (Activity) context;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = activity.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                window.setStatusBarColor(activity.getColor(R.color.blue_500));
+                View decor = activity.getWindow().getDecorView();
+                decor.setSystemUiVisibility(0);
+            }
+        }
+    }
+
     @SuppressLint("UseCompatLoadingForDrawables")
     public static Drawable getDrawable(Context context, String uri) {
         @SuppressLint("DiscouragedApi") int imageResource = context.getResources().getIdentifier("@drawable/"+uri, null, context.getPackageName());
