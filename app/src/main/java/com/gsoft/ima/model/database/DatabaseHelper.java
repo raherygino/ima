@@ -24,6 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_COUNTRY = "country";
     private static final String COLUMN_CITY = "city";
     private static final String COLUMN_EMAIL = "email";
+    private static final String COLUMN_PASSWORD = "password";
 
     public DatabaseHelper(Context context) {
         super(context, databaseName, null, 1);
@@ -42,6 +43,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_CITY + " TEXT, " +
                 COLUMN_NUMBER + " TEXT, " +
                 COLUMN_EMAIL + " TEXT, " +
+                COLUMN_PASSWORD + " TEXT, " +
                 " created_at DATETIME)";
         db.execSQL(SQL_CREATE);
     }
@@ -64,6 +66,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_CITY, user.city);
         values.put(COLUMN_NUMBER, user.phone);
         values.put(COLUMN_EMAIL, user.email);
+        values.put(COLUMN_PASSWORD, user.password);
         return db.insert(TABLE_USER, null, values);
     }
 

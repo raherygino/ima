@@ -19,6 +19,7 @@ import com.gsoft.ima.databinding.FragmentRegisterBinding;
 import com.gsoft.ima.di.dialog.WebViewDialog;
 import com.gsoft.ima.model.database.DatabaseHelper;
 import com.gsoft.ima.model.models.User;
+import com.gsoft.ima.model.models.UserData;
 import com.gsoft.ima.ui.auth.AuthActivity;
 import com.gsoft.ima.ui.login.LoginFragment;
 import com.gsoft.ima.ui.main.MainActivity;
@@ -37,31 +38,20 @@ public class RegisterViewModel extends ViewModel {
 
     private Context context;
     private FragmentRegisterBinding binding;
-
-    public ObservableField<String> lastname = new ObservableField<>("");
-    public ObservableField<String> firstname = new ObservableField<>("");
-    public ObservableField<String> gender = new ObservableField<>("");
-    public ObservableField<String> birthday = new ObservableField<>("01-01-1980");
-    public ObservableField<String> birthplace = new ObservableField<>("");
-    public ObservableField<String> id_card = new ObservableField<>("");
-    public ObservableField<String> country = new ObservableField<>("");
-    public ObservableField<String> city = new ObservableField<>("");
-    public ObservableField<String> phone = new ObservableField<>("");
-    public ObservableField<String> email = new ObservableField<>("");
-    public ObservableField<String> password = new ObservableField<>("");
-    public ObservableField<String> confirmPassword = new ObservableField<>("");
+    private UserData userData;
 
     public  RegisterViewModel(RegisterFragment fragment) {
         this.context = fragment.getContext();
         this.binding = fragment.binding;
+        this.userData = new UserData();
     }
 
     public void setChangeBirthDay() {
         Calendar calendar = Calendar.getInstance();
-        DatePickerDialog dialog = new DatePickerDialog(context, new DateSet(birthday, binding.birthDate), calendar.get(Calendar.YEAR)-40, 0, 1);
+        DatePickerDialog dialog = new DatePickerDialog(context, new DateSet(userData.birthday, binding.birthDate), calendar.get(Calendar.YEAR)-40, 0, 1);
         dialog.setCancelable(true);
         dialog.show();
-        Toast.makeText(context, lastname.get(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, userData.lastname.get(), Toast.LENGTH_SHORT).show();
     }
 
     public void setChooseGender() {
@@ -72,9 +62,9 @@ public class RegisterViewModel extends ViewModel {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 binding.gender.setText(menuItem.getTitle());
                 if (menuItem.getItemId() == R.id.male) {
-                    gender.set("male");
+                    userData.gender.set("male");
                 } else {
-                    gender.set("female");
+                    userData.gender.set("female");
                 }
                 return true;
             }
@@ -88,23 +78,7 @@ public class RegisterViewModel extends ViewModel {
     }
 
     public void registerListener() {
-        lastname.set(binding.lastname.getText().toString());
-        firstname.set(binding.firstname.getText().toString());
-        birthplace.set(binding.birthPlace.getText().toString());
-        id_card.set(binding.cin.getText().toString());
-        country.set(binding.country.getText().toString());
-        city.set(binding.city.getText().toString());
-        phone.set(binding.phone.getText().toString());
-        email.set(binding.email.getText().toString());
-        password.set(binding.password.getText().toString());
-        confirmPassword.set(binding.confirmPassword.getText().toString());
-
-        User user = new User(
-                lastname.get(), firstname.get(),
-                gender.get(), birthday.get(), birthplace.get(),
-                id_card.get(), country.get(), city.get(), phone.get(),
-                email.get(),password.get(), confirmPassword.get());
-
+        User user = userData.getFromView(binding);
         if (user.isValidate(context, binding) && binding.acceptSignup.isChecked()) {
             register(user);
         } else {
