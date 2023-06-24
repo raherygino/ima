@@ -8,16 +8,19 @@ import androidx.lifecycle.ViewModel;
 
 import com.gsoft.ima.di.dialog.AlertDialog;
 import com.gsoft.ima.model.database.DatabaseHelper;
+import com.gsoft.ima.model.models.User;
 import com.gsoft.ima.ui.auth.AuthActivity;
 
 public class HomeViewModel extends ViewModel {
 
     Context context;
+    public User user;
 
     public HomeViewModel(Context context) {
         this.context = context;
+        DatabaseHelper db = new DatabaseHelper(context);
+        this.user = db.User();
     }
-
     public void logout() {
         DatabaseHelper db = new DatabaseHelper(context);
         if (db.deleteUser() != -1) {
