@@ -50,9 +50,9 @@
 
 
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="4dp"
         android:tint="@color/grey_600"
         android:src="@drawable/ic_chevron_right_thin"
         app:layout_constraintBottom_toBottomOf="parent"

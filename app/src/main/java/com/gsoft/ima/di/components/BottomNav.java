@@ -80,10 +80,6 @@ public class BottomNav
         Utils.setColor(mActivity, itemIcon, color);
     }
 
-    private void effectClick(View view) {
-        final Animation anim = AnimationUtils.loadAnimation(mActivity, R.anim.btn_click);
-        view.startAnimation(anim);
-    }
 
     public void setConfig() {
         for (int i = 0 ; i < getAllItems().size(); i++) {
@@ -92,7 +88,7 @@ public class BottomNav
             item.getView().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    effectClick(view);
+                    Utils.effectClick(mActivity, view);
                     setItemActivate(index);
                     if (index == 0) {
                         mActivity.setFragment(new HomeFragment());

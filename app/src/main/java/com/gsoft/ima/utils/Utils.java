@@ -8,6 +8,8 @@ import android.os.Build;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -56,5 +58,10 @@ public class Utils {
         Label layoutLabel = (Label) editText.getParent();
         TextView label = (TextView) layoutLabel.getChildAt(0);
         label.animate().translationY(-8).setDuration(100).start();
+    }
+
+    public static void effectClick(Context context, View view) {
+        final Animation anim = AnimationUtils.loadAnimation(context, R.anim.btn_click);
+        view.startAnimation(anim);
     }
 }

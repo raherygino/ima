@@ -7,6 +7,9 @@
     <string name="cancel">Cancel</string>
     <string name="send">Send</string>
     <!-- Title -->
+    <string name="english">English</string>
+    <string name="malagasy">Malagasy</string>
+    <string name="french">French</string>
     <string name="login">Login</string>
     <string name="signup">Signup</string>
     <string name="register">Register</string>

@@ -31,7 +31,7 @@ public class SettingFragment extends Fragment {
 
         ArrayList<SettingItem> settingItems = new ArrayList<>();
         settingItems.add(new SettingItem("Update", "Update your data from server", "ic_cloud", "back_icon_yellow"));
-        settingItems.add(new SettingItem("Change language", "There is three differents language", "ic_flag", "back_icon_red"));
+        settingItems.add(new SettingItem("Change language", "English", "ic_flag", "back_icon_red"));
         settingItems.add(new SettingItem("Help", "You can contact Adminstrator", "ic_question", "back_icon_green"));
         settingItems.add(new SettingItem("About", "Learn more about IMA", "ic_info", "back_icon_blue"));
         binding.recyclerViewSetting.setHasFixedSize(true);
