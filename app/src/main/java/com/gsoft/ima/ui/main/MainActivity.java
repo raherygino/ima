@@ -2,6 +2,7 @@ package com.gsoft.ima.ui.main;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
     private String currentFragment;
+    BottomNav nav;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         Utils.setColorBarStatus(this);
         setFragment(new HomeFragment());
-        BottomNav nav = new BottomNav(this);
+        nav = new BottomNav(this);
         nav.setConfig();
         nav.setItemActivate(0);
         binding.fabSend.setOnClickListener(new View.OnClickListener() {
@@ -46,5 +48,15 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_main, fragment);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (!currentFragment.contains("HomeFragment")) {
+            setFragment(new HomeFragment());
+            nav.setItemActivate(0);
+        } else {
+            super.onBackPressed();
+        }
     }
 }
