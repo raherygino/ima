@@ -35,10 +35,10 @@ public class ProfileViewModel extends ViewModel {
     public void updateData(User userUpdated) {
         DatabaseHelper db = new DatabaseHelper(context);
         if (db.updateUser(userUpdated) != -1) {
-            Toast.makeText(context, "Updated", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getString(R.string.updated), Toast.LENGTH_SHORT).show();
             this.user = db.User();
         } else {
-            Toast.makeText(context, "Error", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, context.getString(R.string.error), Toast.LENGTH_LONG).show();
         }
     }
 

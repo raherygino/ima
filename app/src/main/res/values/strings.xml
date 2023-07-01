@@ -11,6 +11,7 @@
     <string name="close_app">Exit?</string>
     <string name="converter">Converter</string>
     <string name="english">English</string>
+    <string name="error">Error</string>
     <string name="french">French</string>
     <string name="forgot">Forget password?</string>
     <string name="forgot_pass_info">Enter your email to create a new password</string>
@@ -28,6 +29,7 @@
     <string name="sms">SMS</string>
     <string name="signup">Signup</string>
     <string name="transfert">Transfert</string>
+    <string name="updated">Updated</string>
     <string name="your_balance">Your balance</string>
 
     <!-- Form -->
@@ -67,6 +69,10 @@
     <string name="edit_text_required">This field is required</string>
     <string name="check_the_form">Check the form</string>
     <string name="cin_invalid">CIN invalid</string>
+    <string name="email_sent_to">Email sent to %1$s successfully!</string>
+    <string name="error_logout">You can\'t logout!</string>
+    <string name="message_not_sent">Failed to send message!</string>
+    <string name="message_sent">Message sent!</string>
     <string name="password_must">Password must contain 6 character minimum</string>
     <string name="password_not_match">Password not match</string>
     <string name="phone_invalid">Phone number invalid</string>

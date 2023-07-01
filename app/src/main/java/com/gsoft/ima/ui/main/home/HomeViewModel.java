@@ -6,6 +6,7 @@ import android.content.Intent;
 
 import androidx.lifecycle.ViewModel;
 
+import com.gsoft.ima.R;
 import com.gsoft.ima.di.dialog.AlertDialog;
 import com.gsoft.ima.model.database.DatabaseHelper;
 import com.gsoft.ima.model.models.User;
@@ -29,7 +30,7 @@ public class HomeViewModel extends ViewModel {
             Activity activity = (Activity) context;
             activity.finish();
         } else {
-            AlertDialog dialog = new AlertDialog(context,"Erreur","You are not logged");
+            AlertDialog dialog = new AlertDialog(context,context.getString(R.string.error),context.getString(R.string.error_logout));
             dialog.show();
         }
     }

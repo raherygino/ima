@@ -1,5 +1,6 @@
 package com.gsoft.ima.ui.login;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.view.View;
@@ -48,10 +49,11 @@ public class LoginViewModel extends BaseObservable {
         );
         dialog.btnOk.setText(activity.getString(R.string.send));
         dialog.btnOk.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("StringFormatMatches")
             @Override
             public void onClick(View view) {
                 String email = dialog.editText.getText().toString();
-                Toast.makeText(context, "Email sent to "+email+" successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,  context.getString(R.string.email_sent_to, email), Toast.LENGTH_SHORT).show();
                 dialog.cancel();
             }
         });

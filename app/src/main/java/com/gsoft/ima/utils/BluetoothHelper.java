@@ -5,6 +5,8 @@ import android.bluetooth.BluetoothSocket;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.gsoft.ima.R;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.UUID;
@@ -58,10 +60,10 @@ public class BluetoothHelper {
         if (outputStream != null) {
             try {
                 outputStream.write(message.getBytes());
-                Toast.makeText(context, "Message sent!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, context.getString(R.string.message_sent), Toast.LENGTH_SHORT).show();
             } catch (IOException e) {
                 e.printStackTrace();
-                Toast.makeText(context, "Failed to send message.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, context.getString(R.string.message_not_sent), Toast.LENGTH_SHORT).show();
             }
         }
     }
