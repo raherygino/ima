@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="-4dp"
                 android:fontFamily="@font/sf_pro_regular"
-                android:text="Scan QR Code"
+                android:text="@string/scan_details"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
         </LinearLayout>

@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="-2dp"
             android:fontFamily="@font/sf_pro_regular"
-            android:text="All of features"
+            android:text="@string/setting_details"
             android:textColor="@color/grey_600"
             android:textSize="11sp" />
 
