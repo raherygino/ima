@@ -5,6 +5,8 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.MenuItem;
 import android.widget.PopupMenu;
 import android.widget.Toast;
@@ -56,6 +58,16 @@ public class RegisterViewModel extends ViewModel {
         Toast.makeText(context, userData.lastname.get(), Toast.LENGTH_SHORT).show();
     }
 
+    public void togglePassword(boolean isShow) {
+        if (isShow) {
+            binding.password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            binding.confirmPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+        } else {
+            binding.password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            binding.confirmPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        }
+    }
+
     public void setChooseGender() {
         PopupMenu popupMenu = new PopupMenu(context, binding.gender);
         popupMenu.getMenuInflater().inflate(R.menu.gender, popupMenu.getMenu());
@@ -100,15 +112,29 @@ public class RegisterViewModel extends ViewModel {
                 progressDialog.hide();
                 if (response.isSuccessful()) {
                     try {
+                        assert response.body() != null;
                         String result = response.body().source().readUtf8();
+                        boolean isEmailExist = result.contains(IS_EMAIL_EXIST);
+                        boolean isPhoneExist = result.contains(IS_PHONE_EXIST);
                         if (result.contains(IS_CREATED)) {
                             createUserInLocalDB(user);
                         } else {
-                            if (result.contains(IS_EMAIL_EXIST)) {
-                                AlertDialog dialog = new AlertDialog(context, context.getString(R.string.error_email), context.getString(R.string.error_email_details, user.email));
+                            if (isEmailExist || isPhoneExist) {
+                                AlertDialog dialog;
+                                String title, details;
+                                if (isEmailExist) {
+                                    title = context.getString(R.string.error_email);
+                                    details = context.getString(R.string.error_email_details, user.email);
+                                    binding.email.setError(title);
+                                } else {
+                                    title = context.getString(R.string.error_phone);
+                                    details = context.getString(R.string.error_phone_details, user.phone);
+                                    binding.phone.setError(title);
+                                }
+                                dialog = new AlertDialog(context, title, details);
                                 dialog.show();
                             } else {
-                                WebViewDialog dialog = new WebViewDialog(context, context.getString(R.string.result), response.body().source().readUtf8());
+                                AlertDialog dialog = new AlertDialog(context, context.getString(R.string.error), user.password);
                                 dialog.show();
                             }
                         }
@@ -117,7 +143,7 @@ public class RegisterViewModel extends ViewModel {
                     }
                 } else {
                     try {
-                        Toast.makeText(context, response.errorBody().source().readUtf8(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "error: "+response.errorBody().source().readUtf8(), Toast.LENGTH_SHORT).show();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -127,7 +153,15 @@ public class RegisterViewModel extends ViewModel {
             @Override
             public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
                 progressDialog.hide();
-                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                String message = t.getMessage();
+                AlertDialog dialog;
+                assert message != null;
+                if (message.contains(TIMED_OUT) || message.contains(HOST_NOT_FOUND)) {
+                    dialog = new AlertDialog(context, EMPTY, context.getString(R.string.error_connection));
+                } else {
+                    dialog = new AlertDialog(context, EMPTY, message);
+                }
+                dialog.show();
             }
         });
     }

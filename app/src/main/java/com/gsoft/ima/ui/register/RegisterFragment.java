@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -29,6 +30,8 @@ public class RegisterFragment extends Fragment {
         this.binding.cin.addTextChangedListener(new Utils.CountValidation(getContext(), binding.countCin, MAX_CIN));
         this.binding.phone.addTextChangedListener(new Utils.CountValidation(getContext(), binding.countPhone, MAX_PHONE));
 
+        this.binding.showPassword.setOnClickListener(new onClick());
+
         Utils.setOnHoverLabel(binding.birthDate);
         Utils.setOnHoverLabel(binding.gender);
         Utils.setOnHoverLabel(binding.country);
@@ -49,6 +52,8 @@ public class RegisterFragment extends Fragment {
                 viewModel.loginListener();
             } else if (id == R.id.btn_register) {
                 viewModel.registerListener();
+            } else if (id == R.id.show_password) {
+                viewModel.togglePassword(((CheckBox) view).isChecked());
             }
         }
     }

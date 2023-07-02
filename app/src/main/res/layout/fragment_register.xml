@@ -314,6 +314,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:fontFamily="@font/sf_pro_regular"
+                        app:passwordToggleEnabled="true"
                         android:textSize="@dimen/headline_5"
                         tools:hint="@string/password"
                         android:inputType="textPassword"
@@ -335,6 +336,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:fontFamily="@font/sf_pro_regular"
+                        app:passwordToggleEnabled="true"
                         android:textSize="@dimen/headline_5"
                         tools:hint="@string/confirm_password"
                         android:inputType="textPassword"
@@ -344,6 +346,15 @@
                         android:layout_alignParentBottom="true"/>
 
                 </com.gsoft.ima.di.components.Label>
+
+                <CheckBox
+                    android:id="@+id/show_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp_30"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/show_password"
+                    android:textSize="@dimen/sp_12"
+                    android:textColor="@color/grey_600"/>
 
                 <CheckBox
                     android:id="@+id/accept_signup"
