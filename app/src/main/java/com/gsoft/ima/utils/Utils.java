@@ -16,6 +16,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 import androidx.databinding.ObservableField;
@@ -23,8 +24,14 @@ import androidx.databinding.ObservableField;
 import com.gsoft.ima.R;
 import com.gsoft.ima.di.components.EditText;
 import com.gsoft.ima.di.components.Label;
+import com.gsoft.ima.model.database.DatabaseHelper;
 
 import org.w3c.dom.Text;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import static com.gsoft.ima.constants.main.MainConstants.*;
 
@@ -150,5 +157,22 @@ public class Utils {
         public void afterTextChanged(Editable editable) {
 
         }
+    }
+
+    public static void importDataFromAssets(Context context) {
+        DatabaseHelper db = new DatabaseHelper(context);
+        try {
+            InputStream stream =  context.getAssets().open("data.txt");
+            InputStreamReader streamReader = new InputStreamReader(stream);
+            BufferedReader bufferedReader = new BufferedReader(streamReader);
+            String Text;
+            while ((Text = bufferedReader.readLine()) != null) {
+                db.insertDistrict(Text.split(";")[2]);
+            }
+            streamReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }

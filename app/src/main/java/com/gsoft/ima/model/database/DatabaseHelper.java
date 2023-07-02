@@ -26,13 +26,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_EMAIL = "email";
     private static final String COLUMN_PASSWORD = "password";
 
+    private static final String TABLE_DIS = "district";
+    private static final String COLUMN_DIS_NAME = "name";
+
     public DatabaseHelper(Context context) {
         super(context, databaseName, null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String SQL_CREATE = "CREATE TABLE "+ TABLE_USER +" ("+COLUMN_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
+        String SQL_CREATE_USER = "CREATE TABLE "+ TABLE_USER +" ("+COLUMN_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
                 COLUMN_LASTNAME + " TEXT, " +
                 COLUMN_FIRSTNAME + " TEXT, " +
                 COLUMN_GENDER + " TEXT, " +
@@ -45,7 +48,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_EMAIL + " TEXT, " +
                 COLUMN_PASSWORD + " TEXT, " +
                 " created_at DATETIME)";
-        db.execSQL(SQL_CREATE);
+
+        String SQL_CREATE_DISC = "CREATE TABLE "+ TABLE_DIS +" ("+COLUMN_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                COLUMN_DIS_NAME + " TEXT, " +
+                " created_at DATETIME)";
+
+        db.execSQL(SQL_CREATE_USER);
+        db.execSQL(SQL_CREATE_DISC);
     }
 
     @Override
@@ -115,5 +124,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return db.delete(TABLE_USER, COLUMN_ID+" = ?", new String[]{id});
     }
+
+    public long insertDistrict(String name) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_DIS_NAME, name);
+        return db.insert(TABLE_DIS, null, values);
+    }
+
+    public Cursor getAllDistrict() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM "+TABLE_DIS;
+        return db.rawQuery(query, null);
+    }
+
 }
 

@@ -1,5 +1,6 @@
 package com.gsoft.ima.ui.main;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -13,7 +14,9 @@ import androidx.fragment.app.FragmentTransaction;
 import com.gsoft.ima.R;
 import com.gsoft.ima.databinding.ActivityMainBinding;
 import com.gsoft.ima.di.components.BottomNav;
+import com.gsoft.ima.di.dialog.ListDialog;
 import com.gsoft.ima.di.dialog.SendDialog;
+import com.gsoft.ima.model.database.DatabaseHelper;
 import com.gsoft.ima.ui.main.home.HomeFragment;
 import com.gsoft.ima.utils.Utils;
 

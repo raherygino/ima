@@ -52,7 +52,6 @@ public class ScanFragment extends Fragment {
         try {
             Bitmap bitmap = qrgEncoder.getBitmap();
             binding.qrImage.setImageBitmap(bitmap);
-
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,10 +1,12 @@
 package com.gsoft.ima.ui.register;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.MenuItem;
@@ -18,7 +20,9 @@ import com.google.android.material.snackbar.Snackbar;
 import com.gsoft.ima.R;
 import com.gsoft.ima.api.RetrofitClient;
 import com.gsoft.ima.databinding.FragmentRegisterBinding;
+import com.gsoft.ima.di.components.EditText;
 import com.gsoft.ima.di.dialog.AlertDialog;
+import com.gsoft.ima.di.dialog.ListDialog;
 import com.gsoft.ima.di.dialog.WebViewDialog;
 import com.gsoft.ima.model.database.DatabaseHelper;
 import com.gsoft.ima.model.models.User;
@@ -40,6 +44,7 @@ import static com.gsoft.ima.constants.main.MainConstants.*;
 
 public class RegisterViewModel extends ViewModel {
 
+    @SuppressLint("StaticFieldLeak")
     private Context context;
     private FragmentRegisterBinding binding;
     private UserData userData;
@@ -84,6 +89,26 @@ public class RegisterViewModel extends ViewModel {
             }
         });
         popupMenu.show();
+    }
+
+    public void setChooseCity(EditText editText) {
+        DatabaseHelper db = new DatabaseHelper(context);
+        Cursor cursor = db.getAllDistrict();
+        String[] items = new String[cursor.getCount()];
+
+        for (int i = 0; i < cursor.getCount(); i++) {
+            cursor.moveToPosition(i);
+            items[i] = cursor.getString(1);
+        }
+
+        String title = context.getString(R.string.city);
+
+        ListDialog dialog = new ListDialog(context,
+                context.getString(R.string.list_of, title),
+                items,
+                editText);
+
+        dialog.show();
     }
 
     public void loginListener() {
