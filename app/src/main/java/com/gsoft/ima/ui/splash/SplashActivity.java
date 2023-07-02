@@ -25,6 +25,9 @@ public class SplashActivity extends AppCompatActivity {
         Utils.setColorBarStatus(this);
 
         DatabaseHelper database = new DatabaseHelper(this);
+        if (database.getAllDistrict().getCount() == 0) {
+            Utils.importDataFromAssets(this);
+        }
         Thread splash=new Thread() {
             public void run() {
                 try{

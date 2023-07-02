@@ -7,7 +7,11 @@ import androidx.databinding.ObservableField;
 import com.gsoft.ima.R;
 import com.gsoft.ima.databinding.FragmentProfileBinding;
 import com.gsoft.ima.databinding.FragmentRegisterBinding;
+import com.gsoft.ima.di.components.EditText;
 import com.gsoft.ima.utils.Utils;
+
+import static com.gsoft.ima.constants.main.MainConstants.EMPTY;
+import static com.gsoft.ima.constants.main.MainConstants.SINGLE_QUOTE;
 
 public class UserData {
 
@@ -38,14 +42,22 @@ public class UserData {
         return setUser();
     }
 
+    private String refactorSingleQuote(EditText editText) {
+        String str = editText.getText().toString();
+        if (str.contains(SINGLE_QUOTE)) {
+            str.replace(SINGLE_QUOTE, EMPTY);
+        }
+        return str;
+    }
+
     public User getFromView(FragmentProfileBinding binding) {
         lastname.set(binding.lastname.getText().toString());
         firstname.set(binding.firstname.getText().toString());
         birthday.set(binding.birthDate.getText().toString());
-        birthplace.set(binding.birthPlace.getText().toString());
+        birthplace.set(refactorSingleQuote(binding.birthPlace));
         id_card.set(binding.cin.getText().toString());
         country.set(binding.country.getText().toString());
-        city.set(binding.city.getText().toString());
+        city.set(refactorSingleQuote(binding.city));
         phone.set(binding.phone.getText().toString());
         email.set(binding.email.getText().toString());
         password.set(binding.password.getText().toString());

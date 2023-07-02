@@ -2,6 +2,10 @@ package com.gsoft.ima.constants.main;
 
 
 public class MainConstants {
+
+    public static final int MAX_CIN = 12;
+    public static final int MAX_PHONE = 10;
+
     public static final String CLASS = "class";
     public static final String EMPTY = "";
     public static final String FEMALE = "female";
@@ -21,11 +25,17 @@ public class MainConstants {
     public static final String IC_QUESTION = "ic_question";
 
     public static final String IS_CREATED = "created";
+    public static final String IS_EMAIL_EXIST = "mail_exist";
+    public static final String IS_PHONE_EXIST = "phone_exist";
 
     public static final String KEY_RECEIVED = "received";
     public static final String KEY_SENT = "sent";
     public static final String MALE = "male";
     public static final String MINUS = "-";
-
+    public static final String REG_ALPHABET = "^[a-zA-Zà-ÿ]*$";
+    public static final String SINGLE_QUOTE = "'";
+    public static final String SLASH = "/";
     public static final String STR_ZERO = "0";
+    public static final String TIMED_OUT = "timed out";
+    public static final String HOST_NOT_FOUND = "Unable to resolve host";
 }

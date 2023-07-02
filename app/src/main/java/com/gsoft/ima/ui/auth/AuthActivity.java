@@ -1,7 +1,9 @@
 package com.gsoft.ima.ui.auth;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,7 +14,10 @@ import androidx.fragment.app.FragmentTransaction;
 import com.gsoft.ima.R;
 import com.gsoft.ima.databinding.ActivityAuthBinding;
 import com.gsoft.ima.di.dialog.AlertDialog;
+import com.gsoft.ima.di.dialog.ConfirmDialog;
+import com.gsoft.ima.model.database.DatabaseHelper;
 import com.gsoft.ima.ui.login.LoginFragment;
+import com.gsoft.ima.utils.Utils;
 
 import static com.gsoft.ima.constants.main.MainConstants.*;
 
@@ -40,7 +45,7 @@ public class AuthActivity extends AppCompatActivity {
         if (currentFragment.contains(FRG_REGISTER)) {
             setFragment(new LoginFragment());
         } else {
-            AlertDialog dialog = new AlertDialog(this, getString(R.string.close_app), getString(R.string.close_app_details));
+            ConfirmDialog dialog = new ConfirmDialog(this, getString(R.string.close_app), getString(R.string.close_app_details));
             dialog.btnOk.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

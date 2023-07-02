@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.gsoft.ima.R;
 import com.gsoft.ima.databinding.FragmentHomeBinding;
 import com.gsoft.ima.di.dialog.AlertDialog;
+import com.gsoft.ima.di.dialog.ConfirmDialog;
 import com.gsoft.ima.model.models.Transaction;
 import com.gsoft.ima.utils.Utils;
 
@@ -71,7 +72,7 @@ public class HomeFragment extends Fragment {
             int id = view.getId();
 
             if (id == R.id.logout) {
-                AlertDialog dialog = new AlertDialog(getContext(),getString(R.string.logout),getString(R.string.logout_details));
+                ConfirmDialog dialog = new ConfirmDialog(getContext(),getString(R.string.logout),getString(R.string.logout_details));
                 dialog.btnOk.setOnClickListener(this);
                 dialog.show();
             } else if (id == R.id.btn_ok) {

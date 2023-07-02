@@ -1,9 +1,12 @@
 package com.gsoft.ima.model.models;
 
 import android.content.Context;
+import android.util.Patterns;
 
 import com.gsoft.ima.R;
 import com.gsoft.ima.databinding.FragmentRegisterBinding;
+
+import static com.gsoft.ima.constants.main.MainConstants.*;
 
 public class User {
     public String lastname;
@@ -47,19 +50,41 @@ public class User {
         this.confirmPassword = confirmPassword;
     }
 
+    public static boolean isNotOnlyAlphabet(String str) {
+        return !str.matches(REG_ALPHABET);
+    }
+
     public boolean isValidate(Context context, FragmentRegisterBinding binding) {
         boolean isValidate = true;
-        if (this.lastname.isEmpty()) {
-            binding.lastname.setError(context.getString(R.string.edit_text_required));
+
+        if (this.lastname.length() < 3) {
             isValidate = false;
+            binding.lastname.setError(context.getString(R.string.value_too_short));
         }
-        if (this.firstname.isEmpty()) {
+
+        if (isNotOnlyAlphabet(this.lastname)) {
             isValidate = false;
-            binding.firstname.setError(context.getString(R.string.edit_text_required));
+            binding.lastname.setError(context.getString(R.string.error_char_spec));
         }
-        if (this.birthplace.isEmpty()) {
+
+        if (this.firstname.length() < 3) {
             isValidate = false;
-            binding.birthPlace.setError(context.getString(R.string.edit_text_required));
+            binding.firstname.setError(context.getString(R.string.value_too_short));
+        }
+
+        if (isNotOnlyAlphabet(this.firstname)) {
+            isValidate = false;
+            binding.firstname.setError(context.getString(R.string.error_char_spec));
+        }
+
+        if (this.birthplace.length() < 3) {
+            isValidate = false;
+            binding.birthPlace.setError(context.getString(R.string.value_too_short));
+        }
+
+        if (isNotOnlyAlphabet(this.birthplace)) {
+            isValidate = false;
+            binding.birthPlace.setError(context.getString(R.string.error_char_spec));
         }
 
         if (this.id_card.length() != 12){
@@ -67,9 +92,14 @@ public class User {
             binding.cin.setError(context.getString(R.string.cin_invalid));
         }
 
-        if (this.city.isEmpty()) {
+        if (this.city.length() < 3) {
             isValidate = false;
-            binding.city.setError(context.getString(R.string.edit_text_required));
+            binding.city.setError(context.getString(R.string.value_too_short));
+        }
+
+        if (this.city.length() < 3) {
+            isValidate = false;
+            binding.city.setError(context.getString(R.string.value_too_short));
         }
 
         if (this.phone.length() != 10){
@@ -82,9 +112,19 @@ public class User {
             binding.email.setError(context.getString(R.string.edit_text_required));
         }
 
+        if (!Patterns.EMAIL_ADDRESS.matcher(this.email).matches()) {
+            isValidate = false;
+            binding.email.setError(context.getString(R.string.email_invalid));
+        }
+
         if (this.password.length() < 6) {
             isValidate = false;
             binding.password.setError(context.getString(R.string.password_must));
+        }
+
+        if (this.password.contains(SINGLE_QUOTE)) {
+            isValidate = false;
+            binding.password.setError(context.getString(R.string.error_character));
         }
 
         if (!this.password.contains(this.confirmPassword)) {

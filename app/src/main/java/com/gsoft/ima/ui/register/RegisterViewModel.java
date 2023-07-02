@@ -1,9 +1,14 @@
 package com.gsoft.ima.ui.register;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.MenuItem;
 import android.widget.PopupMenu;
 import android.widget.Toast;
@@ -15,6 +20,9 @@ import com.google.android.material.snackbar.Snackbar;
 import com.gsoft.ima.R;
 import com.gsoft.ima.api.RetrofitClient;
 import com.gsoft.ima.databinding.FragmentRegisterBinding;
+import com.gsoft.ima.di.components.EditText;
+import com.gsoft.ima.di.dialog.AlertDialog;
+import com.gsoft.ima.di.dialog.ListDialog;
 import com.gsoft.ima.di.dialog.WebViewDialog;
 import com.gsoft.ima.model.database.DatabaseHelper;
 import com.gsoft.ima.model.models.User;
@@ -36,6 +44,7 @@ import static com.gsoft.ima.constants.main.MainConstants.*;
 
 public class RegisterViewModel extends ViewModel {
 
+    @SuppressLint("StaticFieldLeak")
     private Context context;
     private FragmentRegisterBinding binding;
     private UserData userData;
@@ -52,6 +61,16 @@ public class RegisterViewModel extends ViewModel {
         dialog.setCancelable(true);
         dialog.show();
         Toast.makeText(context, userData.lastname.get(), Toast.LENGTH_SHORT).show();
+    }
+
+    public void togglePassword(boolean isShow) {
+        if (isShow) {
+            binding.password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            binding.confirmPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+        } else {
+            binding.password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            binding.confirmPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        }
     }
 
     public void setChooseGender() {
@@ -72,6 +91,26 @@ public class RegisterViewModel extends ViewModel {
         popupMenu.show();
     }
 
+    public void setChooseCity(EditText editText) {
+        DatabaseHelper db = new DatabaseHelper(context);
+        Cursor cursor = db.getAllDistrict();
+        String[] items = new String[cursor.getCount()];
+
+        for (int i = 0; i < cursor.getCount(); i++) {
+            cursor.moveToPosition(i);
+            items[i] = cursor.getString(1);
+        }
+
+        String title = context.getString(R.string.city);
+
+        ListDialog dialog = new ListDialog(context,
+                context.getString(R.string.list_of, title),
+                items,
+                editText);
+
+        dialog.show();
+    }
+
     public void loginListener() {
         AuthActivity authActivity = (AuthActivity) context;
         authActivity.setFragment(new LoginFragment());
@@ -87,25 +126,49 @@ public class RegisterViewModel extends ViewModel {
     }
 
     private void register(User user) {
+        ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage(context.getString(R.string.loading));
+        progressDialog.show();
         Call<ResponseBody> createUser = RetrofitClient.createUser(user);
         createUser.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                progressDialog.hide();
                 if (response.isSuccessful()) {
                     try {
+                        assert response.body() != null;
                         String result = response.body().source().readUtf8();
+                        boolean isEmailExist = result.contains(IS_EMAIL_EXIST);
+                        boolean isPhoneExist = result.contains(IS_PHONE_EXIST);
                         if (result.contains(IS_CREATED)) {
                             createUserInLocalDB(user);
                         } else {
-                            WebViewDialog dialog = new WebViewDialog(context, context.getString(R.string.result), response.body().source().readUtf8());
-                            dialog.show();
+                            if (isEmailExist || isPhoneExist) {
+                                AlertDialog dialog;
+                                String title, details;
+                                if (isEmailExist) {
+                                    title = context.getString(R.string.error_email);
+                                    details = context.getString(R.string.error_email_details, user.email);
+                                    binding.email.setError(title);
+                                } else {
+                                    title = context.getString(R.string.error_phone);
+                                    details = context.getString(R.string.error_phone_details, user.phone);
+                                    binding.phone.setError(title);
+                                }
+                                dialog = new AlertDialog(context, title, details);
+                                dialog.show();
+                            } else {
+                                AlertDialog dialog = new AlertDialog(context, context.getString(R.string.error), user.password);
+                                dialog.show();
+                            }
                         }
                     } catch (IOException e) {
                         Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     try {
-                        Toast.makeText(context, response.errorBody().source().readUtf8(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "error: "+response.errorBody().source().readUtf8(), Toast.LENGTH_SHORT).show();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -114,7 +177,16 @@ public class RegisterViewModel extends ViewModel {
 
             @Override
             public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
-                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                progressDialog.hide();
+                String message = t.getMessage();
+                AlertDialog dialog;
+                assert message != null;
+                if (message.contains(TIMED_OUT) || message.contains(HOST_NOT_FOUND)) {
+                    dialog = new AlertDialog(context, EMPTY, context.getString(R.string.error_connection));
+                } else {
+                    dialog = new AlertDialog(context, EMPTY, message);
+                }
+                dialog.show();
             }
         });
     }
