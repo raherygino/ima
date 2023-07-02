@@ -33,17 +33,17 @@
             android:fontFamily="@font/sf_pro_regular"
             android:text="@string/hello"
             android:textColor="@color/grey_600"
-            android:textSize="12sp" />
+            android:textSize="@dimen/sp_12" />
 
         <TextView
             android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-5dp"
+            android:layout_marginTop="@dimen/neg_5"
             android:fontFamily="@font/sf_pro_semi_bold"
             android:text="@string/username"
             android:textColor="@color/grey_600"
-            android:textSize="18sp" />
+            android:textSize="@dimen/sp_18" />
 
     </LinearLayout>
 
@@ -154,10 +154,10 @@
             <EditText
                 android:id="@+id/editText"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="65dp"
+                android:layout_height="@dimen/height_input_home"
+                android:layout_marginStart="@dimen/dp_50"
+                android:layout_marginTop="@dimen/dp_4"
+                android:layout_marginEnd="@dimen/me_input_home"
                 android:background="@color/transparent"
                 android:fontFamily="@font/sf_pro_semi_bold"
                 android:text="0"
@@ -176,15 +176,15 @@
                 android:text="@string/mga"
                 android:textColor="@color/grey_600"
                 android:textSize="@dimen/sp_18"
-                android:layout_marginEnd="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginEnd="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="4dp"
+                android:layout_height="@dimen/height_line"
+                android:layout_marginTop="@dimen/dp_4"
                 android:background="@color/grey_400"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -192,10 +192,10 @@
 
             <ImageView
                 android:id="@+id/imageViewIma"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="50dp"
+                android:layout_width="@dimen/size_item_menu"
+                android:layout_height="@dimen/size_item_menu"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_marginTop="@dimen/mt_input_home"
                 android:src="@drawable/ic_ima_black"
                 android:tint="@color/blue_600"
                 app:layout_constraintStart_toStartOf="parent"
@@ -205,15 +205,15 @@
             <EditText
                 android:id="@+id/amount_ima"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="48dp"
-                android:layout_marginEnd="65dp"
+                android:layout_height="@dimen/height_input_home"
+                android:layout_marginStart="@dimen/dp_50"
+                android:layout_marginTop="@dimen/mt_input_home_2"
+                android:layout_marginEnd="@dimen/me_input_home"
                 android:background="@color/transparent"
                 android:fontFamily="@font/sf_pro_semi_bold"
-                android:hint="90000"
                 android:textColor="@color/grey_600"
-                android:textSize="20sp"
+                android:textSize="@dimen/dp_20"
+                android:text="0"
                 android:inputType="number"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageViewMg"
@@ -225,11 +225,11 @@
                 android:fontFamily="@font/sf_pro_semi_bold"
                 android:text="@string/app_name"
                 android:textColor="@color/grey_600"
-                android:textSize="18sp"
+                android:textSize="@dimen/sp_18"
                 android:inputType="number"
                 android:singleLine="true"
-                android:layout_marginEnd="10dp"
-                android:layout_marginTop="55dp"
+                android:layout_marginEnd="@dimen/dp_10"
+                android:layout_marginTop="@dimen/mt_input_home"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -243,19 +243,19 @@
             android:fontFamily="@font/sf_pro_semi_bold"
             android:text="@string/history"
             android:textColor="@color/grey_600"
-            android:textSize="18sp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="10dp"
+            android:textSize="@dimen/sp_18"
+            android:layout_marginStart="@dimen/dp_12"
+            android:layout_marginTop="@dimen/dp_10"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/card_converter" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
+            android:layout_marginStart="@dimen/dp_12"
+            android:layout_marginEnd="@dimen/dp_12"
             android:background="@drawable/back_card_outline"
-            android:layout_marginBottom="80dp">
+            android:layout_marginBottom="@dimen/mt_recyclerview_home">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewHistory"

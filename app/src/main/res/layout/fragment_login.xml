@@ -7,14 +7,14 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="152dp"
+        android:layout_height="@dimen/height_auth_header"
         android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:expandedTitleMarginStart="72dp"
-            app:expandedTitleMarginBottom="28dp"
+            app:expandedTitleMarginStart="@dimen/dp_70"
+            app:expandedTitleMarginBottom="@dimen/dp_30"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
             app:contentScrim="?attr/colorPrimary"
             app:statusBarScrim="?attr/colorPrimaryVariant"
@@ -35,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/transparent"
-                android:elevation="0dp"
+                android:elevation="@dimen/zero"
                 app:title="@string/login"
                 app:subtitle="@string/login"
                 app:titleTextColor="@color/white"
@@ -113,27 +113,27 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="23dp"
+                android:layout_height="@dimen/height_line"
+                android:layout_marginTop="@dimen/dp_20"
                 android:background="@color/grey_400" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="-11dp"
+                android:layout_marginTop="@dimen/neg_12"
                 android:background="@color/grey_100"
+                android:fontFamily="@font/sf_pro_semi_bold"
                 android:paddingStart="@dimen/mx_8"
                 android:paddingEnd="@dimen/mx_8"
-                android:fontFamily="@font/sf_pro_semi_bold"
-                android:textSize="@dimen/headline_5"
-                android:text="@string/or" />
+                android:text="@string/or"
+                android:textSize="@dimen/headline_5" />
 
             <com.gsoft.ima.di.components.Button
                 android:id="@+id/btn_register"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/btn_height"
-                app:variant="soft_primary"
+                app:variant="success"
                 android:layout_marginTop="@dimen/mt_edit_text"
                 android:fontFamily="@font/sf_pro_regular"
                 android:text="@string/register"/>
