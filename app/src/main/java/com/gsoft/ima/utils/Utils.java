@@ -116,10 +116,12 @@ public class Utils {
 
         private TextView label;
         private Context context;
+        private int maxCount;
 
-        public CountValidation(Context context, TextView label) {
+        public CountValidation(Context context, TextView label, int maxCount) {
             this.context = context;
             this.label = label;
+            this.maxCount = maxCount;
         }
 
         @Override
@@ -133,10 +135,10 @@ public class Utils {
 
             label.setText(String.valueOf(count)
                     .concat(SLASH)
-                    .concat(String.valueOf(MAX_CIN)));
+                    .concat(String.valueOf(maxCount)));
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (count != MAX_CIN) {
+                if (count != maxCount) {
                     label.setTextColor(context.getColor(R.color.red_400));
                 } else {
                     label.setTextColor(context.getColor(R.color.grey_600));
