@@ -205,6 +205,14 @@
                     android:textSize="@dimen/headline_5"
                     tools:hint="@string/cin" />
 
+                <TextView
+                    android:id="@+id/count_cin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:text="0/12" />
+
             </com.gsoft.ima.di.components.Label>
 
             <TableLayout

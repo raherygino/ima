@@ -71,6 +71,8 @@
     <string name="transfert_details">Fill the field below</string>
     <!-- Message -->
     <string name="edit_text_required">This field is required</string>
+    <string name="email_invalid">Email invalid</string>
+    <string name="value_too_short">Value is too short</string>
     <string name="check_the_form">Check the form</string>
     <string name="cin_invalid">CIN invalid</string>
     <string name="email_sent_to">Email sent to %1$s successfully!</string>

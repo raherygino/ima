@@ -1,6 +1,7 @@
 package com.gsoft.ima.model.models;
 
 import android.content.Context;
+import android.util.Patterns;
 
 import com.gsoft.ima.R;
 import com.gsoft.ima.databinding.FragmentRegisterBinding;
@@ -49,17 +50,35 @@ public class User {
 
     public boolean isValidate(Context context, FragmentRegisterBinding binding) {
         boolean isValidate = true;
+
         if (this.lastname.isEmpty()) {
             binding.lastname.setError(context.getString(R.string.edit_text_required));
             isValidate = false;
         }
+
+        if (this.lastname.length() < 3) {
+            isValidate = false;
+            binding.lastname.setError(context.getString(R.string.value_too_short));
+        }
+
         if (this.firstname.isEmpty()) {
             isValidate = false;
             binding.firstname.setError(context.getString(R.string.edit_text_required));
         }
+
+        if (this.firstname.length() < 3) {
+            isValidate = false;
+            binding.firstname.setError(context.getString(R.string.value_too_short));
+        }
+
         if (this.birthplace.isEmpty()) {
             isValidate = false;
             binding.birthPlace.setError(context.getString(R.string.edit_text_required));
+        }
+
+        if (this.birthplace.length() < 3) {
+            isValidate = false;
+            binding.birthPlace.setError(context.getString(R.string.value_too_short));
         }
 
         if (this.id_card.length() != 12){
@@ -80,6 +99,11 @@ public class User {
         if (this.email.isEmpty()) {
             isValidate = false;
             binding.email.setError(context.getString(R.string.edit_text_required));
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(this.email).matches()) {
+            isValidate = false;
+            binding.email.setError(context.getString(R.string.email_invalid));
         }
 
         if (this.password.length() < 6) {

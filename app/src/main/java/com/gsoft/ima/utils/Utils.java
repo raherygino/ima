@@ -6,6 +6,8 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -21,6 +23,8 @@ import androidx.databinding.ObservableField;
 import com.gsoft.ima.R;
 import com.gsoft.ima.di.components.EditText;
 import com.gsoft.ima.di.components.Label;
+
+import org.w3c.dom.Text;
 
 import static com.gsoft.ima.constants.main.MainConstants.*;
 
@@ -105,6 +109,44 @@ public class Utils {
                 formatted = STR_ZERO+value;
             }
             return formatted;
+        }
+    }
+
+    public static class CountValidation implements TextWatcher {
+
+        private TextView label;
+        private Context context;
+
+        public CountValidation(Context context, TextView label) {
+            this.context = context;
+            this.label = label;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            int count = charSequence.length();
+
+            label.setText(String.valueOf(count)
+                    .concat(SLASH)
+                    .concat(String.valueOf(MAX_CIN)));
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (count != MAX_CIN) {
+                    label.setTextColor(context.getColor(R.color.red_400));
+                } else {
+                    label.setTextColor(context.getColor(R.color.grey_600));
+                }
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
         }
     }
 }

@@ -16,6 +16,9 @@ import com.gsoft.ima.di.components.EditText;
 import com.gsoft.ima.model.models.UserData;
 import com.gsoft.ima.utils.Utils;
 
+import static com.gsoft.ima.constants.main.MainConstants.MAX_CIN;
+import static com.gsoft.ima.constants.main.MainConstants.SLASH;
+
 public class ProfileFragment extends Fragment {
 
     FragmentProfileBinding binding;
@@ -33,6 +36,8 @@ public class ProfileFragment extends Fragment {
         binding.btnUpdate.setOnClickListener(new OnClick());
         binding.birthDate.setOnClickListener(new OnClick());
         binding.gender.setOnClickListener(new OnClick());
+        binding.countCin.setText(String.valueOf(MAX_CIN).concat(SLASH).concat(String.valueOf(viewModel.user.id_card.length())));
+        binding.cin.addTextChangedListener(new Utils.CountValidation(getContext(), binding.countCin));
         return binding.getRoot();
     }
 

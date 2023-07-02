@@ -1,6 +1,9 @@
 package com.gsoft.ima.ui.register;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +19,8 @@ import com.gsoft.ima.di.components.EditText;
 import com.gsoft.ima.di.components.Label;
 import com.gsoft.ima.utils.Utils;
 
+import static com.gsoft.ima.constants.main.MainConstants.SLASH;
+
 public class RegisterFragment extends Fragment {
     public FragmentRegisterBinding binding;
     private RegisterViewModel viewModel;
@@ -27,6 +32,7 @@ public class RegisterFragment extends Fragment {
         this.binding.gender.setOnClickListener(new onClick());
         this.binding.btnLogin.setOnClickListener(new onClick());
         this.binding.btnRegister.setOnClickListener(new onClick());
+        this.binding.cin.addTextChangedListener(new Utils.CountValidation(getContext(), binding.countCin));
         Utils.setOnHoverLabel(binding.birthDate);
         Utils.setOnHoverLabel(binding.gender);
         Utils.setOnHoverLabel(binding.country);

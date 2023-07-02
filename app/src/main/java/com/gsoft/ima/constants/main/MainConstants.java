@@ -2,6 +2,9 @@ package com.gsoft.ima.constants.main;
 
 
 public class MainConstants {
+
+    public static final int MAX_CIN = 12;
+
     public static final String CLASS = "class";
     public static final String EMPTY = "";
     public static final String FEMALE = "female";
@@ -26,6 +29,7 @@ public class MainConstants {
     public static final String KEY_SENT = "sent";
     public static final String MALE = "male";
     public static final String MINUS = "-";
+    public static final String SLASH = "/";
 
     public static final String STR_ZERO = "0";
 }

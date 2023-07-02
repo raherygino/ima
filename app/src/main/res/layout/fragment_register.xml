@@ -188,6 +188,15 @@
                         android:paddingTop="@dimen/pd_10"
                         android:layout_alignParentBottom="true"/>
 
+                    <TextView
+                        android:id="@+id/count_cin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:fontFamily="@font/sf_pro_regular"
+                        android:textSize="@dimen/sp_10" />
+
                 </com.gsoft.ima.di.components.Label>
 
                 <TableLayout
