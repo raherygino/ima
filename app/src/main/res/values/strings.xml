@@ -86,6 +86,7 @@
     <string name="error_email_details">Your email %1$s is already taken by another user. Please change it</string>
     <string name="error_phone">Phone number already taken!</string>
     <string name="error_phone_details">Your phone number %1$s is already taken by another user. Please change it</string>
+    <string name="error_login">Phone number or password incorrect!</string>
     <string name="error_logout">You can\'t logout!</string>
     <string name="message_not_sent">Failed to send message!</string>
     <string name="message_sent">Message sent!</string>

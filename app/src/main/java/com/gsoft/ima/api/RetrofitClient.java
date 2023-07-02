@@ -24,6 +24,10 @@ public class RetrofitClient {
         return  getApiService().getUser(firstname);
     }
 
+    public static Call<ResponseBody> login(String phone, String password) {
+        return  getApiService().login(phone, password);
+    }
+
     public static Call<ResponseBody> createUser(User user) {
 
         return getApiService().createUser(
