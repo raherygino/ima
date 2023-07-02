@@ -12,7 +12,9 @@ import androidx.appcompat.widget.AppCompatEditText;
 import com.gsoft.ima.R;
 
 public class EditText extends AppCompatEditText {
+
     private final Context mContext;
+
     public EditText(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.mContext = context;
@@ -23,6 +25,7 @@ public class EditText extends AppCompatEditText {
         super.onFocusChanged(focused, direction, previouslyFocusedRect);
         Label layoutLabel = (Label) super.getParent();
         TextView label = (TextView) layoutLabel.getChildAt(0);
+
         if (focused) {
             layoutLabel.setBackground(mContext.getDrawable(R.drawable.back_input_hover));
             label.setTextColor(getColor(R.color.blue_500));

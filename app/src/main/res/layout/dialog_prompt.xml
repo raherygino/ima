@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="@string/forgot"
         android:textAlignment="center"
-        android:textSize="16sp"
+        android:textSize="@dimen/sp_16"
         android:fontFamily="@font/sf_pro_semi_bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,9 +25,9 @@
         android:textAlignment="center"
         android:fontFamily="@font/sf_pro_regular"
         android:text="@string/forgot_pass_info"
-        android:textSize="14sp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
+        android:textSize="@dimen/sp_14"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_16"
         app:layout_constraintTop_toBottomOf="@+id/title_dialog" />
 
     <com.gsoft.ima.di.components.Label
@@ -54,15 +54,15 @@
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="15dp"
+        android:layout_height="@dimen/height_line"
+        android:layout_marginTop="@dimen/dp_16"
         android:background="@color/grey_300"
         app:layout_constraintTop_toBottomOf="@+id/edit_layout" />
 
     <View
         android:id="@+id/viewVeritcal"
         android:layout_width="1dp"
-        android:layout_height="45dp"
+        android:layout_height="@dimen/btn_height"
         android:background="@color/grey_300"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,27 +84,27 @@
             <com.gsoft.ima.di.components.Button
                 android:id="@+id/btn_cancel"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="5dp"
+                android:layout_height="@dimen/btn_height"
+                android:layout_marginTop="@dimen/zero"
+                android:layout_marginEnd="@dimen/dp_16"
                 app:variant="text_primary"
                 android:fontFamily="@font/sf_pro_regular"
                 android:background="@color/transparent"
                 android:text="@string/cancel"
-                android:textSize="14sp"
+                android:textSize="@dimen/sp_14"
                 android:textColor="@color/blue_600" />
 
             <com.gsoft.ima.di.components.Button
                 android:id="@+id/btn_ok"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="5dp"
+                android:layout_height="@dimen/btn_height"
+                android:layout_marginTop="@dimen/zero"
+                android:layout_marginEnd="@dimen/dp_16"
                 android:background="@color/transparent"
                 app:variant="text_primary"
                 android:fontFamily="@font/sf_pro_regular"
                 android:text="@string/ok"
-                android:textSize="14sp"
+                android:textSize="@dimen/sp_14"
                 android:textColor="@color/blue_600"  />
 
         </TableRow>

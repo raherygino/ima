@@ -17,11 +17,13 @@ import com.gsoft.ima.di.dialog.SendDialog;
 import com.gsoft.ima.ui.main.home.HomeFragment;
 import com.gsoft.ima.utils.Utils;
 
+import static com.gsoft.ima.constants.main.MainConstants.*;
+
 public class MainActivity extends AppCompatActivity {
 
-    ActivityMainBinding binding;
+    private ActivityMainBinding binding;
     private String currentFragment;
-    BottomNav nav;
+    private BottomNav nav;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setFragment(Fragment fragment) {
-        currentFragment =  fragment.getClass().toString().replace("class", "");
+        currentFragment =  fragment.getClass().toString().replace(CLASS, EMPTY);
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_main, fragment);
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (!currentFragment.contains("HomeFragment")) {
+        if (!currentFragment.contains(FRG_HOME)) {
             setFragment(new HomeFragment());
             nav.setItemActivate(0);
         } else {

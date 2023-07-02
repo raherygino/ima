@@ -1,4 +1,4 @@
-package com.gsoft.ima.di.adapters.setting;
+package com.gsoft.ima.ui.main.setting;
 
 
 import android.view.View;
@@ -10,12 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.gsoft.ima.R;
 
-public class ViewHolderSetting extends RecyclerView.ViewHolder
+public class SettingViewHolder extends RecyclerView.ViewHolder
 {
     public TextView username, type, amount, date;
     public ImageView image;
 
-    public ViewHolderSetting(@NonNull View itemView) {
+    public SettingViewHolder(@NonNull View itemView) {
         super(itemView);
         username = itemView.findViewById(R.id.username);
         type = itemView.findViewById(R.id.type);

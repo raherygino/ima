@@ -28,7 +28,7 @@ public class SplashActivity extends AppCompatActivity {
         Thread splash=new Thread() {
             public void run() {
                 try{
-                    sleep(2*1000);
+                    sleep(3*1000);
                     if (database.isLogged()) {
                         startActivity(new Intent(SplashActivity.this, MainActivity.class));
                     } else {

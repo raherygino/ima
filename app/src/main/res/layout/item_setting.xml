@@ -7,11 +7,11 @@
 
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_margin="5dp"
+        android:layout_width="@dimen/size_item_menu_setting"
+        android:layout_height="@dimen/size_item_menu_setting"
+        android:layout_margin="@dimen/dp_8"
         android:background="@drawable/back_icon_yellow"
-        android:padding="6dp"
+        android:padding="@dimen/dp_4"
         android:src="@drawable/ic_cloud"
         android:tint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_margin="10dp"
+        android:layout_margin="@dimen/dp_10"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/icon"
         app:layout_constraintTop_toTopOf="parent">
@@ -40,20 +40,19 @@
             android:id="@+id/detail_setting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-2dp"
+            android:layout_marginTop="@dimen/neg_2"
             android:fontFamily="@font/sf_pro_regular"
-            android:text="All of features"
+            android:text="@string/setting_details"
             android:textColor="@color/grey_600"
-            android:textSize="11sp" />
+            android:textSize="@dimen/sp_10" />
 
     </LinearLayout>
 
-
     <ImageView
         android:id="@+id/chevron_right"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginEnd="4dp"
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="@dimen/dp_20"
+        android:layout_marginEnd="@dimen/dp_4"
         android:tint="@color/grey_600"
         android:src="@drawable/ic_chevron_right_thin"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -62,7 +61,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/height_line"
         android:background="@color/grey_400"
         app:layout_constraintBottom_toBottomOf="parent" />
 

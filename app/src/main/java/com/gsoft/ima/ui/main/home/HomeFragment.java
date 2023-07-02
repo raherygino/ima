@@ -13,12 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.gsoft.ima.R;
 import com.gsoft.ima.databinding.FragmentHomeBinding;
-import com.gsoft.ima.di.adapters.transaction.AdapterRecyclerTransaction;
 import com.gsoft.ima.di.dialog.AlertDialog;
 import com.gsoft.ima.model.models.Transaction;
 import com.gsoft.ima.utils.Utils;
 
 import java.util.ArrayList;
+
+import static com.gsoft.ima.constants.main.MainConstants.*;
 
 public class HomeFragment extends Fragment {
 
@@ -39,12 +40,12 @@ public class HomeFragment extends Fragment {
     }
 
     private void setRecycleViewHistory() {
-        ArrayList<Transaction> listTransaction = seedTransaction(3, "received");
-        listTransaction.addAll(seedTransaction(3, "sent"));
+        ArrayList<Transaction> listTransaction = seedTransaction(3, KEY_RECEIVED);
+        listTransaction.addAll(seedTransaction(3, KEY_SENT));
         binding.recyclerViewHistory.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManagerTransaction = new LinearLayoutManager(getContext());
         binding.recyclerViewHistory.setLayoutManager(layoutManagerTransaction);
-        AdapterRecyclerTransaction adapterRecyclerTransaction = new AdapterRecyclerTransaction(getContext(), listTransaction, binding.recyclerViewHistory);
+        HomeAdapterRecyclerTransaction adapterRecyclerTransaction = new HomeAdapterRecyclerTransaction(getContext(), listTransaction, binding.recyclerViewHistory);
         binding.recyclerViewHistory.setAdapter(adapterRecyclerTransaction);
     }
 

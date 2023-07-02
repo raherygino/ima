@@ -9,7 +9,6 @@ import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.databinding.ObservableField;
 import androidx.lifecycle.ViewModel;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -23,8 +22,7 @@ import com.gsoft.ima.model.models.UserData;
 import com.gsoft.ima.ui.auth.AuthActivity;
 import com.gsoft.ima.ui.login.LoginFragment;
 import com.gsoft.ima.ui.main.MainActivity;
-import com.gsoft.ima.utils.OldCode;
-import com.gsoft.ima.utils.DateSet;
+import com.gsoft.ima.utils.Utils;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -33,6 +31,8 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.gsoft.ima.constants.main.MainConstants.*;
 
 public class RegisterViewModel extends ViewModel {
 
@@ -48,7 +48,7 @@ public class RegisterViewModel extends ViewModel {
 
     public void setChangeBirthDay() {
         Calendar calendar = Calendar.getInstance();
-        DatePickerDialog dialog = new DatePickerDialog(context, new DateSet(userData.birthday, binding.birthDate), calendar.get(Calendar.YEAR)-40, 0, 1);
+        DatePickerDialog dialog = new DatePickerDialog(context, new Utils.DateSet(userData.birthday, binding.birthDate), calendar.get(Calendar.YEAR)-40, 0, 1);
         dialog.setCancelable(true);
         dialog.show();
         Toast.makeText(context, userData.lastname.get(), Toast.LENGTH_SHORT).show();
@@ -62,9 +62,9 @@ public class RegisterViewModel extends ViewModel {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 binding.gender.setText(menuItem.getTitle());
                 if (menuItem.getItemId() == R.id.male) {
-                    userData.gender.set("male");
+                    userData.gender.set(MALE);
                 } else {
-                    userData.gender.set("female");
+                    userData.gender.set(FEMALE);
                 }
                 return true;
             }
@@ -87,8 +87,6 @@ public class RegisterViewModel extends ViewModel {
     }
 
     private void register(User user) {
-        createUserInLocalDB(user);
-        /*
         Call<ResponseBody> createUser = RetrofitClient.createUser(user);
         createUser.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -96,17 +94,21 @@ public class RegisterViewModel extends ViewModel {
                 if (response.isSuccessful()) {
                     try {
                         String result = response.body().source().readUtf8();
-                        if (result.contains("created")) {
-                            createUserInLocalDB();
+                        if (result.contains(IS_CREATED)) {
+                            createUserInLocalDB(user);
                         } else {
-                            WebViewDialog dialog = new WebViewDialog(context, "Result", response.body().source().readUtf8());
+                            WebViewDialog dialog = new WebViewDialog(context, context.getString(R.string.result), response.body().source().readUtf8());
                             dialog.show();
                         }
                     } catch (IOException e) {
                         Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(context, response.errorBody().toString(), Toast.LENGTH_SHORT).show();
+                    try {
+                        Toast.makeText(context, response.errorBody().source().readUtf8(), Toast.LENGTH_SHORT).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
@@ -114,7 +116,7 @@ public class RegisterViewModel extends ViewModel {
             public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
                 Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
-        });*/
+        });
     }
 
     private void createUserInLocalDB(User user) {

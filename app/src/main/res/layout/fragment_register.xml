@@ -336,7 +336,7 @@
                     android:background="@color/grey_200"
                     android:fontFamily="sans-serif-light"
                     android:text="@string/accepting_signup"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/sp_12"
                     android:textColor="@color/grey_600"/>
 
                 <com.gsoft.ima.di.components.Button
@@ -349,15 +349,15 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="23dp"
+                    android:layout_height="@dimen/height_line"
+                    android:layout_marginTop="@dimen/dp_20"
                     android:background="@color/grey_400" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="-11dp"
+                    android:layout_marginTop="@dimen/neg_12"
                     android:background="@color/grey_100"
                     android:paddingStart="@dimen/mx_8"
                     android:paddingEnd="@dimen/mx_8"

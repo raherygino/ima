@@ -8,7 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/nav_bar"
         android:layout_width="match_parent"
-        android:layout_height="90dp"
+        android:layout_height="@dimen/height_auth_logo"
         android:background="@drawable/back_blue_gradient"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -16,10 +16,10 @@
 
         <ImageView
             android:id="@+id/ic_setting"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="@dimen/dp_50"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_20"
             android:src="@drawable/ic_setting_outline_large"
             android:tint="@color/white"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,8 +28,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="18dp"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_18"
             android:orientation="vertical"
             app:layout_constraintStart_toEndOf="@+id/ic_setting"
             app:layout_constraintTop_toTopOf="parent">
@@ -41,17 +41,17 @@
                 android:fontFamily="@font/sf_pro_bold"
                 android:text="@string/settings"
                 android:textColor="@color/white"
-                android:textSize="26sp" />
+                android:textSize="@dimen/headline_2" />
 
             <TextView
                 android:id="@+id/detail_setting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="-4dp"
+                android:layout_marginTop="@dimen/neg_5"
                 android:fontFamily="@font/sf_pro_regular"
-                android:text="All of features"
+                android:text="@string/setting_details"
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="@dimen/sp_14" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

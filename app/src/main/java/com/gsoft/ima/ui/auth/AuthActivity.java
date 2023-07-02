@@ -14,6 +14,8 @@ import com.gsoft.ima.databinding.ActivityAuthBinding;
 import com.gsoft.ima.di.dialog.AlertDialog;
 import com.gsoft.ima.ui.login.LoginFragment;
 
+import static com.gsoft.ima.constants.main.MainConstants.*;
+
 public class AuthActivity extends AppCompatActivity {
     ActivityAuthBinding binding;
     private String currentFragment;
@@ -26,7 +28,7 @@ public class AuthActivity extends AppCompatActivity {
     }
 
     public void setFragment(Fragment fragment) {
-        currentFragment =  fragment.getClass().toString().replace("class", "");
+        currentFragment =  fragment.getClass().toString().replace(CLASS, EMPTY);
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.replace(R.id.nav_host_fragment_auth_main, fragment);
@@ -35,7 +37,7 @@ public class AuthActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (currentFragment.contains("RegisterFragment")) {
+        if (currentFragment.contains(FRG_REGISTER)) {
             setFragment(new LoginFragment());
         } else {
             AlertDialog dialog = new AlertDialog(this, getString(R.string.close_app), getString(R.string.close_app_details));

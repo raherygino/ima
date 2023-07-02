@@ -16,7 +16,7 @@ import com.gsoft.ima.ui.main.home.HomeFragment;
 import com.gsoft.ima.ui.main.profile.ProfileFragment;
 import com.gsoft.ima.ui.main.scan.ScanFragment;
 import com.gsoft.ima.ui.main.setting.SettingFragment;
-import com.gsoft.ima.utils.NavIcon;
+import com.gsoft.ima.enums.NavIcon;
 import com.gsoft.ima.utils.Utils;
 
 import java.util.ArrayList;
