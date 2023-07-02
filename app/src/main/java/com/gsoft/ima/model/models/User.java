@@ -51,24 +51,9 @@ public class User {
     public boolean isValidate(Context context, FragmentRegisterBinding binding) {
         boolean isValidate = true;
 
-        if (this.lastname.isEmpty()) {
-            binding.lastname.setError(context.getString(R.string.edit_text_required));
-            isValidate = false;
-        }
-
         if (this.lastname.length() < 3) {
             isValidate = false;
             binding.lastname.setError(context.getString(R.string.value_too_short));
-        }
-
-        if (this.firstname.isEmpty()) {
-            isValidate = false;
-            binding.firstname.setError(context.getString(R.string.edit_text_required));
-        }
-
-        if (this.firstname.length() < 3) {
-            isValidate = false;
-            binding.firstname.setError(context.getString(R.string.value_too_short));
         }
 
         if (this.birthplace.isEmpty()) {
@@ -84,11 +69,6 @@ public class User {
         if (this.id_card.length() != 12){
             isValidate = false;
             binding.cin.setError(context.getString(R.string.cin_invalid));
-        }
-
-        if (this.city.isEmpty()) {
-            isValidate = false;
-            binding.city.setError(context.getString(R.string.edit_text_required));
         }
 
         if (this.city.length() < 3) {

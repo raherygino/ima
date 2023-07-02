@@ -25,6 +25,7 @@ public class MainConstants {
     public static final String IC_QUESTION = "ic_question";
 
     public static final String IS_CREATED = "created";
+    public static final String IS_EMAIL_EXIST = "mail_exist";
 
     public static final String KEY_RECEIVED = "received";
     public static final String KEY_SENT = "sent";

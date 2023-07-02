@@ -5,12 +5,13 @@ import android.widget.Button;
 
 import com.gsoft.ima.R;
 
-public class AlertDialog extends SweetDialog {
+public class ConfirmDialog extends SweetDialog {
     public Button btnOk;
 
-    public AlertDialog(Context context, String title, String message)
+    public ConfirmDialog(Context context, String title, String message)
     {
-        super(context, R.layout.dialog_alert, title, message);
+        super(context, R.layout.dialog_confirm, title, message);
+        this.btnOk = BTN_OK;
         onCancel(R.id.btn_cancel);
     }
     @Override

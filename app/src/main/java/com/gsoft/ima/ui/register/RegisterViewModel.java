@@ -2,6 +2,7 @@ package com.gsoft.ima.ui.register;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.MenuItem;
@@ -15,6 +16,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.gsoft.ima.R;
 import com.gsoft.ima.api.RetrofitClient;
 import com.gsoft.ima.databinding.FragmentRegisterBinding;
+import com.gsoft.ima.di.dialog.AlertDialog;
 import com.gsoft.ima.di.dialog.WebViewDialog;
 import com.gsoft.ima.model.database.DatabaseHelper;
 import com.gsoft.ima.model.models.User;
@@ -87,18 +89,28 @@ public class RegisterViewModel extends ViewModel {
     }
 
     private void register(User user) {
+        ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage(context.getString(R.string.loading));
+        progressDialog.show();
         Call<ResponseBody> createUser = RetrofitClient.createUser(user);
         createUser.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                progressDialog.hide();
                 if (response.isSuccessful()) {
                     try {
                         String result = response.body().source().readUtf8();
                         if (result.contains(IS_CREATED)) {
                             createUserInLocalDB(user);
                         } else {
-                            WebViewDialog dialog = new WebViewDialog(context, context.getString(R.string.result), response.body().source().readUtf8());
-                            dialog.show();
+                            if (result.contains(IS_EMAIL_EXIST)) {
+                                AlertDialog dialog = new AlertDialog(context, context.getString(R.string.error_email), context.getString(R.string.error_email_details, user.email));
+                                dialog.show();
+                            } else {
+                                WebViewDialog dialog = new WebViewDialog(context, context.getString(R.string.result), response.body().source().readUtf8());
+                                dialog.show();
+                            }
                         }
                     } catch (IOException e) {
                         Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -114,6 +126,7 @@ public class RegisterViewModel extends ViewModel {
 
             @Override
             public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                progressDialog.hide();
                 Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
