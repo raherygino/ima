@@ -91,6 +91,11 @@ public class User {
             binding.city.setError(context.getString(R.string.edit_text_required));
         }
 
+        if (this.city.length() < 3) {
+            isValidate = false;
+            binding.city.setError(context.getString(R.string.value_too_short));
+        }
+
         if (this.phone.length() != 10){
             isValidate = false;
             binding.phone.setError(context.getString(R.string.phone_invalid));
