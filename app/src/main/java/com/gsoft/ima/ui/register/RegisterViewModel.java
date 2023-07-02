@@ -87,8 +87,6 @@ public class RegisterViewModel extends ViewModel {
     }
 
     private void register(User user) {
-        createUserInLocalDB(user);
-        /*
         Call<ResponseBody> createUser = RetrofitClient.createUser(user);
         createUser.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -97,7 +95,7 @@ public class RegisterViewModel extends ViewModel {
                     try {
                         String result = response.body().source().readUtf8();
                         if (result.contains("created")) {
-                            createUserInLocalDB();
+                            createUserInLocalDB(user);
                         } else {
                             WebViewDialog dialog = new WebViewDialog(context, "Result", response.body().source().readUtf8());
                             dialog.show();
@@ -106,15 +104,19 @@ public class RegisterViewModel extends ViewModel {
                         Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(context, response.errorBody().toString(), Toast.LENGTH_SHORT).show();
+                    try {
+                        Toast.makeText(context, "error: "+response.errorBody().source().readUtf8(), Toast.LENGTH_SHORT).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
-                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "error2: "+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
-        });*/
+        });
     }
 
     private void createUserInLocalDB(User user) {

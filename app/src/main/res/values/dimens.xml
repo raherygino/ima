@@ -1,16 +1,18 @@
 <resources>
-    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="fab_margin">@dimen/dp_16</dimen>
     <!-- EditText -->
-    <dimen name="pd_drawable">5dp</dimen>
-    <dimen name="ps_edit_text">15dp</dimen>
-    <dimen name="py_edit_text">0dp</dimen>
-    <dimen name="text_size_edit_text">16sp</dimen>
-    <dimen name="mt_edit_text">12dp</dimen>
+    <dimen name="pd_drawable">@dimen/dp_4</dimen>
+    <dimen name="ps_edit_text">@dimen/dp_16</dimen>
+    <dimen name="py_edit_text">@dimen/zero</dimen>
+    <dimen name="text_size_edit_text">@dimen/sp_16</dimen>
+    <dimen name="mt_edit_text">@dimen/dp_12</dimen>
     <dimen name="height_edit_text">47dp</dimen>
     <!-- Button -->
     <dimen name="btn_height">40dp</dimen>
     <dimen name="btn_radius">8dp</dimen>
     <dimen name="btn_rounded_radius">18dp</dimen>
+    <dimen name="size_item_menu">25dp</dimen>
+    <dimen name="size_item_menu_layout">30dp</dimen>
     <!-- TextView -->
     <dimen name="headline_1">30sp</dimen>
     <dimen name="headline_2">26sp</dimen>
@@ -22,6 +24,25 @@
     <dimen name="height_auth_header">150dp</dimen>
     <dimen name="width_auth_logo">190dp</dimen>
     <dimen name="height_auth_logo">90dp</dimen>
-    <dimen name="pd_10">10dp</dimen>
-    <dimen name="mx_8">8dp</dimen>
+    <dimen name="height_card">115dp</dimen>
+    <dimen name="height_line">1dp</dimen>
+    <dimen name="height_line_45">45dp</dimen>
+    <dimen name="height_webview_dialog">300dp</dimen>
+    <dimen name="pd_10">@dimen/dp_10</dimen>
+    <dimen name="mx_8">@dimen/dp_8</dimen>
+    <dimen name="logo_size_large">90dp</dimen>
+    <!-- Standard -->
+    <dimen name="zero">0dp</dimen>
+    <dimen name="dp_4">4dp</dimen>
+    <dimen name="dp_8">8dp</dimen>
+    <dimen name="dp_10">10dp</dimen>
+    <dimen name="dp_12">12dp</dimen>
+    <dimen name="dp_14">14dp</dimen>
+    <dimen name="dp_16">16dp</dimen>
+    <dimen name="dp_20">20dp</dimen>
+    <dimen name="sp_10">10sp</dimen>
+    <dimen name="sp_12">12sp</dimen>
+    <dimen name="sp_14">14sp</dimen>
+    <dimen name="sp_16">16sp</dimen>
+    <dimen name="sp_18">18sp</dimen>
 </resources>

@@ -6,8 +6,8 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:layout_width="90dp"
-        android:layout_height="90dp"
+        android:layout_width="@dimen/logo_size_large"
+        android:layout_height="@dimen/logo_size_large"
         android:src="@drawable/logo_ima_large"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,9 +18,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/about_details"
-        android:textSize="11sp"
+        android:textSize="@dimen/sp_12"
         android:fontFamily="@font/sf_pro_regular"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="@dimen/dp_16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
