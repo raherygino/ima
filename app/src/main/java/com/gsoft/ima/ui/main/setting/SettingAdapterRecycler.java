@@ -1,4 +1,4 @@
-package com.gsoft.ima.di.adapters.setting;
+package com.gsoft.ima.ui.main.setting;
 
 
 import android.annotation.SuppressLint;
@@ -23,13 +23,13 @@ import com.gsoft.ima.utils.Utils;
 
 import java.util.ArrayList;
 
-public class AdapterRecyclerSetting extends RecyclerView.Adapter<AdapterRecyclerSetting.MyHolder> {
+public class SettingAdapterRecycler extends RecyclerView.Adapter<SettingAdapterRecycler.MyHolder> {
 
     private final Context context;
     private final ArrayList<SettingItem> settingItems;
     private final RecyclerView recyclerView;
 
-    public AdapterRecyclerSetting(Context context, ArrayList<SettingItem> settingItems, RecyclerView recyclerView) {
+    public SettingAdapterRecycler(Context context, ArrayList<SettingItem> settingItems, RecyclerView recyclerView) {
         this.context = context;
         this.settingItems = settingItems;
         this.recyclerView = recyclerView;

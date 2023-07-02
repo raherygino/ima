@@ -11,6 +11,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import com.gsoft.ima.R;
 
 public class Button extends AppCompatButton {
+
     public Button(Context context, AttributeSet attrs) {
         super(context, attrs);
         setConfig(attrs);
