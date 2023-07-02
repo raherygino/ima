@@ -6,8 +6,24 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import com.gsoft.ima.model.models.User;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import static com.gsoft.ima.constants.main.FormConstants.BIRTHDAY;
+import static com.gsoft.ima.constants.main.FormConstants.BIRTHPLACE;
+import static com.gsoft.ima.constants.main.FormConstants.CITY;
+import static com.gsoft.ima.constants.main.FormConstants.COUNTRY;
+import static com.gsoft.ima.constants.main.FormConstants.EMAIL;
+import static com.gsoft.ima.constants.main.FormConstants.FIRSTNAME;
+import static com.gsoft.ima.constants.main.FormConstants.GENDER;
+import static com.gsoft.ima.constants.main.FormConstants.ID_CARD;
+import static com.gsoft.ima.constants.main.FormConstants.LASTNAME;
+import static com.gsoft.ima.constants.main.FormConstants.PASSWORD;
+import static com.gsoft.ima.constants.main.FormConstants.PHONE;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -81,6 +97,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public long createUser(User user) {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.insert(TABLE_USER, null, contentValuesUser(user));
+    }
+
+    public long createUserByObject(JSONObject object) {
+        long isCreated = -1;
+        try {
+            User user = new User(
+                    object.getString(FIRSTNAME),
+                    object.getString(LASTNAME),
+                    object.getString(GENDER),
+                    object.getString(BIRTHDAY),
+                    object.getString(BIRTHPLACE),
+                    object.getString(ID_CARD),
+                    object.getString(COUNTRY),
+                    object.getString(CITY),
+                    object.getString(PHONE),
+                    object.getString(EMAIL),
+                    object.getString(PASSWORD),
+                    object.getString(PASSWORD)
+            );
+            isCreated = this.createUser(user);
+        } catch (JSONException jsonException) {
+            jsonException.printStackTrace();
+        }
+        return isCreated;
     }
 
     public Cursor selectUser() {

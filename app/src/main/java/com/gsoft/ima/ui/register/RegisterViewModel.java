@@ -130,6 +130,7 @@ public class RegisterViewModel extends ViewModel {
         progressDialog.setCancelable(false);
         progressDialog.setMessage(context.getString(R.string.loading));
         progressDialog.show();
+
         Call<ResponseBody> createUser = RetrofitClient.createUser(user);
         createUser.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -159,7 +160,7 @@ public class RegisterViewModel extends ViewModel {
                                 dialog = new AlertDialog(context, title, details);
                                 dialog.show();
                             } else {
-                                AlertDialog dialog = new AlertDialog(context, context.getString(R.string.error), user.password);
+                                AlertDialog dialog = new AlertDialog(context, context.getString(R.string.error), EMPTY);
                                 dialog.show();
                             }
                         }
