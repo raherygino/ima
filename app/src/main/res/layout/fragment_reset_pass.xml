@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_auth_header"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:expandedTitleMarginStart="@dimen/dp_70"
+            app:expandedTitleMarginBottom="@dimen/dp_30"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            app:contentScrim="?attr/colorPrimary"
+            app:statusBarScrim="?attr/colorPrimaryVariant"
+            app:expandedTitleTextAppearance="@style/TextAppearance.App.CollapsingToolbar.Expanded"
+            app:collapsedTitleTextAppearance="@style/TextAppearance.App.CollapsingToolbar.Collapsed">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_launcher_ima"
+                android:scaleType="centerCrop"
+                android:fitsSystemWindows="true"
+                android:contentDescription="@string/app_name"
+                />
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/transparent"
+                android:elevation="@dimen/zero"
+                app:title="@string/reset"
+                app:subtitle="@string/reset"
+                app:titleTextColor="@color/white"
+                app:layout_scrollFlags="scroll|enterAlways|snap"
+                style="@style/Widget.MaterialComponents.Toolbar.Primary" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Note: A RecyclerView can also be used -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/pd_10">
+
+            <TextView
+                android:id="@+id/message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/reset_code_details"
+                android:background="@drawable/back_btn_soft_primary"
+                android:textColor="@color/blue_600"
+                android:gravity="center"
+                android:padding="@dimen/dp_14" />
+
+            <com.gsoft.ima.di.components.Label
+                android:layout_marginTop="@dimen/mt_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_edit_text"
+                app:text="@string/password">
+                <com.gsoft.ima.di.components.EditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/sf_pro_light"
+                    android:textSize="@dimen/headline_5"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:paddingTop="@dimen/pd_10"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/transparent"/>
+            </com.gsoft.ima.di.components.Label>
+
+            <com.gsoft.ima.di.components.Label
+                android:id="@+id/layout_reset_code"
+                android:layout_marginTop="@dimen/mt_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_edit_text"
+                app:text="@string/confirm_password">
+                <com.gsoft.ima.di.components.EditText
+                    android:id="@+id/confirm_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/sf_pro_light"
+                    android:textSize="@dimen/headline_5"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:paddingTop="@dimen/pd_10"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/transparent"/>
+            </com.gsoft.ima.di.components.Label>
+
+            <CheckBox
+                android:id="@+id/show_password"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_30"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/show_password"
+                android:textSize="@dimen/sp_12"
+                android:textColor="@color/grey_600"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:layout_marginTop="@dimen/mt_edit_text" >
+
+                <com.gsoft.ima.di.components.Button
+                    android:id="@+id/btn_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/btn_height"
+                    android:layout_gravity="end"
+                    app:variant="danger"
+                    android:paddingStart="@dimen/dp_12"
+                    android:paddingEnd="@dimen/dp_12"
+                    android:fontFamily="@font/sf_pro_regular"
+                    android:text="@string/cancel"/>
+
+                <com.gsoft.ima.di.components.Button
+                    android:id="@+id/btn_reset"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/btn_height"
+                    android:layout_marginStart="@dimen/dp_4"
+                    app:variant="primary"
+                    android:fontFamily="@font/sf_pro_regular"
+                    android:paddingStart="@dimen/dp_12"
+                    android:paddingEnd="@dimen/dp_12"
+                    android:text="@string/reset"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

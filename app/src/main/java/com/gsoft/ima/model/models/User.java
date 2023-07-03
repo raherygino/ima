@@ -127,7 +127,7 @@ public class User {
             binding.password.setError(context.getString(R.string.error_character));
         }
 
-        if (!this.password.contains(this.confirmPassword)) {
+        if (!this.password.equals(binding.confirmPassword.getText().toString())) {
             isValidate = false;
             binding.confirmPassword.setError(context.getString(R.string.password_not_match));
         }

@@ -28,6 +28,18 @@ public class RetrofitClient {
         return  getApiService().login(phone, password);
     }
 
+    public static Call<ResponseBody> forgotPassword(String email) {
+        return  getApiService().forgotPassword(email);
+    }
+
+    public static Call<ResponseBody> checkCode(String email, String code) {
+        return  getApiService().checkCode(email, code);
+    }
+
+    public static Call<ResponseBody> resetPassword(String email, String password) {
+        return getApiService().resetPassword(email, password);
+    }
+
     public static Call<ResponseBody> createUser(User user) {
 
         return getApiService().createUser(
