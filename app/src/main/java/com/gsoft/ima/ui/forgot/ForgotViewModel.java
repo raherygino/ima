@@ -123,7 +123,11 @@ public class ForgotViewModel extends ViewModel {
                     }
                 } catch (IOException | JSONException e) {
                     e.printStackTrace();
-                    AlertDialog dialog = new AlertDialog(context, EMPTY, e.getMessage());
+                    String message = e.getMessage();
+                    if (message.contains(CODE)) {
+                        message = context.getString(R.string.email_not_found);
+                    }
+                    AlertDialog dialog = new AlertDialog(context, EMPTY, message);
                     dialog.show();
                 }
             }

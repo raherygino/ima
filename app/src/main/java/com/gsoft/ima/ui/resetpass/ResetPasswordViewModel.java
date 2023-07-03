@@ -3,6 +3,8 @@ package com.gsoft.ima.ui.resetpass;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.widget.Toast;
 
 import androidx.lifecycle.ViewModel;
@@ -71,12 +73,23 @@ public class ResetPasswordViewModel extends ViewModel {
             binding.password.setError(authActivity.getString(R.string.error_character));
         }
 
-        if (!password.contains(confirmPassword)) {
+        if (!password.equals(confirmPassword)) {
             isValidate = false;
             binding.confirmPassword.setError(authActivity.getString(R.string.password_not_match));
         }
 
         return isValidate;
+    }
+
+
+    public void togglePassword(boolean isShow) {
+        if (isShow) {
+            binding.password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            binding.confirmPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+        } else {
+            binding.password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            binding.confirmPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        }
     }
 
     class CallBack implements Callback<ResponseBody> {

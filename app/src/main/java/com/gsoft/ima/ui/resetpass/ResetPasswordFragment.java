@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import com.gsoft.ima.R;
 import com.gsoft.ima.databinding.FragmentResetPassBinding;
+import com.gsoft.ima.di.components.EditText;
 
 public class ResetPasswordFragment extends Fragment {
     private FragmentResetPassBinding binding;
@@ -23,6 +25,7 @@ public class ResetPasswordFragment extends Fragment {
         viewModel = new ResetPasswordViewModel(getContext(), binding);
         binding.btnCancel.setOnClickListener(new onClick());
         binding.btnReset.setOnClickListener(new onClick());
+        binding.showPassword.setOnClickListener(new onClick());
         return binding.getRoot();
     }
 
@@ -37,6 +40,10 @@ public class ResetPasswordFragment extends Fragment {
 
                 case R.id.btn_reset:
                     viewModel.reset();
+                    break;
+
+                case R.id.show_password:
+                    viewModel.togglePassword(((CheckBox) view).isChecked());
                     break;
             }
         }
