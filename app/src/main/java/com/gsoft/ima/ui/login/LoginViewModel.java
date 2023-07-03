@@ -20,6 +20,7 @@ import com.gsoft.ima.di.dialog.PromptDialog;
 import com.gsoft.ima.model.database.DatabaseHelper;
 import com.gsoft.ima.model.models.User;
 import com.gsoft.ima.ui.auth.AuthActivity;
+import com.gsoft.ima.ui.forgot.ForgotFragment;
 import com.gsoft.ima.ui.main.MainActivity;
 import com.gsoft.ima.ui.register.RegisterFragment;
 
@@ -39,14 +40,14 @@ import static com.gsoft.ima.constants.main.MainConstants.*;
 public class LoginViewModel extends BaseObservable {
 
     private final Context context;
-    private final Activity activity;
+    private final AuthActivity activity;
     public ObservableField<String> phone = new ObservableField<>();
     public ObservableField<String> password = new ObservableField<>();
     private FragmentLoginBinding binding;
 
     public LoginViewModel(LoginFragment fragment) {
         this.context = fragment.getContext();
-        this.activity = (Activity) context;
+        this.activity = (AuthActivity) context;
         this.binding = fragment.binding;
     }
 
@@ -110,11 +111,10 @@ public class LoginViewModel extends BaseObservable {
     }
 
     public void registerListener() {
-        AuthActivity authActivity = (AuthActivity) activity;
-        authActivity.setFragment(new RegisterFragment());
+        activity.setFragment(new RegisterFragment());
     }
 
-    public void forgotPassListener() {
+    public void forgotPassListener() {/*
         PromptDialog dialog = new PromptDialog(context,
                 activity.getString(R.string.forgot),
                 activity.getString(R.string.forgot_pass_info),
@@ -126,10 +126,12 @@ public class LoginViewModel extends BaseObservable {
             @Override
             public void onClick(View view) {
                 String email = dialog.editText.getText().toString();
-                Toast.makeText(context,  context.getString(R.string.email_sent_to, email), Toast.LENGTH_SHORT).show();
+
+               // Toast.makeText(context,  context.getString(R.string.email_sent_to, email), Toast.LENGTH_SHORT).show();
                 dialog.cancel();
             }
         });
-        dialog.show();
+        dialog.show();*/
+        activity.setFragment(new ForgotFragment());
     }
 }

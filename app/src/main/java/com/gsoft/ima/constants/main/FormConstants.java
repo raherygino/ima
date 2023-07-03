@@ -9,6 +9,7 @@ public class FormConstants {
     public static final String ID_CARD = "id_card";
     public static final String COUNTRY = "country";
     public static final String CITY = "city";
+    public static final String CODE = "code";
     public static final String PHONE = "phone";
     public static final String EMAIL = "email";
     public static final String PASSWORD = "password";

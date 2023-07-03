@@ -3,6 +3,8 @@
     <string name="cancel">Cancel</string>
     <string name="ok">Ok</string>
     <string name="no">No</string>
+    <string name="resend">Re-send</string>
+    <string name="reset">Reset password</string>
     <string name="send">Send</string>
     <string name="yes">Yes</string>
 
@@ -51,6 +53,7 @@
     <string name="message">Message</string>
     <string name="password">Password</string>
     <string name="phone">Phone</string>
+    <string name="reset_code">Reset code</string>
     <string name="region">Region</string>
     <string name="show_password">Show password</string>
     <string name="send_by">Send by</string>
@@ -78,6 +81,7 @@
     <string name="value_too_short">Value is too short</string>
     <string name="check_the_form">Check the form</string>
     <string name="cin_invalid">CIN invalid</string>
+    <string name="code_invalid">Code invalid</string>
     <string name="email_sent_to">Email sent to %1$s successfully!</string>
     <string name="error_char_spec">The specific character is not allowed!</string>
     <string name="error_character">The apostrophe symbol is not allowed!</string>
@@ -93,6 +97,7 @@
     <string name="password_must">Password must contain 6 character minimum</string>
     <string name="password_not_match">Password not match</string>
     <string name="phone_invalid">Phone number invalid</string>
+    <string name="reset_code_details">Your password reset code is sent to your email</string>
     <!-- Menu setting -->
     <string name="about">About</string>
     <string name="about_subtitle">Learn more about IMA</string>

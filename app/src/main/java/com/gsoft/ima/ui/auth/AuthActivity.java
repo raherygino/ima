@@ -42,7 +42,7 @@ public class AuthActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (currentFragment.contains(FRG_REGISTER)) {
+        if (!currentFragment.contains(FRG_LOGIN)) {
             setFragment(new LoginFragment());
         } else {
             ConfirmDialog dialog = new ConfirmDialog(this, getString(R.string.close_app), getString(R.string.close_app_details));
