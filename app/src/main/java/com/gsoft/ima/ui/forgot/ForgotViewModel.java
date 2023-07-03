@@ -16,6 +16,7 @@ import com.gsoft.ima.databinding.FragmentLoginBinding;
 import com.gsoft.ima.di.dialog.AlertDialog;
 import com.gsoft.ima.ui.auth.AuthActivity;
 import com.gsoft.ima.ui.login.LoginFragment;
+import com.gsoft.ima.ui.resetpass.ResetPasswordFragment;
 import com.gsoft.ima.utils.Utils;
 
 import org.jetbrains.annotations.NotNull;
@@ -100,7 +101,7 @@ public class ForgotViewModel extends ViewModel {
 
         public void onResultReset(String result) {
              if (result.contains(SUCCESS)) {
-                activity.setFragment(new LoginFragment());
+                activity.setFragment(new ResetPasswordFragment());
              } else {
                 AlertDialog dialog = new AlertDialog(context, EMPTY, result);
                 dialog.show();

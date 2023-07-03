@@ -9,9 +9,11 @@ public class MainConstants {
     public static final String CLASS = "class";
     public static final String EMPTY = "";
     public static final String FEMALE = "female";
+    public static final String FRG_FORGOT = "ForgotFragment";
     public static final String FRG_HOME = "HomeFragment";
     public static final String FRG_REGISTER = "RegisterFragment";
     public static final String FRG_LOGIN = "LoginFragment";
+    public static final String FRG_RESET = "ResetPasswordFragment";
 
     public static final String BACK_ICON_YELLOW = "back_icon_yellow";
     public static final String BACK_ICON_RED = "back_icon_red";

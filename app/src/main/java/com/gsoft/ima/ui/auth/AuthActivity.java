@@ -16,6 +16,7 @@ import com.gsoft.ima.databinding.ActivityAuthBinding;
 import com.gsoft.ima.di.dialog.AlertDialog;
 import com.gsoft.ima.di.dialog.ConfirmDialog;
 import com.gsoft.ima.model.database.DatabaseHelper;
+import com.gsoft.ima.ui.forgot.ForgotFragment;
 import com.gsoft.ima.ui.login.LoginFragment;
 import com.gsoft.ima.utils.Utils;
 
@@ -43,7 +44,11 @@ public class AuthActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (!currentFragment.contains(FRG_LOGIN)) {
-            setFragment(new LoginFragment());
+            if (currentFragment.contains(FRG_RESET)) {
+                setFragment(new ForgotFragment());
+            } else {
+                setFragment(new LoginFragment());
+            }
         } else {
             ConfirmDialog dialog = new ConfirmDialog(this, getString(R.string.close_app), getString(R.string.close_app_details));
             dialog.btnOk.setOnClickListener(new View.OnClickListener() {
