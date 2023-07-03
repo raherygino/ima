@@ -93,7 +93,7 @@
                 android:layout_height="@dimen/height_edit_text"
                 app:text="@string/confirm_password">
                 <com.gsoft.ima.di.components.EditText
-                    android:id="@+id/reset_code"
+                    android:id="@+id/confirm_password"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/sf_pro_light"
@@ -104,6 +104,16 @@
                     android:layout_alignParentBottom="true"
                     android:background="@color/transparent"/>
             </com.gsoft.ima.di.components.Label>
+
+            <CheckBox
+                android:id="@+id/show_password"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_30"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/show_password"
+                android:textSize="@dimen/sp_12"
+                android:textColor="@color/grey_600"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

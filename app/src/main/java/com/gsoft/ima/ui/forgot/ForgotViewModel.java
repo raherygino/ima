@@ -102,6 +102,7 @@ public class ForgotViewModel extends ViewModel {
         public void onResultReset(String result) {
              if (result.contains(SUCCESS)) {
                 activity.setFragment(new ResetPasswordFragment());
+                activity.setSharedEmail(binding.email.getText().toString());
              } else {
                 AlertDialog dialog = new AlertDialog(context, EMPTY, result);
                 dialog.show();

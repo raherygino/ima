@@ -54,4 +54,11 @@ public interface ApiService {
             @Field(CODE) String code
     );
 
+    @FormUrlEncoded
+    @POST("users/reset_password")
+    Call<ResponseBody> resetPassword(
+            @Field(EMAIL) String email,
+            @Field(PASSWORD) String password
+    );
+
 }
