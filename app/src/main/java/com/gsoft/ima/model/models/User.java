@@ -22,6 +22,7 @@ public class User {
     public String password;
     public String confirmPassword;
     public String token;
+    public int balance = 0;
 
     public User(
             String firstname,

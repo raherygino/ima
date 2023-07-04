@@ -47,6 +47,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_CITY = "city";
     private static final String COLUMN_EMAIL = "email";
     private static final String COLUMN_PASSWORD = "password";
+    private static final String COLUMN_BALANCE = "balance";
+
 
     private static final String TABLE_DIS = "district";
     private static final String COLUMN_DIS_NAME = "name";
@@ -82,6 +84,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_NUMBER + " TEXT, " +
                 COLUMN_EMAIL + " TEXT, " +
                 COLUMN_PASSWORD + " TEXT, " +
+                COLUMN_BALANCE + " INTEGER, " +
                 " created_at DATETIME)";
 
         String SQL_CREATE_DISC = "CREATE TABLE "+ TABLE_DIS +" ("+COLUMN_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
@@ -123,6 +126,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_NUMBER, user.phone);
         values.put(COLUMN_EMAIL, user.email);
         values.put(COLUMN_PASSWORD, user.password);
+        values.put(COLUMN_BALANCE, user.balance);
         return values;
     }
 
@@ -176,6 +180,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 cursor.getString(2), cursor.getString(3), cursor.getString(4),
                 cursor.getString(5), cursor.getString(6), cursor.getString(7),
                 cursor.getString(8), cursor.getString(9), cursor.getString(10), cursor.getString(11), "");
+        user.balance = cursor.getInt(12);
         return user;
     }
 

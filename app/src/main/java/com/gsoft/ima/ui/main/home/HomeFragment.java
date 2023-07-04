@@ -13,8 +13,10 @@ import com.gsoft.ima.databinding.FragmentHomeBinding;
 import com.gsoft.ima.di.dialog.ConfirmDialog;
 import com.gsoft.ima.model.database.DatabaseHelper;
 import com.gsoft.ima.model.models.Transaction;
+import com.gsoft.ima.model.models.User;
 import com.gsoft.ima.ui.main.home.adapter.HomeAdapterHistory;
 import com.gsoft.ima.ui.main.home.adapter.HomeAdapterMenu;
+import com.gsoft.ima.utils.UserLogged;
 import com.gsoft.ima.utils.Utils;
 import java.util.ArrayList;
 
@@ -25,13 +27,16 @@ public class HomeFragment extends Fragment {
     HomeViewModel viewModel;
     HomeAdapterHistory mAdapter;
     ArrayList<Transaction> transactions;
+    User user;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         viewModel = new HomeViewModel(getContext());
+        user = UserLogged.data(getContext());
         binding.username.setText(viewModel.user.firstname);
+        binding.balance.setText(String.valueOf(user.balance));
         binding.logout.setOnClickListener(new OnClick());
         Utils.setColorBarStatus(getContext());
         configTransactions();

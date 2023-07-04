@@ -60,7 +60,6 @@ public class RegisterViewModel extends ViewModel {
         DatePickerDialog dialog = new DatePickerDialog(context, new Utils.DateSet(userData.birthday, binding.birthDate), calendar.get(Calendar.YEAR)-40, 0, 1);
         dialog.setCancelable(true);
         dialog.show();
-        Toast.makeText(context, userData.lastname.get(), Toast.LENGTH_SHORT).show();
     }
 
     public void togglePassword(boolean isShow) {
@@ -118,6 +117,7 @@ public class RegisterViewModel extends ViewModel {
 
     public void registerListener() {
         User user = userData.getFromView(binding);
+        user.balance = 45000;
         if (user.isValidate(context, binding) && binding.acceptSignup.isChecked()) {
             register(user);
         } else {
