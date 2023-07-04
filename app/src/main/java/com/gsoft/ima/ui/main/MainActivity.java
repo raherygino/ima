@@ -2,6 +2,7 @@ package com.gsoft.ima.ui.main;
 
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Toast;
 
@@ -33,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        Utils.setColorBarStatus(this);
         setFragment(new HomeFragment());
         nav = new BottomNav(this);
         nav.setConfig();
@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
+        hideLayoutNetwork();
     }
 
     public void setFragment(Fragment fragment) {
@@ -53,6 +54,15 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_main, fragment);
         fragmentTransaction.commit();
+    }
+
+    public void hideLayoutNetwork() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                binding.layoutInfoNetwork.setVisibility(View.GONE);
+            }
+        }, 6000);
     }
 
     @Override

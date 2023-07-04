@@ -79,6 +79,7 @@
     <string name="edit_text_required">This field is required</string>
     <string name="email_invalid">Email invalid</string>
     <string name="email_not_found">Your email does not match any user</string>
+    <string name="message_offline_mode">You can use the app offline mode</string>
     <string name="value_too_short">Value is too short</string>
     <string name="check_the_form">Check the form</string>
     <string name="cin_invalid">CIN invalid</string>
