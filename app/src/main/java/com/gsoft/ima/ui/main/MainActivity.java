@@ -1,11 +1,12 @@
 package com.gsoft.ima.ui.main;
 
 import android.annotation.SuppressLint;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,45 +14,41 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.blikoon.qrcodescanner.QrCodeActivity;
 import com.gsoft.ima.R;
 import com.gsoft.ima.databinding.ActivityMainBinding;
 import com.gsoft.ima.di.components.BottomNav;
-import com.gsoft.ima.ui.main.send.SendDialog;
+import com.gsoft.ima.di.dialog.AlertDialog;
+import com.gsoft.ima.model.database.DatabaseHelper;
+import com.gsoft.ima.model.models.Transaction;
 import com.gsoft.ima.ui.main.home.HomeFragment;
 import com.gsoft.ima.utils.Utils;
 
 import static com.gsoft.ima.constants.main.MainConstants.*;
+import static com.gsoft.ima.constants.main.ScanConstaints.*;
+import static com.gsoft.ima.constants.main.TransactionConstants.AMOUNT;
+import static com.gsoft.ima.constants.main.TransactionConstants.IP_SENDER;
+import static com.gsoft.ima.constants.main.TransactionConstants.NAME_RECEIVER;
+import static com.gsoft.ima.constants.main.TransactionConstants.NAME_SENDER;
+import static com.gsoft.ima.constants.main.TransactionConstants.NUM_RECEIVER;
+import static com.gsoft.ima.constants.main.TransactionConstants.NUM_SENDER;
 
-import java.io.BufferedReader;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.UnknownHostException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-
-import dmax.dialog.SpotsDialog;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private String currentFragment;
     private BottomNav nav;
-
-
-    ServerSocket serverSocket;
-    Thread Thread1 = null;
-    public static String SERVER_IP = "";
-    public static final int SERVER_PORT = 8080;
-
-    private PrintWriter output;
-    private BufferedReader input;
-
-    String message;
+    private static String SERVER_IP = EMPTY;
+    private Socket socket;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,33 +56,36 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setFragment(new HomeFragment());
+        configBottomNav();
+        configServer();
+        hideLayoutNetwork();
+    }
+
+    private void configBottomNav() {
         nav = new BottomNav(this);
         nav.setConfig();
         nav.setItemActivate(0);
         binding.fabSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SendDialog dialog = new SendDialog(MainActivity.this);
-                dialog.show();
+                Intent intent = new Intent(MainActivity.this, QrCodeActivity.class);
+                startActivityForResult(intent, REQUEST_CODE_QR_SCAN);
             }
         });
-      //  hideLayoutNetwork();
-        configServer();
     }
 
     public void configServer() {
         SERVER_IP = Utils.getIpAddress(MainActivity.this);
-        Thread1 = new Thread(new Thread1());
-        Thread1.start();
+        Thread thread1 = new Thread(new Thread1());
+        thread1.start();
     }
 
     class Thread1 implements Runnable {
 
         @Override
         public void run() {
-            Socket socket;
             try {
-                serverSocket = new ServerSocket(SERVER_PORT);
+                ServerSocket serverSocket = new ServerSocket(SERVER_PORT);
                 runOnUiThread(new Runnable() {
 
                     @SuppressLint("SetTextI18n")
@@ -96,16 +96,13 @@ public class MainActivity extends AppCompatActivity {
                 });
                 try {
                     socket = serverSocket.accept();
-
-                    output = new PrintWriter(socket.getOutputStream());
-                    input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
                     // Send data over the socket
                     DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
-                    String data = "Hello, Server!";
+                    String data = "Hello";
                     dataOutputStream.writeUTF(data);
 
                     runOnUiThread(new Runnable() {
+                        @SuppressLint("SetTextI18n")
                         @Override
                         public void run() {
                             binding.messageNetwork.setText("Connected: "+data);
@@ -144,6 +141,82 @@ public class MainActivity extends AppCompatActivity {
             nav.setItemActivate(0);
         } else {
             super.onBackPressed();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode != Activity.RESULT_OK) {
+            if (data == null)
+                return;
+            String result = data.getStringExtra(QR_SCAN_ERROR_IMAGE);
+            if (result != null) {
+                AlertDialog dialog = new AlertDialog(MainActivity.this, getString(R.string.error_scan), getString(R.string.error_scan_details));
+                dialog.show();
+            }
+            return;
+
+        }
+
+        if (requestCode == REQUEST_CODE_QR_SCAN) {
+            if (data == null)
+                return;
+
+            String result = data.getStringExtra(QR_SCAN_RESULT);
+            if (result.contains(NAME_SENDER)) {
+                try {
+                    JSONObject jsonObject = new JSONObject(result);
+                    Transaction transaction = new Transaction(jsonObject.getInt(AMOUNT));
+                    transaction.nameSender = jsonObject.getString(NAME_SENDER);
+                    transaction.numSender = jsonObject.getString(NUM_SENDER);
+                    transaction.nameReceiver = jsonObject.getString(NAME_RECEIVER);
+                    transaction.numReceiver = jsonObject.getString(NUM_RECEIVER);
+                    transaction.ipAddress = jsonObject.getString(IP_SENDER);
+                    transaction.status = "success";
+                    transaction.method = "QR Code";
+                    DatabaseHelper db = new DatabaseHelper(this);
+                    if (socket != null) {
+                        try {
+                            DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
+                            String message = "Hello";
+                            dataOutputStream.writeUTF(message);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            result = e.getMessage();
+                        }
+                    } else {
+                        result = "You are not connected";
+                    }
+                    if (db.insertTransaction(transaction) != -1) {
+                        result = "Transaction successfully";
+                    } else {
+                        result = "Error";
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    result = e.getMessage();
+                }
+            }
+
+            AlertDialog dialog = new AlertDialog(MainActivity.this, EMPTY, result);
+            dialog.show();
+        }
+    }
+
+    public void getSocket() {
+        if (socket != null) {
+            try {
+                DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
+                Toast.makeText(MainActivity.this, dataInputStream.readUTF(), Toast.LENGTH_SHORT).show();
+                dataInputStream.readUTF();
+            } catch (IOException e) {
+                e.printStackTrace();
+                Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(MainActivity.this, getString(R.string.server_off), Toast.LENGTH_SHORT).show();
         }
     }
 }

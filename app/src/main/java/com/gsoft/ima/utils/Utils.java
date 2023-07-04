@@ -238,4 +238,9 @@ public class Utils {
             e.printStackTrace();
         }
     }
+
+
+    public static boolean isNotOnlyAlphabet(String str) {
+        return !str.matches(REG_ALPHABET);
+    }
 }

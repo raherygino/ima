@@ -14,7 +14,7 @@ import com.gsoft.ima.model.models.NavItem;
 import com.gsoft.ima.ui.main.MainActivity;
 import com.gsoft.ima.ui.main.home.HomeFragment;
 import com.gsoft.ima.ui.main.profile.ProfileFragment;
-import com.gsoft.ima.ui.main.scan.ScanFragment;
+import com.gsoft.ima.ui.main.send.SendFragment;
 import com.gsoft.ima.ui.main.setting.SettingFragment;
 import com.gsoft.ima.enums.NavIcon;
 import com.gsoft.ima.utils.Utils;
@@ -91,7 +91,7 @@ public class BottomNav
                     if (index == 0) {
                         mActivity.setFragment(new HomeFragment());
                     } else if (index == 1) {
-                        mActivity.setFragment(new ScanFragment());
+                        mActivity.setFragment(new SendFragment());
                     } else if (index == 2) {
                         mActivity.setFragment(new SettingFragment());
                     } else {

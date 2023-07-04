@@ -5,6 +5,8 @@ public class MainConstants {
 
     public static final int MAX_CIN = 12;
     public static final int MAX_PHONE = 10;
+    public static final int REQUEST_CODE_QR_SCAN = 101;
+    public static final int SERVER_PORT = 8080;
 
     public static final String CLASS = "class";
     public static final String EMPTY = "";

@@ -114,24 +114,7 @@ public class LoginViewModel extends BaseObservable {
         activity.setFragment(new RegisterFragment());
     }
 
-    public void forgotPassListener() {/*
-        PromptDialog dialog = new PromptDialog(context,
-                activity.getString(R.string.forgot),
-                activity.getString(R.string.forgot_pass_info),
-                activity.getString(R.string.email)
-        );
-        dialog.btnOk.setText(activity.getString(R.string.send));
-        dialog.btnOk.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("StringFormatMatches")
-            @Override
-            public void onClick(View view) {
-                String email = dialog.editText.getText().toString();
-
-               // Toast.makeText(context,  context.getString(R.string.email_sent_to, email), Toast.LENGTH_SHORT).show();
-                dialog.cancel();
-            }
-        });
-        dialog.show();*/
+    public void forgotPassListener() {
         activity.setFragment(new ForgotFragment());
     }
 }
