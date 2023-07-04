@@ -17,7 +17,9 @@ public class SendDialog extends SweetDialog {
     public SendDialog(Context context)
     {
         super(context, R.layout.dialog_send, null, null);
-
+        setWidthLayout();
+        setCancelable(false);
+        setAnimation(R.style.DialogAnimationTranslate);
         EditText sendBy = (EditText) findViewById(R.id.send_by);
         Utils.setOnHoverLabel(sendBy);
         sendBy.setOnClickListener(new View.OnClickListener() {
