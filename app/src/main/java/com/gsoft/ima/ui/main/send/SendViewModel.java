@@ -14,11 +14,12 @@ import com.gsoft.ima.di.dialog.AlertDialog;
 import com.gsoft.ima.model.database.DatabaseHelper;
 import com.gsoft.ima.model.models.Transaction;
 import com.gsoft.ima.model.models.User;
+import com.gsoft.ima.ui.main.MainActivity;
 import com.gsoft.ima.utils.UserLogged;
 import com.gsoft.ima.utils.Utils;
 
-import static com.gsoft.ima.constants.main.MainConstants.EMPTY;
-import static com.gsoft.ima.constants.main.MainConstants.STAT_PENDING;
+import static com.gsoft.ima.constants.main.MainConstants.*;
+import static com.gsoft.ima.constants.main.TransactionConstants.*;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,7 +29,7 @@ public class SendViewModel extends ViewModel {
     @SuppressLint("StaticFieldLeak")
     private final Context context;
     private final FragmentSendBinding binding;
-    private User user;
+    private final User user;
 
     public SendViewModel(Context context, FragmentSendBinding binding) {
         this.binding = binding;
@@ -68,6 +69,9 @@ public class SendViewModel extends ViewModel {
         transaction.ipAddress = Utils.getIpAddress(context);
         DatabaseHelper db = new DatabaseHelper(context);
 
+        MainActivity activity = (MainActivity) context;
+        activity.getSocket();
+
         if (validation(transaction)) {
             if (transaction.method.equals(context.getString(R.string.qr_code))) {/*
                 if (Utils.getIpAddress(context).equals("0.0.0.0")) {
@@ -94,11 +98,12 @@ public class SendViewModel extends ViewModel {
 
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("name_sender", transaction.nameSender);
-            jsonObject.put("num_sender", transaction.numSender);
-            jsonObject.put("name_receiver", transaction.nameReceiver);
-            jsonObject.put("num_receiver", transaction.numReceiver);
-            jsonObject.put("ip_sender", transaction.ipAddress);
+            jsonObject.put(NAME_SENDER, transaction.nameSender);
+            jsonObject.put(NUM_SENDER, transaction.numSender);
+            jsonObject.put(NAME_RECEIVER, transaction.nameReceiver);
+            jsonObject.put(NUM_RECEIVER, transaction.numReceiver);
+            jsonObject.put(IP_SENDER, transaction.ipAddress);
+            jsonObject.put(AMOUNT, transaction.amount);
 
         } catch (JSONException e) {
             e.printStackTrace();
