@@ -4,10 +4,14 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.format.Formatter;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -37,6 +41,8 @@ import java.util.Date;
 
 import static com.gsoft.ima.constants.main.MainConstants.*;
 
+import androidmads.library.qrgenearator.QRGContents;
+import androidmads.library.qrgenearator.QRGEncoder;
 import dmax.dialog.SpotsDialog;
 
 public class Utils {
@@ -213,5 +219,23 @@ public class Utils {
         dd += minutes+":";
         dd += seconds;
         return dd;
+    }
+
+    public static String getIpAddress(Context context) {
+        WifiManager wm = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        return Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
+    }
+
+    public static void createQrCode(String data, ImageView imageView) {
+
+        QRGEncoder qrgEncoder = new QRGEncoder(data, null, QRGContents.Type.TEXT, 500);
+        qrgEncoder.setColorBlack(Color.WHITE);
+        qrgEncoder.setColorWhite(Color.DKGRAY);
+        try {
+            Bitmap bitmap = qrgEncoder.getBitmap();
+            imageView.setImageBitmap(bitmap);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -2,6 +2,8 @@ package com.gsoft.ima.ui.main.send;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.view.MenuItem;
 import android.widget.PopupMenu;
 import android.widget.Toast;
@@ -19,6 +21,12 @@ import com.gsoft.ima.utils.Utils;
 
 import static com.gsoft.ima.constants.main.MainConstants.EMPTY;
 import static com.gsoft.ima.constants.main.MainConstants.STAT_PENDING;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import androidmads.library.qrgenearator.QRGContents;
+import androidmads.library.qrgenearator.QRGEncoder;
 
 public class SendViewModel extends ViewModel {
 
@@ -61,17 +69,43 @@ public class SendViewModel extends ViewModel {
         transaction.numReceiver = binding.phone.getText().toString();
         transaction.status = STAT_PENDING;
         transaction.date = Utils.DateSQLFormatNow();
+        transaction.ipAddress = Utils.getIpAddress(context);
         DatabaseHelper db = new DatabaseHelper(context);
 
         if (validation(transaction)) {
 
-            if (db.insertTransaction(transaction) != -1) {
-                AlertDialog dialog = new AlertDialog(context, EMPTY, "Created");
-                dialog.show();
-            } else {
-                AlertDialog dialog = new AlertDialog(context, EMPTY, "Error");
-                dialog.show();
+
+            // Create a new JSONObject
+            JSONObject jsonObject = new JSONObject();
+
+            // Add key-value pairs to the JSON object
+            try {
+                jsonObject.put("name_sender", transaction.nameSender);
+                jsonObject.put("num_sender", transaction.numSender);
+                jsonObject.put("name_receiver", transaction.nameReceiver);
+                jsonObject.put("num_receiver", transaction.numReceiver);
+                jsonObject.put("ip_sender", transaction.ipAddress);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
+
+            // Convert the JSON object to a string
+            String jsonString = jsonObject.toString();
+
+            Utils.createQrCode(jsonString, binding.qrImage);
+
+
+            /*
+                if (db.insertTransaction(transaction) != -1) {
+                    AlertDialog dialog = new AlertDialog(context, EMPTY, "Created");
+                    dialog.show();
+                } else {
+                    AlertDialog dialog = new AlertDialog(context, EMPTY, "Error");
+                    dialog.show();
+                }
+              */
+
 
         } else {
             Toast.makeText(context, context.getString(R.string.check_the_form), Toast.LENGTH_LONG).show();

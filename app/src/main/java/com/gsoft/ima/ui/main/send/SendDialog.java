@@ -3,6 +3,8 @@ package com.gsoft.ima.ui.main.send;
 
 import android.app.Activity;
 import android.content.Context;
+import android.net.wifi.WifiManager;
+import android.text.format.Formatter;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -18,10 +20,12 @@ public class SendDialog extends SweetDialog {
 
     private final DialogSendBinding binding;
     private final SendViewModel viewModel;
+    private final Context context;
 
     public SendDialog(Context context)
     {
         super(context, R.layout.dialog_send, null, null);
+        this.context = context;
         this.binding = DialogSendBinding.inflate(((Activity)context).getLayoutInflater());
         this.setLayout(binding.getRoot());
         this.config();
@@ -40,6 +44,7 @@ public class SendDialog extends SweetDialog {
         Utils.setOnHoverLabel(binding.sendBy);
         binding.sendBy.setOnClickListener(new onClick());
         binding.btnOk.setOnClickListener(new onClick());
+        binding.ipAddress.setText(Utils.getIpAddress(context));
     }
 
     class onClick implements View.OnClickListener {

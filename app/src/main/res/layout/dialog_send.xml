@@ -34,6 +34,21 @@
             android:layout_marginEnd="@dimen/dp_16"
             app:layout_constraintTop_toBottomOf="@+id/title_dialog" />
 
+        <TextView
+            android:id="@+id/ip_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="1.0.1.1"/>
+
+
+        <ImageView
+            android:id="@+id/qr_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center_horizontal" />
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

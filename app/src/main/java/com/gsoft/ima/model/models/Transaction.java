@@ -14,6 +14,7 @@ public class Transaction {
     public String status = EMPTY;
     public String tokenSender = EMPTY;
     public String tokenReceiver = EMPTY;
+    public String ipAddress = EMPTY;
 
     public Transaction(int amount) {
         this.amount = amount;
