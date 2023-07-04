@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.MenuItem;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import androidx.lifecycle.ViewModel;
 
@@ -45,7 +46,14 @@ public class SendViewModel extends ViewModel {
 
     public void send() {
         User user = UserLogged.data(context);
-        Transaction transaction = new Transaction(Integer.parseInt(binding.amount.getText().toString()));
+        int amount = 0;
+        String amountValue = binding.amount.getText().toString();
+
+        if (!amountValue.equals(EMPTY))  {
+            amount = Integer.parseInt(amountValue);
+        }
+
+        Transaction transaction = new Transaction(amount);
         transaction.nameSender = user.lastname;
         transaction.numSender = user.phone;
         transaction.method = binding.sendBy.getText().toString();
@@ -54,13 +62,39 @@ public class SendViewModel extends ViewModel {
         transaction.status = STAT_PENDING;
         transaction.date = Utils.DateSQLFormatNow();
         DatabaseHelper db = new DatabaseHelper(context);
-        if (db.insertTransaction(transaction) != -1) {
-            AlertDialog dialog = new AlertDialog(context, EMPTY, "Created");
-            dialog.show();
+
+        if (validation(transaction)) {
+
+            if (db.insertTransaction(transaction) != -1) {
+                AlertDialog dialog = new AlertDialog(context, EMPTY, "Created");
+                dialog.show();
+            } else {
+                AlertDialog dialog = new AlertDialog(context, EMPTY, "Error");
+                dialog.show();
+            }
+
         } else {
-            AlertDialog dialog = new AlertDialog(context, EMPTY, "Error");
-            dialog.show();
+            Toast.makeText(context, context.getString(R.string.check_the_form), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private boolean validation(Transaction transaction) {
+        boolean isValidate = true;
+        if (transaction.nameReceiver.length() < 3) {
+            isValidate = false;
+            binding.name.setError(context.getString(R.string.value_too_short));
         }
 
+        if (transaction.numReceiver.length() != 10) {
+            isValidate = false;
+            binding.phone.setError(context.getString(R.string.error_phone));
+        }
+
+        if (transaction.amount < 50) {
+            isValidate = false;
+            binding.amount.setError(context.getString(R.string.value_too_short));
+        }
+
+        return isValidate;
     }
 }
