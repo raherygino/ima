@@ -1,24 +1,22 @@
 package com.gsoft.ima.model.models;
 
-public class Transaction {
-    public String numSender;
-    public String nameSender;
-    public int idSender;
-    public String tokenSender;
-    public String numReceiver;
-    public String nameReceiver;
-    public int idReceiver;
-    public String tokenReceiver;
-    public int amount;
-    public String sentBy;
-    public int idTransaction;
-    public String date;
-    public String type;
+import static com.gsoft.ima.constants.main.MainConstants.EMPTY;
 
-    public Transaction(int idSender, String tokenSender, int idReceiver, String tokenReceiver) {
-        this.idSender = idSender;
-        this.tokenSender = tokenSender;
-        this.tokenReceiver = tokenReceiver;
-        this.idReceiver = idReceiver;
+public class Transaction {
+
+    public String nameSender = EMPTY;
+    public String numSender = EMPTY;
+    public int amount = 0;
+    public String nameReceiver = EMPTY;
+    public String numReceiver = EMPTY;
+    public String date = EMPTY;
+    public String method = EMPTY;
+    public String status = EMPTY;
+    public String tokenSender = EMPTY;
+    public String tokenReceiver = EMPTY;
+    public String ipAddress = EMPTY;
+
+    public Transaction(int amount) {
+        this.amount = amount;
     }
 }

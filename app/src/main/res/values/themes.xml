@@ -19,6 +19,11 @@
         <item name="android:windowExitAnimation">@anim/dialog_out</item>
     </style>
 
+    <style name="DialogAnimationTranslate">
+        <item name="android:windowEnterAnimation">@anim/dialog_in_translate</item>
+        <item name="android:windowExitAnimation">@anim/dialog_out_translate</item>
+    </style>
+
     <style name="TextAppearance.App.CollapsingToolbar.Expanded" parent="TextAppearance.MaterialComponents.Headline5">
         <item name="android:textColor">?attr/colorOnPrimary</item>
         <item name="android:background">?attr/colorPrimary</item>

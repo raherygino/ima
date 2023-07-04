@@ -10,6 +10,7 @@ import android.view.WindowManager;
 import android.widget.ActionMenuView.LayoutParams;
 import android.widget.Button;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.gsoft.ima.R;
 
@@ -17,6 +18,8 @@ import com.gsoft.ima.R;
 public class SweetDialog{
     public Dialog dialog;
     private final Activity activity;
+    private Window window;
+    private WindowManager.LayoutParams lp;
     private final int idLay;
 
     public Button BTN_OK;
@@ -39,10 +42,14 @@ public class SweetDialog{
         }
     }
 
+    public void setLayout(LinearLayout layout) {
+        dialog.setContentView(layout);
+    }
+
     private void initDialog(){
         Display display = activity.getWindowManager().getDefaultDisplay();
-        Window window = dialog.getWindow();
-        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        window = dialog.getWindow();
+        lp = new WindowManager.LayoutParams();
 
         lp.width = display.getWidth();
         lp.height = WindowManager.LayoutParams.MATCH_PARENT;
@@ -57,6 +64,18 @@ public class SweetDialog{
 
         lp.copyFrom(dialog.getWindow().getAttributes());
         dialog.getWindow().setAttributes(lp);
+    }
+
+    public void setCancelable(boolean isCancelable) {
+        dialog.setCancelable(isCancelable);
+    }
+
+    public void setAnimation(int animation) {
+        window.getAttributes().windowAnimations = animation;
+    }
+
+    public void setWidthLayout() {
+        window.setLayout(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
     }
 
     public View findViewById(int id) {

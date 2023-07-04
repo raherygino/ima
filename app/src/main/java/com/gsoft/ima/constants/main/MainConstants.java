@@ -5,6 +5,8 @@ public class MainConstants {
 
     public static final int MAX_CIN = 12;
     public static final int MAX_PHONE = 10;
+    public static final int REQUEST_CODE_QR_SCAN = 101;
+    public static final int SERVER_PORT = 8080;
 
     public static final String CLASS = "class";
     public static final String EMPTY = "";
@@ -19,6 +21,8 @@ public class MainConstants {
     public static final String BACK_ICON_RED = "back_icon_red";
     public static final String BACK_ICON_GREEN = "back_icon_green";
     public static final String BACK_ICON_BLUE = "back_icon_blue";
+
+    public static final String DATE_FORMAT = "dd-MM-yyyy hh:mm:ss";
 
     public static final String IC_ARROW_IN = "ic_arrow_in";
     public static final String IC_ARROW_OUT = "ic_arrow_out";
@@ -40,6 +44,8 @@ public class MainConstants {
     public static final String SEND = "send";
     public static final String SINGLE_QUOTE = "'";
     public static final String SLASH = "/";
+    public static final String STAT_PENDING = "pending";
+    public static final String STAT_SENT = "sent";
     public static final String STR_ZERO = "0";
     public static final String SUCCESS = "success";
     public static final String TIMED_OUT = "timed out";

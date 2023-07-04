@@ -3,7 +3,7 @@ package com.gsoft.ima.enums;
 public enum NavIcon {
 
     HOME("ic_home_filled", "ic_home_outline"),
-    TRANSACTION("ic_scan", "ic_scan"),
+    TRANSACTION("ic_send", "ic_send"),
     PROJECT("ic_setting_filled", "ic_setting_outline"),
     PROFILE("ic_user_filled", "ic_user_outline");
 

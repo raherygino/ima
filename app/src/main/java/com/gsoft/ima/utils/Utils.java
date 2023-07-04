@@ -4,10 +4,14 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.format.Formatter;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -32,8 +36,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Calendar;
+import java.util.Date;
 
 import static com.gsoft.ima.constants.main.MainConstants.*;
+
+import androidmads.library.qrgenearator.QRGContents;
+import androidmads.library.qrgenearator.QRGEncoder;
+import dmax.dialog.SpotsDialog;
 
 public class Utils {
 
@@ -48,6 +58,14 @@ public class Utils {
                 decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
             }
         }
+    }
+
+    public static void SpotLoad(Context context) {
+
+        new SpotsDialog.Builder()
+                .setContext(context)
+                .build()
+                .show();
     }
 
     public static void setColorBarStatusDefault(Context context) {
@@ -174,5 +192,55 @@ public class Utils {
             e.printStackTrace();
         }
 
+    }
+
+    public static String formatNumber(int number) {
+        String value = String.valueOf(number);
+        if (number < 10) {
+            value = "0"+number;
+        }
+        return value;
+    }
+
+    public static  String DateSQLFormatNow() {
+        Date currentTime = Calendar.getInstance().getTime();
+        String s_currentTime = currentTime.toString();
+        String y = s_currentTime.substring(s_currentTime.length()-4, s_currentTime.length());
+        String month = formatNumber(currentTime.getMonth()+1);
+        String date = formatNumber(currentTime.getDate());
+        String hours = formatNumber(currentTime.getHours());
+        String minutes = formatNumber(currentTime.getMinutes());
+        String seconds = formatNumber(currentTime.getSeconds());
+        String dd = "";
+        dd += date+"-";
+        dd += month+"-";
+        dd += y+" ";
+        dd += hours+":";
+        dd += minutes+":";
+        dd += seconds;
+        return dd;
+    }
+
+    public static String getIpAddress(Context context) {
+        WifiManager wm = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        return Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
+    }
+
+    public static void createQrCode(String data, ImageView imageView) {
+
+        QRGEncoder qrgEncoder = new QRGEncoder(data, null, QRGContents.Type.TEXT, 500);
+        qrgEncoder.setColorBlack(Color.WHITE);
+        qrgEncoder.setColorWhite(Color.DKGRAY);
+        try {
+            Bitmap bitmap = qrgEncoder.getBitmap();
+            imageView.setImageBitmap(bitmap);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static boolean isNotOnlyAlphabet(String str) {
+        return !str.matches(REG_ALPHABET);
     }
 }

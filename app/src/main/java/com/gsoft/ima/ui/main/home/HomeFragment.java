@@ -8,24 +8,23 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.gsoft.ima.R;
 import com.gsoft.ima.databinding.FragmentHomeBinding;
-import com.gsoft.ima.di.dialog.AlertDialog;
 import com.gsoft.ima.di.dialog.ConfirmDialog;
+import com.gsoft.ima.model.database.DatabaseHelper;
 import com.gsoft.ima.model.models.Transaction;
+import com.gsoft.ima.ui.main.home.adapter.HomeAdapterHistory;
+import com.gsoft.ima.ui.main.home.adapter.HomeAdapterMenu;
 import com.gsoft.ima.utils.Utils;
-
 import java.util.ArrayList;
 
-import static com.gsoft.ima.constants.main.MainConstants.*;
 
 public class HomeFragment extends Fragment {
 
     FragmentHomeBinding binding;
     HomeViewModel viewModel;
+    HomeAdapterHistory mAdapter;
+    ArrayList<Transaction> transactions;
 
     @Nullable
     @Override
@@ -33,37 +32,19 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         viewModel = new HomeViewModel(getContext());
         binding.username.setText(viewModel.user.firstname);
-
         binding.logout.setOnClickListener(new OnClick());
         Utils.setColorBarStatus(getContext());
-        setRecycleViewHistory();
+        configTransactions();
+
         return binding.getRoot();
     }
 
-    private void setRecycleViewHistory() {
-        ArrayList<Transaction> listTransaction = seedTransaction(3, KEY_RECEIVED);
-        listTransaction.addAll(seedTransaction(3, KEY_SENT));
-        binding.recyclerViewHistory.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManagerTransaction = new LinearLayoutManager(getContext());
-        binding.recyclerViewHistory.setLayoutManager(layoutManagerTransaction);
-        HomeAdapterRecyclerTransaction adapterRecyclerTransaction = new HomeAdapterRecyclerTransaction(getContext(), listTransaction, binding.recyclerViewHistory);
-        binding.recyclerViewHistory.setAdapter(adapterRecyclerTransaction);
-    }
-
-    private ArrayList<Transaction> seedTransaction(int size,String type) {
-        ArrayList<Transaction> listTransaction = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            Transaction transaction = new Transaction(0,"",0,"");
-            transaction.nameSender = "Georginot";
-            transaction.nameReceiver = "Armelin";
-            transaction.date = "12 Déc 2022";
-            transaction.sentBy = "Bluetooth";
-            transaction.numReceiver = "034 65 007 00";
-            transaction.amount = 8000*(i+1);
-            transaction.type = type;
-            listTransaction.add(transaction);
-        }
-        return listTransaction;
+    private void configTransactions() {
+        transactions = new DatabaseHelper(getContext()).getAllTransaction();
+        mAdapter = new HomeAdapterHistory(getContext(), transactions);
+        binding.listView.setAdapter(mAdapter);
+        binding.listView.setMenuCreator(new HomeAdapterMenu(getContext()));
+        binding.listView.setOnMenuItemClickListener(new HomeAdapterMenu.onItemClicked(getContext(), transactions, mAdapter));
     }
 
     class OnClick implements View.OnClickListener {

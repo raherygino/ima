@@ -53,6 +53,7 @@
     <string name="message">Message</string>
     <string name="password">Password</string>
     <string name="phone">Phone</string>
+    <string name="qr_code">QR Code</string>
     <string name="reset_code">Reset code</string>
     <string name="region">Region</string>
     <string name="show_password">Show password</string>
@@ -66,6 +67,7 @@
     <string name="close_app_details">You want to exit the app?</string>
     <string name="date_placeholder">20 June 2023 15:10:00</string>
     <string name="female">Female</string>
+    <string name="fill_field">Please fill the field below</string>
     <string name="hello">Hello</string>
     <string name="help_details">Du problème ou des questions concernant le service IMA? Écrivez-nous sans hésiter (internet requis). Nous vous répondrons à votre adresse e-mail. Ou appelez :</string>
     <string name="list_of">List of %1$s</string>
@@ -79,6 +81,7 @@
     <string name="edit_text_required">This field is required</string>
     <string name="email_invalid">Email invalid</string>
     <string name="email_not_found">Your email does not match any user</string>
+    <string name="message_offline_mode">You can use the app offline mode</string>
     <string name="value_too_short">Value is too short</string>
     <string name="check_the_form">Check the form</string>
     <string name="cin_invalid">CIN invalid</string>
@@ -93,12 +96,15 @@
     <string name="error_phone_details">Your phone number %1$s is already taken by another user. Please change it</string>
     <string name="error_login">Phone number or password incorrect!</string>
     <string name="error_logout">You can\'t logout!</string>
+    <string name="error_scan">Scan Error</string>
+    <string name="error_scan_details">QR Code could not be scanned</string>
     <string name="message_not_sent">Failed to send message!</string>
     <string name="message_sent">Message sent!</string>
     <string name="password_must">Password must contain 6 character minimum</string>
     <string name="password_not_match">Password not match</string>
     <string name="phone_invalid">Phone number invalid</string>
     <string name="reset_code_details">Your password reset code is sent to your email</string>
+    <string name="server_off">The server is not running</string>
     <!-- Menu setting -->
     <string name="about">About</string>
     <string name="about_subtitle">Learn more about IMA</string>

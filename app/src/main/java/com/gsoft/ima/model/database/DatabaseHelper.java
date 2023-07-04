@@ -1,6 +1,7 @@
 package com.gsoft.ima.model.database;
 
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -8,10 +9,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
+import com.gsoft.ima.model.models.Transaction;
 import com.gsoft.ima.model.models.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 import static com.gsoft.ima.constants.main.FormConstants.BIRTHDAY;
 import static com.gsoft.ima.constants.main.FormConstants.BIRTHPLACE;
@@ -24,10 +28,12 @@ import static com.gsoft.ima.constants.main.FormConstants.ID_CARD;
 import static com.gsoft.ima.constants.main.FormConstants.LASTNAME;
 import static com.gsoft.ima.constants.main.FormConstants.PASSWORD;
 import static com.gsoft.ima.constants.main.FormConstants.PHONE;
+import static com.gsoft.ima.constants.main.MainConstants.EMPTY;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String databaseName = "ima_db.db";
+
     private static final String TABLE_USER = "users";
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_LASTNAME = "lastname";
@@ -44,6 +50,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String TABLE_DIS = "district";
     private static final String COLUMN_DIS_NAME = "name";
+
+    private static final String TABLE_TRANSACTION = "table_transaction";
+    private static final String COLUMN_NAME_SENDER = "name_sender";
+    private static final String COLUMN_NUM_SENDER = "num_sender";
+    private static final String COLUMN_NAME_RECEIVER = "name_receiver";
+    private static final String COLUMN_NUM_RECEIVER = "num_receiver";
+    private static final String COLUMN_METHOD = "method";
+    private static final String COLUMN_TOKEN_SENDER = "token_sender";
+    private static final String COLUMN_TOKEN_RECEIVER = "token_receiver";
+    private static final String COLUMN_STATUS = "status";
+    private static final String COLUMN_AMOUNT = "amount";
+
+    private static final String COLUMN_DATE = "created_at";
 
     public DatabaseHelper(Context context) {
         super(context, databaseName, null, 1);
@@ -69,8 +88,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_DIS_NAME + " TEXT, " +
                 " created_at DATETIME)";
 
+        String SQL_CREATE_TRANS = "CREATE TABLE "+ TABLE_TRANSACTION +" ("+COLUMN_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                COLUMN_NAME_SENDER + " TEXT, " +
+                COLUMN_NUM_SENDER + " TEXT, " +
+                COLUMN_NAME_RECEIVER + " TEXT, " +
+                COLUMN_NUM_RECEIVER + " TEXT, " +
+                COLUMN_METHOD + " TEXT, " +
+                COLUMN_TOKEN_SENDER + " TEXT, " +
+                COLUMN_TOKEN_RECEIVER + " TEXT, " +
+                COLUMN_STATUS + " TEXT, " +
+                COLUMN_AMOUNT + " INTEGER, " +
+                COLUMN_DATE +" DATETIME)";
+
         db.execSQL(SQL_CREATE_USER);
         db.execSQL(SQL_CREATE_DISC);
+        db.execSQL(SQL_CREATE_TRANS);
     }
 
     @Override
@@ -176,6 +208,49 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM "+TABLE_DIS;
         return db.rawQuery(query, null);
+    }
+
+
+    private ContentValues contentValuesTrans(Transaction transaction) {
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NAME_SENDER, transaction.nameSender);
+        values.put(COLUMN_NUM_SENDER, transaction.numSender);
+        values.put(COLUMN_NAME_RECEIVER, transaction.nameReceiver);
+        values.put(COLUMN_NUM_RECEIVER, transaction.numReceiver);
+        values.put(COLUMN_METHOD, transaction.method);
+        values.put(COLUMN_TOKEN_SENDER, transaction.tokenSender);
+        values.put(COLUMN_TOKEN_RECEIVER, transaction.tokenReceiver);
+        values.put(COLUMN_AMOUNT, transaction.amount);
+        values.put(COLUMN_STATUS, transaction.status);
+        values.put(COLUMN_DATE, transaction.date);
+        return values;
+    }
+
+    public long insertTransaction(Transaction transaction) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.insert(TABLE_TRANSACTION, null, contentValuesTrans(transaction));
+    }
+
+    public ArrayList<Transaction> getAllTransaction() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<Transaction> allTransaction = new ArrayList<Transaction>();
+        String query = "SELECT * FROM "+TABLE_TRANSACTION;
+        Cursor cursor = db.rawQuery(query, null);
+        while (cursor.moveToNext()) {
+            Transaction transaction = new Transaction(cursor.getInt(9));
+            transaction.nameSender = cursor.getString(1);
+            transaction.numSender = cursor.getString(2);
+            transaction.nameReceiver = cursor.getString(3);
+            transaction.numReceiver = cursor.getString(4);
+            transaction.method = cursor.getString(5);
+            transaction.tokenSender = cursor.getString(6);
+            transaction.tokenReceiver = cursor.getString(7);
+            transaction.status = cursor.getString(8);
+            transaction.date = cursor.getString(10);
+            allTransaction.add(transaction);
+        }
+
+        return allTransaction;
     }
 
 }

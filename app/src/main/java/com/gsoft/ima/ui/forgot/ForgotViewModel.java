@@ -90,8 +90,6 @@ public class ForgotViewModel extends ViewModel {
                 binding.message.setVisibility(View.VISIBLE);
                 binding.btnReset.setVisibility(View.VISIBLE);
                 binding.layoutResetCode.setVisibility(View.VISIBLE);
-                Utils.setOnHoverLabel(binding.resetCode);
-                binding.resetCode.setText(code);
                 binding.btnSend.setText(context.getString(R.string.resend));
             } else {
                 AlertDialog dialog = new AlertDialog(context, EMPTY, result);
@@ -130,6 +128,8 @@ public class ForgotViewModel extends ViewModel {
                     AlertDialog dialog = new AlertDialog(context, EMPTY, message);
                     dialog.show();
                 }
+            } else {
+                Toast.makeText(context, context.getString(R.string.error), Toast.LENGTH_LONG).show();
             }
         }
 
