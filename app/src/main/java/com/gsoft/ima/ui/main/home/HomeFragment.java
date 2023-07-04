@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.gsoft.ima.R;
 import com.gsoft.ima.databinding.FragmentHomeBinding;
-import com.gsoft.ima.di.dialog.AlertDialog;
 import com.gsoft.ima.di.dialog.ConfirmDialog;
 import com.gsoft.ima.model.models.Transaction;
 import com.gsoft.ima.utils.Utils;
@@ -36,7 +35,7 @@ public class HomeFragment extends Fragment {
 
         binding.logout.setOnClickListener(new OnClick());
         Utils.setColorBarStatus(getContext());
-        setRecycleViewHistory();
+      //  setRecycleViewHistory();
         return binding.getRoot();
     }
 
@@ -50,19 +49,8 @@ public class HomeFragment extends Fragment {
         binding.recyclerViewHistory.setAdapter(adapterRecyclerTransaction);
     }
 
-    private ArrayList<Transaction> seedTransaction(int size,String type) {
+    private ArrayList<Transaction> seedTransaction(int size, String type) {
         ArrayList<Transaction> listTransaction = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            Transaction transaction = new Transaction(0,"",0,"");
-            transaction.nameSender = "Georginot";
-            transaction.nameReceiver = "Armelin";
-            transaction.date = "12 Déc 2022";
-            transaction.sentBy = "Bluetooth";
-            transaction.numReceiver = "034 65 007 00";
-            transaction.amount = 8000*(i+1);
-            transaction.type = type;
-            listTransaction.add(transaction);
-        }
         return listTransaction;
     }
 
