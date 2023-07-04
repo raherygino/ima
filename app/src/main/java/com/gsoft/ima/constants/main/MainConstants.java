@@ -20,6 +20,8 @@ public class MainConstants {
     public static final String BACK_ICON_GREEN = "back_icon_green";
     public static final String BACK_ICON_BLUE = "back_icon_blue";
 
+    public static final String DATE_FORMAT = "dd-MM-yyyy hh:mm:ss";
+
     public static final String IC_ARROW_IN = "ic_arrow_in";
     public static final String IC_ARROW_OUT = "ic_arrow_out";
     public static final String IC_CLOUD = "ic_cloud";
@@ -40,6 +42,8 @@ public class MainConstants {
     public static final String SEND = "send";
     public static final String SINGLE_QUOTE = "'";
     public static final String SLASH = "/";
+    public static final String STAT_PENDING = "pending";
+    public static final String STAT_SENT = "sent";
     public static final String STR_ZERO = "0";
     public static final String SUCCESS = "success";
     public static final String TIMED_OUT = "timed out";

@@ -39,6 +39,7 @@ public class SendDialog extends SweetDialog {
     private void viewListener() {
         Utils.setOnHoverLabel(binding.sendBy);
         binding.sendBy.setOnClickListener(new onClick());
+        binding.btnOk.setOnClickListener(new onClick());
     }
 
     class onClick implements View.OnClickListener {
@@ -47,6 +48,8 @@ public class SendDialog extends SweetDialog {
             int id = view.getId();
             if (id == R.id.send_by) {
                 viewModel.onChangeType();
+            } else if (id == R.id.btn_ok) {
+                viewModel.send();
             }
         }
     }

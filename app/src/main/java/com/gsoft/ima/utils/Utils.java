@@ -32,6 +32,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Calendar;
+import java.util.Date;
 
 import static com.gsoft.ima.constants.main.MainConstants.*;
 
@@ -174,5 +176,32 @@ public class Utils {
             e.printStackTrace();
         }
 
+    }
+
+    public static String formatNumber(int number) {
+        String value = String.valueOf(number);
+        if (number < 10) {
+            value = "0"+number;
+        }
+        return value;
+    }
+
+    public static  String DateSQLFormatNow() {
+        Date currentTime = Calendar.getInstance().getTime();
+        String s_currentTime = currentTime.toString();
+        String y = s_currentTime.substring(s_currentTime.length()-4, s_currentTime.length());
+        String month = formatNumber(currentTime.getMonth()+1);
+        String date = formatNumber(currentTime.getDate());
+        String hours = formatNumber(currentTime.getHours());
+        String minutes = formatNumber(currentTime.getMinutes());
+        String seconds = formatNumber(currentTime.getSeconds());
+        String dd = "";
+        dd += date+"-";
+        dd += month+"-";
+        dd += y+" ";
+        dd += hours+":";
+        dd += minutes+":";
+        dd += seconds;
+        return dd;
     }
 }
