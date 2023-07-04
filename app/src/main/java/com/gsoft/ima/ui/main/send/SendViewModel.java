@@ -2,8 +2,6 @@ package com.gsoft.ima.ui.main.send;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.view.MenuItem;
 import android.widget.PopupMenu;
 import android.widget.Toast;
@@ -11,7 +9,7 @@ import android.widget.Toast;
 import androidx.lifecycle.ViewModel;
 
 import com.gsoft.ima.R;
-import com.gsoft.ima.databinding.DialogSendBinding;
+import com.gsoft.ima.databinding.FragmentSendBinding;
 import com.gsoft.ima.di.dialog.AlertDialog;
 import com.gsoft.ima.model.database.DatabaseHelper;
 import com.gsoft.ima.model.models.Transaction;
@@ -25,18 +23,17 @@ import static com.gsoft.ima.constants.main.MainConstants.STAT_PENDING;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import androidmads.library.qrgenearator.QRGContents;
-import androidmads.library.qrgenearator.QRGEncoder;
-
 public class SendViewModel extends ViewModel {
 
     @SuppressLint("StaticFieldLeak")
     private final Context context;
-    private final DialogSendBinding binding;
+    private final FragmentSendBinding binding;
+    private User user;
 
-    public SendViewModel(Context context, DialogSendBinding binding) {
+    public SendViewModel(Context context, FragmentSendBinding binding) {
         this.binding = binding;
         this.context = context;
+        this.user = UserLogged.data(context);
     }
 
     public void onChangeType() {
@@ -53,7 +50,6 @@ public class SendViewModel extends ViewModel {
     }
 
     public void send() {
-        User user = UserLogged.data(context);
         int amount = 0;
         String amountValue = binding.amount.getText().toString();
 
@@ -73,30 +69,14 @@ public class SendViewModel extends ViewModel {
         DatabaseHelper db = new DatabaseHelper(context);
 
         if (validation(transaction)) {
-
-
-            // Create a new JSONObject
-            JSONObject jsonObject = new JSONObject();
-
-            // Add key-value pairs to the JSON object
-            try {
-                jsonObject.put("name_sender", transaction.nameSender);
-                jsonObject.put("num_sender", transaction.numSender);
-                jsonObject.put("name_receiver", transaction.nameReceiver);
-                jsonObject.put("num_receiver", transaction.numReceiver);
-                jsonObject.put("ip_sender", transaction.ipAddress);
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            // Convert the JSON object to a string
-            String jsonString = jsonObject.toString();
-
-            Utils.createQrCode(jsonString, binding.qrImage);
-
-
-            /*
+            if (transaction.method.equals(context.getString(R.string.qr_code))) {/*
+                if (Utils.getIpAddress(context).equals("0.0.0.0")) {
+                    AlertDialog dialog = new AlertDialog(context, EMPTY, "You are not connected");
+                    dialog.show();
+                } else {*/
+                    Utils.createQrCode(TransactionToString(transaction), binding.qrImage);
+               // }
+            } else {
                 if (db.insertTransaction(transaction) != -1) {
                     AlertDialog dialog = new AlertDialog(context, EMPTY, "Created");
                     dialog.show();
@@ -104,12 +84,26 @@ public class SendViewModel extends ViewModel {
                     AlertDialog dialog = new AlertDialog(context, EMPTY, "Error");
                     dialog.show();
                 }
-              */
-
-
+            }
         } else {
             Toast.makeText(context, context.getString(R.string.check_the_form), Toast.LENGTH_LONG).show();
         }
+    }
+
+    private String TransactionToString(Transaction transaction) {
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("name_sender", transaction.nameSender);
+            jsonObject.put("num_sender", transaction.numSender);
+            jsonObject.put("name_receiver", transaction.nameReceiver);
+            jsonObject.put("num_receiver", transaction.numReceiver);
+            jsonObject.put("ip_sender", transaction.ipAddress);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonObject.toString();
     }
 
     private boolean validation(Transaction transaction) {
@@ -119,7 +113,17 @@ public class SendViewModel extends ViewModel {
             binding.name.setError(context.getString(R.string.value_too_short));
         }
 
+        if (Utils.isNotOnlyAlphabet(transaction.nameReceiver)) {
+            isValidate = false;
+            binding.name.setError(context.getString(R.string.error_char_spec));
+        }
+
         if (transaction.numReceiver.length() != 10) {
+            isValidate = false;
+            binding.phone.setError(context.getString(R.string.error_phone));
+        }
+
+        if (transaction.numReceiver.equals(user.phone)) {
             isValidate = false;
             binding.phone.setError(context.getString(R.string.error_phone));
         }
@@ -127,6 +131,11 @@ public class SendViewModel extends ViewModel {
         if (transaction.amount < 50) {
             isValidate = false;
             binding.amount.setError(context.getString(R.string.value_too_short));
+        }
+
+        if (!binding.password.getText().toString().equals(user.password)) {
+            isValidate = false;
+            binding.password.setError(context.getString(R.string.password_not_match));
         }
 
         return isValidate;
