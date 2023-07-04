@@ -53,6 +53,7 @@
     <string name="message">Message</string>
     <string name="password">Password</string>
     <string name="phone">Phone</string>
+    <string name="qr_code">QR Code</string>
     <string name="reset_code">Reset code</string>
     <string name="region">Region</string>
     <string name="show_password">Show password</string>
@@ -66,6 +67,7 @@
     <string name="close_app_details">You want to exit the app?</string>
     <string name="date_placeholder">20 June 2023 15:10:00</string>
     <string name="female">Female</string>
+    <string name="fill_field">Please fill the field below</string>
     <string name="hello">Hello</string>
     <string name="help_details">Du problème ou des questions concernant le service IMA? Écrivez-nous sans hésiter (internet requis). Nous vous répondrons à votre adresse e-mail. Ou appelez :</string>
     <string name="list_of">List of %1$s</string>

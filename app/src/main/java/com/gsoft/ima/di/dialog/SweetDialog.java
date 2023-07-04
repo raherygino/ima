@@ -10,6 +10,7 @@ import android.view.WindowManager;
 import android.widget.ActionMenuView.LayoutParams;
 import android.widget.Button;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.gsoft.ima.R;
 
@@ -39,6 +40,10 @@ public class SweetDialog{
             TextView desc = dialog.findViewById(R.id.description_dialog);
             desc.setText(valueDesc);
         }
+    }
+
+    public void setLayout(LinearLayout layout) {
+        dialog.setContentView(layout);
     }
 
     private void initDialog(){
