@@ -37,6 +37,8 @@ import java.util.Date;
 
 import static com.gsoft.ima.constants.main.MainConstants.*;
 
+import dmax.dialog.SpotsDialog;
+
 public class Utils {
 
     public static void setColorBarStatus(Context context) {
@@ -50,6 +52,14 @@ public class Utils {
                 decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
             }
         }
+    }
+
+    public static void SpotLoad(Context context) {
+
+        new SpotsDialog.Builder()
+                .setContext(context)
+                .build()
+                .show();
     }
 
     public static void setColorBarStatusDefault(Context context) {

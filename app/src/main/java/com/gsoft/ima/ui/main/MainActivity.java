@@ -18,6 +18,8 @@ import com.gsoft.ima.ui.main.home.HomeFragment;
 
 import static com.gsoft.ima.constants.main.MainConstants.*;
 
+import dmax.dialog.SpotsDialog;
+
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
