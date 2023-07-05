@@ -22,6 +22,7 @@ import com.gsoft.ima.di.dialog.AlertDialog;
 import com.gsoft.ima.model.database.DatabaseHelper;
 import com.gsoft.ima.model.models.Transaction;
 import com.gsoft.ima.ui.main.home.HomeFragment;
+import com.gsoft.ima.utils.UserLogged;
 import com.gsoft.ima.utils.Utils;
 
 import static com.gsoft.ima.constants.main.MainConstants.*;
@@ -180,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
                     if (socket != null) {
                         try {
                             DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
-                            String message = "Hello";
+                            String message = "received";
                             dataOutputStream.writeUTF(message);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -189,10 +190,15 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         result = "You are not connected";
                     }
-                    if (db.insertTransaction(transaction) != -1) {
-                        result = "Transaction successfully";
+                    if (transaction.numReceiver.equals(UserLogged.data(MainActivity.this).phone)) {
+                        if (db.insertTransaction(transaction) != -1) {
+                            db.updateBalance(transaction.amount, "ADD");
+                            result = "Transaction successfully";
+                        } else {
+                            result = "Error";
+                        }
                     } else {
-                        result = "Error";
+                        result = "The recipient's number does not match your number";
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

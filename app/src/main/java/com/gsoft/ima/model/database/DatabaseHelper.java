@@ -193,6 +193,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.update(TABLE_USER, contentValuesUser(user), COLUMN_ID+" = ?", new String[]{cursor.getString(0)});
     }
 
+    public long updateBalance(int amount, String type) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = selectUser();
+        cursor.moveToFirst();
+        int balance = cursor.getInt(12) - amount;
+
+        if (type.equals("ADD")) {
+            balance = cursor.getInt(12) + amount;
+        }
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_BALANCE, balance);
+        return db.update(TABLE_USER, contentValues, COLUMN_ID+" = ?", new String[]{cursor.getString(0)});
+    }
+
     public double deleteUser() {
         SQLiteDatabase db = this.getWritableDatabase();
         String id = "";
@@ -201,6 +216,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cursor.moveToFirst();
             id = cursor.getString(0);
         }
+        db.execSQL("DELETE FROM "+TABLE_TRANSACTION);
         return db.delete(TABLE_USER, COLUMN_ID+" = ?", new String[]{id});
     }
 

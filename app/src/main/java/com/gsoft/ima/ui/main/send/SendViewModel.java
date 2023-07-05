@@ -76,13 +76,13 @@ public class SendViewModel extends ViewModel {
                 MainActivity activity = (MainActivity) context;
                 Socket socket = activity.socket;
                 String title = EMPTY;
-                String message = context.getString(R.string.qr_code_created);
+                String message = context.getString(R.string.qr_code_created);/*
                 if (socket == null) {
                     title = context.getString(R.string.error_con_to_phone);
                     message = context.getString(R.string.message_create_client);
-                } else {
+                } else {*/
                     Utils.createQrCode(TransactionToString(transaction), binding.qrImage);
-                }
+               // }
                 AlertDialog dialog = new AlertDialog(context, title, message);
                 dialog.show();
             } else {
