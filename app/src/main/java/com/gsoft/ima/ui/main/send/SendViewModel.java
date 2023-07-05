@@ -73,8 +73,8 @@ public class SendViewModel extends ViewModel {
 
         if (validation(transaction)) {
             if (transaction.method.equals(context.getString(R.string.qr_code))) {
-                MainActivity activity = (MainActivity) context;
-                Socket socket = activity.socket;
+               /* MainActivity activity = (MainActivity) context;
+                Socket socket = activity.socket;*/
                 String title = EMPTY;
                 String message = context.getString(R.string.qr_code_created);/*
                 if (socket == null) {
@@ -82,7 +82,7 @@ public class SendViewModel extends ViewModel {
                     message = context.getString(R.string.message_create_client);
                 } else {*/
                     Utils.createQrCode(TransactionToString(transaction), binding.qrImage);
-               // }
+                //}
                 AlertDialog dialog = new AlertDialog(context, title, message);
                 dialog.show();
             } else {

@@ -67,6 +67,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String COLUMN_DATE = "created_at";
 
+    private static final String TABLE_JSON = "transaction_json";
+    private static final String COLUMN_VALUE = "value";
+
+
     public DatabaseHelper(Context context) {
         super(context, databaseName, null, 1);
     }
@@ -104,9 +108,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_AMOUNT + " INTEGER, " +
                 COLUMN_DATE +" DATETIME)";
 
+
+        String SQL_CREATE_TRANS_JSON = "CREATE TABLE "+ TABLE_JSON +" ("+COLUMN_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                COLUMN_VALUE + " TEXT, " +
+                " created_at DATETIME)";
+
         db.execSQL(SQL_CREATE_USER);
         db.execSQL(SQL_CREATE_DISC);
         db.execSQL(SQL_CREATE_TRANS);
+        db.execSQL(SQL_CREATE_TRANS_JSON);
     }
 
     @Override
@@ -276,5 +286,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return allTransaction;
     }
 
+    public long insertTransJson(String jsonString) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_VALUE, jsonString);
+        return db.insert(TABLE_JSON, null, values);
+    }
+
+    public boolean checkTransJsonIfExist(String jsonString) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM "+TABLE_JSON+" WHERE "+COLUMN_VALUE+ " = '"+jsonString+"'";
+        boolean isExist = true;
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.getCount() == 0) {
+            isExist = false;
+        }
+        return isExist;
+    }
 }
 

@@ -37,9 +37,12 @@ import static com.gsoft.ima.constants.main.TransactionConstants.NUM_SENDER;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -59,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         setFragment(new HomeFragment());
         configBottomNav();
         configServer();
-        hideLayoutNetwork();
+       // hideLayoutNetwork();
     }
 
     private void configBottomNav() {
@@ -118,6 +121,32 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    class Thread2 implements Runnable {
+
+        @Override
+        public void run() {
+            Socket socket;
+            try {
+                socket = new Socket(SERVER_IP, SERVER_PORT);
+
+                // Received data over the socket
+                DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
+                String data = dataInputStream.readUTF();
+
+                runOnUiThread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        binding.messageNetwork.setText("Connected\n"+data);
+                    }
+                });
+                new Thread(new Thread2()).start();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public void setFragment(Fragment fragment) {
         currentFragment =  fragment.getClass().toString().replace(CLASS, EMPTY);
         FragmentManager fm = getSupportFragmentManager();
@@ -166,6 +195,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
 
             String result = data.getStringExtra(QR_SCAN_RESULT);
+
             if (result.contains(NAME_SENDER)) {
                 try {
                     JSONObject jsonObject = new JSONObject(result);
@@ -175,14 +205,34 @@ public class MainActivity extends AppCompatActivity {
                     transaction.nameReceiver = jsonObject.getString(NAME_RECEIVER);
                     transaction.numReceiver = jsonObject.getString(NUM_RECEIVER);
                     transaction.ipAddress = jsonObject.getString(IP_SENDER);
+                    SERVER_IP = transaction.ipAddress;
                     transaction.status = "success";
                     transaction.method = "QR Code";
+
+                    Thread thread2 = new Thread(new Thread2());
+                    thread2.start();
+
                     DatabaseHelper db = new DatabaseHelper(this);
                     if (socket != null) {
                         try {
                             DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
                             String message = "received";
                             dataOutputStream.writeUTF(message);
+                            if (transaction.numReceiver.equals(UserLogged.data(MainActivity.this).phone)) {
+                                if (!db.checkTransJsonIfExist(result)) {
+                                    if (db.insertTransaction(transaction) != -1) {
+                                        db.updateBalance(transaction.amount, "ADD");
+                                        db.insertTransJson(result);
+                                        result = "Transaction successfully";
+                                    } else {
+                                        result = "Error";
+                                    }
+                                } else {
+                                    result = "Transaction already saved";
+                                }
+                            } else {
+                                result = "The recipient's number does not match your number";
+                            }
                         } catch (Exception e) {
                             e.printStackTrace();
                             result = e.getMessage();
@@ -190,22 +240,11 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         result = "You are not connected";
                     }
-                    if (transaction.numReceiver.equals(UserLogged.data(MainActivity.this).phone)) {
-                        if (db.insertTransaction(transaction) != -1) {
-                            db.updateBalance(transaction.amount, "ADD");
-                            result = "Transaction successfully";
-                        } else {
-                            result = "Error";
-                        }
-                    } else {
-                        result = "The recipient's number does not match your number";
-                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                     result = e.getMessage();
                 }
             }
-
             AlertDialog dialog = new AlertDialog(MainActivity.this, EMPTY, result);
             dialog.show();
         }
