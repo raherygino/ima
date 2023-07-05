@@ -110,6 +110,13 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             binding.messageNetwork.setText("Connected: "+data);
+                            try {
+                                socket.close();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            Thread thread1 = new Thread(new Thread1());
+                            thread1.start();
                         }
                     });
                 } catch (IOException e) {
