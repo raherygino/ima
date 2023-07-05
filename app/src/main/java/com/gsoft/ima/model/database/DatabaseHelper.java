@@ -17,6 +17,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import static com.gsoft.ima.constants.main.FormConstants.BALANCE;
 import static com.gsoft.ima.constants.main.FormConstants.BIRTHDAY;
 import static com.gsoft.ima.constants.main.FormConstants.BIRTHPLACE;
 import static com.gsoft.ima.constants.main.FormConstants.CITY;
@@ -152,6 +153,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     object.getString(PASSWORD),
                     object.getString(PASSWORD)
             );
+            user.balance = object.getInt(BALANCE);
             isCreated = this.createUser(user);
         } catch (JSONException jsonException) {
             jsonException.printStackTrace();

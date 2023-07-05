@@ -138,6 +138,14 @@ public class SendViewModel extends ViewModel {
             binding.amount.setError(context.getString(R.string.value_too_short));
         }
 
+        if (transaction.amount > user.balance) {
+            isValidate = false;
+            String message = context.getString(R.string.error_balance);
+            binding.amount.setError(message);
+            AlertDialog dialog = new AlertDialog(context, message, EMPTY);
+            dialog.show();
+        }
+
         if (!binding.password.getText().toString().equals(user.password)) {
             isValidate = false;
             binding.password.setError(context.getString(R.string.password_not_match));

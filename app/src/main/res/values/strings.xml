@@ -87,6 +87,7 @@
     <string name="cin_invalid">CIN invalid</string>
     <string name="code_invalid">Code invalid</string>
     <string name="email_sent_to">Email sent to %1$s successfully!</string>
+    <string name="error_balance">Your balance is insufficient</string>
     <string name="error_char_spec">The specific character is not allowed!</string>
     <string name="error_character">The apostrophe symbol is not allowed!</string>
     <string name="error_connection">Unable to connect, Check your internet connection</string>

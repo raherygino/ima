@@ -117,7 +117,6 @@ public class RegisterViewModel extends ViewModel {
 
     public void registerListener() {
         User user = userData.getFromView(binding);
-        user.balance = 45000;
         if (user.isValidate(context, binding) && binding.acceptSignup.isChecked()) {
             register(user);
         } else {
