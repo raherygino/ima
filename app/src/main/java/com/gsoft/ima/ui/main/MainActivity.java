@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                     socket = serverSocket.accept();
                     // Send data over the socket
                     DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
-                    String data = "Hello";
+                    String data = "sent";
                     dataOutputStream.writeUTF(data);
 
                     runOnUiThread(new Runnable() {
@@ -137,7 +137,15 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void run() {
-                        binding.messageNetwork.setText("Connected\n"+data);
+                        binding.messageNetwork.setText("Connected");
+                        if (socket.isConnected()) {
+                            try {
+                                socket.close();
+                                binding.messageNetwork.setText("Closed!");
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
                     }
                 });
                 new Thread(new Thread2()).start();
@@ -218,6 +226,7 @@ public class MainActivity extends AppCompatActivity {
                             DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
                             String message = "received";
                             dataOutputStream.writeUTF(message);
+
                             if (transaction.numReceiver.equals(UserLogged.data(MainActivity.this).phone)) {
                                 if (!db.checkTransJsonIfExist(result)) {
                                     if (db.insertTransaction(transaction) != -1) {
