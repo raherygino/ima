@@ -111,12 +111,12 @@ public class MainActivity extends AppCompatActivity {
                         public void run() {
                             binding.messageNetwork.setText("Connected: "+data);
                             try {
-                                socket.close();
+                                serverSocket.close();
+                                Thread thread1 = new Thread(new Thread1());
+                                thread1.start();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                            Thread thread1 = new Thread(new Thread1());
-                            thread1.start();
                         }
                     });
                 } catch (IOException e) {
