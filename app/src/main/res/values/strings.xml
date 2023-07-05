@@ -87,6 +87,7 @@
     <string name="cin_invalid">CIN invalid</string>
     <string name="code_invalid">Code invalid</string>
     <string name="email_sent_to">Email sent to %1$s successfully!</string>
+    <string name="error_con_to_phone">You are not connected to another phone</string>
     <string name="error_balance">Your balance is insufficient</string>
     <string name="error_char_spec">The specific character is not allowed!</string>
     <string name="error_character">The apostrophe symbol is not allowed!</string>
@@ -99,6 +100,7 @@
     <string name="error_logout">You can\'t logout!</string>
     <string name="error_scan">Scan Error</string>
     <string name="error_scan_details">QR Code could not be scanned</string>
+    <string name="message_create_client">Create a client and server</string>
     <string name="message_not_sent">Failed to send message!</string>
     <string name="message_sent">Message sent!</string>
     <string name="password_must">Password must contain 6 character minimum</string>

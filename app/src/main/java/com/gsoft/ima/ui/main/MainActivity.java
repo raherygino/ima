@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private String currentFragment;
     private BottomNav nav;
     private static String SERVER_IP = EMPTY;
-    private Socket socket;
+    public Socket socket;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

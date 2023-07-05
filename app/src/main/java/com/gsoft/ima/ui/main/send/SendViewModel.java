@@ -24,6 +24,8 @@ import static com.gsoft.ima.constants.main.TransactionConstants.*;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.Socket;
+
 public class SendViewModel extends ViewModel {
 
     @SuppressLint("StaticFieldLeak")
@@ -69,17 +71,18 @@ public class SendViewModel extends ViewModel {
         transaction.ipAddress = Utils.getIpAddress(context);
         DatabaseHelper db = new DatabaseHelper(context);
 
-        MainActivity activity = (MainActivity) context;
-        activity.getSocket();
-
         if (validation(transaction)) {
-            if (transaction.method.equals(context.getString(R.string.qr_code))) {/*
-                if (Utils.getIpAddress(context).equals("0.0.0.0")) {
-                    AlertDialog dialog = new AlertDialog(context, EMPTY, "You are not connected");
+            if (transaction.method.equals(context.getString(R.string.qr_code))) {
+                MainActivity activity = (MainActivity) context;
+                Socket socket = activity.socket;
+                if (socket == null) {
+                    String title = context.getString(R.string.error_con_to_phone);
+                    String message = context.getString(R.string.message_create_client);
+                    AlertDialog dialog = new AlertDialog(context, title, message);
                     dialog.show();
-                } else {*/
+                } else {
                     Utils.createQrCode(TransactionToString(transaction), binding.qrImage);
-               // }
+                }
             } else {
                 if (db.insertTransaction(transaction) != -1) {
                     AlertDialog dialog = new AlertDialog(context, EMPTY, "Created");
