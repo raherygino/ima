@@ -146,6 +146,8 @@ public class MainActivity extends AppCompatActivity {
                                 e.printStackTrace();
                             }
                         }
+                        AlertDialog dialog = new AlertDialog(MainActivity.this, EMPTY, "Connected");
+                        dialog.show();
                     }
                 });
                 new Thread(new Thread2()).start();
