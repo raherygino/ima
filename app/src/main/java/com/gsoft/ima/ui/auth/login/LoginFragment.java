@@ -1,4 +1,4 @@
-package com.gsoft.ima.ui.login;
+package com.gsoft.ima.ui.auth.login;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

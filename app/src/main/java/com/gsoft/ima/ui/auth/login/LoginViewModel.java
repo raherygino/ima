@@ -1,28 +1,21 @@
-package com.gsoft.ima.ui.login;
+package com.gsoft.ima.ui.auth.login;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.view.View;
-import android.widget.Toast;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.ObservableField;
-import androidx.fragment.app.FragmentManager;
 
 import com.gsoft.ima.R;
 import com.gsoft.ima.api.RetrofitClient;
 import com.gsoft.ima.databinding.FragmentLoginBinding;
 import com.gsoft.ima.di.dialog.AlertDialog;
-import com.gsoft.ima.di.dialog.PromptDialog;
 import com.gsoft.ima.model.database.DatabaseHelper;
-import com.gsoft.ima.model.models.User;
 import com.gsoft.ima.ui.auth.AuthActivity;
-import com.gsoft.ima.ui.forgot.ForgotFragment;
+import com.gsoft.ima.ui.auth.forgot.ForgotFragment;
 import com.gsoft.ima.ui.main.MainActivity;
-import com.gsoft.ima.ui.register.RegisterFragment;
+import com.gsoft.ima.ui.auth.register.RegisterFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;

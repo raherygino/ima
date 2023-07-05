@@ -1,4 +1,4 @@
-package com.gsoft.ima.ui.forgot;
+package com.gsoft.ima.ui.auth.forgot;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment;
 
 import com.gsoft.ima.R;
 import com.gsoft.ima.databinding.FragmentForgotPassBinding;
-import com.gsoft.ima.di.dialog.AlertDialog;
 
 public class ForgotFragment extends Fragment {
     ForgotViewModel viewModel;

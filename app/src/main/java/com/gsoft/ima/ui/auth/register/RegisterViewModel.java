@@ -1,4 +1,4 @@
-package com.gsoft.ima.ui.register;
+package com.gsoft.ima.ui.auth.register;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -23,12 +23,11 @@ import com.gsoft.ima.databinding.FragmentRegisterBinding;
 import com.gsoft.ima.di.components.EditText;
 import com.gsoft.ima.di.dialog.AlertDialog;
 import com.gsoft.ima.di.dialog.ListDialog;
-import com.gsoft.ima.di.dialog.WebViewDialog;
 import com.gsoft.ima.model.database.DatabaseHelper;
 import com.gsoft.ima.model.models.User;
 import com.gsoft.ima.model.models.UserData;
 import com.gsoft.ima.ui.auth.AuthActivity;
-import com.gsoft.ima.ui.login.LoginFragment;
+import com.gsoft.ima.ui.auth.login.LoginFragment;
 import com.gsoft.ima.ui.main.MainActivity;
 import com.gsoft.ima.utils.Utils;
 

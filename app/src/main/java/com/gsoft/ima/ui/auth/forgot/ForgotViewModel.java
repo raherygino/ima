@@ -1,4 +1,4 @@
-package com.gsoft.ima.ui.forgot;
+package com.gsoft.ima.ui.auth.forgot;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -6,20 +6,15 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.databinding.ObservableField;
 import androidx.lifecycle.ViewModel;
 
 import com.gsoft.ima.R;
 import com.gsoft.ima.api.RetrofitClient;
 import com.gsoft.ima.databinding.FragmentForgotPassBinding;
-import com.gsoft.ima.databinding.FragmentLoginBinding;
 import com.gsoft.ima.di.dialog.AlertDialog;
 import com.gsoft.ima.ui.auth.AuthActivity;
-import com.gsoft.ima.ui.login.LoginFragment;
-import com.gsoft.ima.ui.resetpass.ResetPasswordFragment;
-import com.gsoft.ima.utils.Utils;
+import com.gsoft.ima.ui.auth.resetpass.ResetPasswordFragment;
 
-import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
 

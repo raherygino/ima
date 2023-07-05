@@ -2,10 +2,8 @@ package com.gsoft.ima.ui.auth;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,12 +13,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.gsoft.ima.R;
 import com.gsoft.ima.databinding.ActivityAuthBinding;
-import com.gsoft.ima.di.dialog.AlertDialog;
 import com.gsoft.ima.di.dialog.ConfirmDialog;
-import com.gsoft.ima.model.database.DatabaseHelper;
-import com.gsoft.ima.ui.forgot.ForgotFragment;
-import com.gsoft.ima.ui.login.LoginFragment;
-import com.gsoft.ima.utils.Utils;
+import com.gsoft.ima.ui.auth.forgot.ForgotFragment;
+import com.gsoft.ima.ui.auth.login.LoginFragment;
 
 import static com.gsoft.ima.constants.main.FormConstants.EMAIL;
 import static com.gsoft.ima.constants.main.MainConstants.*;

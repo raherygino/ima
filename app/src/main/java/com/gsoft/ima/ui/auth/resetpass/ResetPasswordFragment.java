@@ -1,4 +1,4 @@
-package com.gsoft.ima.ui.resetpass;
+package com.gsoft.ima.ui.auth.resetpass;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment;
 
 import com.gsoft.ima.R;
 import com.gsoft.ima.databinding.FragmentResetPassBinding;
-import com.gsoft.ima.di.components.EditText;
 
 public class ResetPasswordFragment extends Fragment {
     private FragmentResetPassBinding binding;

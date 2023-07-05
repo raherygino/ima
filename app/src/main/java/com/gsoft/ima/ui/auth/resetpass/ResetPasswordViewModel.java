@@ -1,11 +1,10 @@
-package com.gsoft.ima.ui.resetpass;
+package com.gsoft.ima.ui.auth.resetpass;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
-import android.widget.Toast;
 
 import androidx.lifecycle.ViewModel;
 
@@ -15,8 +14,7 @@ import com.gsoft.ima.databinding.FragmentResetPassBinding;
 import com.gsoft.ima.di.dialog.AlertDialog;
 import com.gsoft.ima.model.database.DatabaseHelper;
 import com.gsoft.ima.ui.auth.AuthActivity;
-import com.gsoft.ima.ui.forgot.ForgotFragment;
-import com.gsoft.ima.ui.forgot.ForgotViewModel;
+import com.gsoft.ima.ui.auth.forgot.ForgotFragment;
 import com.gsoft.ima.ui.main.MainActivity;
 
 import org.json.JSONException;
@@ -30,7 +28,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.gsoft.ima.constants.main.MainConstants.EMPTY;
-import static com.gsoft.ima.constants.main.MainConstants.SEND;
 import static com.gsoft.ima.constants.main.MainConstants.SINGLE_QUOTE;
 import static com.gsoft.ima.constants.main.MainConstants.SUCCESS;
 

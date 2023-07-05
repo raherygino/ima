@@ -1,4 +1,4 @@
-package com.gsoft.ima.ui.register;
+package com.gsoft.ima.ui.auth.register;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
