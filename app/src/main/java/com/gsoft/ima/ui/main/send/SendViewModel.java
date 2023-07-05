@@ -75,14 +75,16 @@ public class SendViewModel extends ViewModel {
             if (transaction.method.equals(context.getString(R.string.qr_code))) {
                 MainActivity activity = (MainActivity) context;
                 Socket socket = activity.socket;
+                String title = EMPTY;
+                String message = context.getString(R.string.qr_code_created);
                 if (socket == null) {
-                    String title = context.getString(R.string.error_con_to_phone);
-                    String message = context.getString(R.string.message_create_client);
-                    AlertDialog dialog = new AlertDialog(context, title, message);
-                    dialog.show();
+                    title = context.getString(R.string.error_con_to_phone);
+                    message = context.getString(R.string.message_create_client);
                 } else {
                     Utils.createQrCode(TransactionToString(transaction), binding.qrImage);
                 }
+                AlertDialog dialog = new AlertDialog(context, title, message);
+                dialog.show();
             } else {
                 if (db.insertTransaction(transaction) != -1) {
                     AlertDialog dialog = new AlertDialog(context, EMPTY, "Created");

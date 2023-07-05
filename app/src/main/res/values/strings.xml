@@ -106,6 +106,7 @@
     <string name="password_must">Password must contain 6 character minimum</string>
     <string name="password_not_match">Password not match</string>
     <string name="phone_invalid">Phone number invalid</string>
+    <string name="qr_code_created">QR Code Created</string>
     <string name="reset_code_details">Your password reset code is sent to your email</string>
     <string name="server_off">The server is not running</string>
     <!-- Menu setting -->
