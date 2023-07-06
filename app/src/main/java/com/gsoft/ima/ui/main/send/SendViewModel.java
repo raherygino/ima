@@ -1,14 +1,17 @@
 package com.gsoft.ima.ui.main.send;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.view.MenuItem;
 import android.widget.PopupMenu;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.lifecycle.ViewModel;
 
 import com.gsoft.ima.R;
+import com.gsoft.ima.api.FetchData;
 import com.gsoft.ima.api.RetrofitClient;
 import com.gsoft.ima.databinding.FragmentSendBinding;
 import com.gsoft.ima.di.dialog.AlertDialog;
@@ -22,12 +25,14 @@ import com.gsoft.ima.utils.Utils;
 import static com.gsoft.ima.constants.main.MainConstants.*;
 import static com.gsoft.ima.constants.main.TransactionConstants.*;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.Socket;
 
+import dmax.dialog.SpotsDialog;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,6 +45,7 @@ public class SendViewModel extends ViewModel {
     private final FragmentSendBinding binding;
     private final User user;
     private Transaction transaction;
+    private ProgressDialog dialogLoading;
 
     public SendViewModel(Context context, FragmentSendBinding binding) {
         this.binding = binding;
@@ -82,19 +88,16 @@ public class SendViewModel extends ViewModel {
         if (validation(transaction)) {
             String method = transaction.method;
             if (method.equals(context.getString(R.string.qr_code))) {
-               /* MainActivity activity = (MainActivity) context;
-                Socket socket = activity.socket;*/
                 String title = EMPTY;
-                String message = context.getString(R.string.qr_code_created);/*
-                if (socket == null) {
-                    title = context.getString(R.string.error_con_to_phone);
-                    message = context.getString(R.string.message_create_client);
-                } else {*/
-                    Utils.createQrCode(TransactionToString(transaction), binding.qrImage);
-                //}
+                String message = context.getString(R.string.qr_code_created);
+                Utils.createQrCode(TransactionToString(transaction), binding.qrImage);
                 AlertDialog dialog = new AlertDialog(context, title, message);
                 dialog.show();
             } else if (method.equals(context.getString(R.string.network))){
+                dialogLoading = new ProgressDialog(context);
+                dialogLoading.setMessage("Loading");
+                dialogLoading.setCancelable(false);
+                dialogLoading.show();
                 RetrofitClient.createTransaction(transaction)
                         .enqueue(new enqueue(SEND));
             } else {
@@ -177,22 +180,27 @@ public class SendViewModel extends ViewModel {
 
         public enqueue(String type) {
             this.type = type;
+
+
         }
 
         @Override
         public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
+            dialogLoading.cancel();
                 if (response.isSuccessful()) {
+                    DatabaseHelper db = new DatabaseHelper(context);
+                    String result = "";
                     try {
-                        String result = response.body().source().readUtf8();
+                        result = response.body().source().readUtf8();
                         JSONObject object = new JSONObject(result);
+
                         if (type.equals(SEND)) {
                             if (object.getString(MESSAGE).contains(STAT_SENT)) {
                                 RetrofitClient.totalPending(user.phone)
                                         .enqueue(new enqueue("total"));
                             }
                         }else if (type.equals("total")) {
-                            DatabaseHelper db = new DatabaseHelper(context);
                             AlertDialog dialog = new AlertDialog(context, EMPTY, "Amount sent successfully");
                             dialog.show();
                             binding.name.setText(EMPTY);
@@ -200,17 +208,23 @@ public class SendViewModel extends ViewModel {
                             binding.amount.setText(EMPTY);
                             binding.password.setText(EMPTY);
                             db.addAmountPending(object.getInt("total"));
+                            RetrofitClient.getPendingSender(user.phone).enqueue(new enqueue(ALL_PENDING));
+                        } else if (type.equals("all_pending")) {
+                            FetchData.getPendingSender(context, user.phone);
                         }
                     } catch (IOException | JSONException e) {
                         e.printStackTrace();
-                        AlertDialog dialog = new AlertDialog(context, EMPTY, e.getMessage());
+                        AlertDialog dialog = new AlertDialog(context, EMPTY, e.getMessage()+" "+result);
                         dialog.show();
                     }
+                } else {
+                    Toast.makeText(context, "Error", Toast.LENGTH_LONG).show();
                 }
         }
 
         @Override
         public void onFailure(Call<ResponseBody> call, Throwable t) {
+            dialogLoading.cancel();
             AlertDialog dialog = new AlertDialog(context, EMPTY, t.getMessage());
             dialog.show();
         }

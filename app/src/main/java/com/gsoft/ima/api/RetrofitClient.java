@@ -71,4 +71,8 @@ public class RetrofitClient {
         return getApiService().getTotalSentPending(phone);
     }
 
+    public static Call<ResponseBody> getPendingSender(String phone) {
+        return getApiService().getPendingSender(phone);
+    }
+
 }

@@ -7,4 +7,5 @@ public class TransactionConstants {
     public static final String NUM_RECEIVER = "num_receiver";
     public static final String IP_SENDER = "ip_sender";
     public static final String AMOUNT = "amount";
+    public static final String ALL_PENDING = "all_pending";
 }

@@ -77,4 +77,10 @@ public interface ApiService {
             @Query("total") String phone
     );
 
+    @Headers("Content-Type: application/json")
+    @GET("transactions/")
+    Call<ResponseBody> getPendingSender(
+            @Query("phone") String phone
+    );
+
 }

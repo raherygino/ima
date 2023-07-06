@@ -320,5 +320,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return isExist;
     }
+
+
+    public double deleteTransactionNetwork() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_TRANSACTION, COLUMN_METHOD+" = ?", new String[]{"Network"});
+    }
 }
 
