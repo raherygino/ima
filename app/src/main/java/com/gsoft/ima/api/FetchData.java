@@ -1,5 +1,6 @@
 package com.gsoft.ima.api;
 
+import static com.gsoft.ima.constants.main.MainConstants.DATA_USER;
 import static com.gsoft.ima.constants.main.TransactionConstants.ALL_PENDING;
 import static com.gsoft.ima.constants.main.TransactionConstants.AMOUNT;
 import static com.gsoft.ima.constants.main.TransactionConstants.NAME_RECEIVER;
@@ -32,6 +33,10 @@ public class FetchData {
         RetrofitClient.getPendingSender(phone).enqueue(new Enqueue(context, ALL_PENDING));
     }
 
+    public static void getDataUserByPhone(Context context, String phone) {
+        RetrofitClient.getUser(phone).enqueue(new Enqueue(context, DATA_USER));
+    }
+
     static class Enqueue implements Callback<ResponseBody> {
 
         private final Context context;
@@ -50,6 +55,11 @@ public class FetchData {
                     JSONObject object = new JSONObject(result);
                     if (type.equals(ALL_PENDING)) {
                         getPendingSender(object);
+                    } else if (type.equals(DATA_USER)) {
+                        JSONObject data = new JSONObject(result);
+                        DatabaseHelper db = new DatabaseHelper(context);
+                        db.deleteUser();
+                        db.createUserByObject(data);
                     }
                 } catch (IOException | JSONException e) {
                     e.printStackTrace();
@@ -77,6 +87,7 @@ public class FetchData {
                     transaction1.numReceiver = item.getString(NUM_RECEIVER);
                     transaction1.nameReceiver = item.getString(NAME_RECEIVER);
                     transaction1.status = item.getString("status");
+                    transaction1.id = item.getInt("id_transaction");
                     db.insertTransaction(transaction1);
                 }
             } catch (JSONException e) {
@@ -85,4 +96,5 @@ public class FetchData {
             }
         }
     }
+
 }

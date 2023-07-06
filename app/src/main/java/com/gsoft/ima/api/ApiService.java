@@ -16,7 +16,7 @@ public interface ApiService {
     @Headers("Content-Type: application/json")
     @GET("users/")
     Call<ResponseBody> getUser(
-            @Query(FIRSTNAME) String firstname
+            @Query(PHONE) String phone
     );
 
     @FormUrlEncoded
@@ -83,4 +83,11 @@ public interface ApiService {
             @Query("phone") String phone
     );
 
+    @FormUrlEncoded
+    @POST("transactions/validate")
+    Call<ResponseBody> confirmTransaction(
+            @Field("id") int id,
+            @Field("amount") int amount,
+            @Field("phone") String phone
+    );
 }

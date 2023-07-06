@@ -21,8 +21,8 @@ public class RetrofitClient {
         return retrofit.create(ApiService.class);
     }
 
-    public static Call<ResponseBody> getUsers(String firstname) {
-        return  getApiService().getUser(firstname);
+    public static Call<ResponseBody> getUser(String phone) {
+        return  getApiService().getUser(phone);
     }
 
     public static Call<ResponseBody> login(String phone, String password) {
@@ -73,6 +73,10 @@ public class RetrofitClient {
 
     public static Call<ResponseBody> getPendingSender(String phone) {
         return getApiService().getPendingSender(phone);
+    }
+
+    public static Call<ResponseBody> confirmTransaction(int id, int amount, String phone) {
+        return getApiService().confirmTransaction(id, amount, phone);
     }
 
 }

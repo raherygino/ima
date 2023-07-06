@@ -66,6 +66,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_TOKEN_RECEIVER = "token_receiver";
     private static final String COLUMN_STATUS = "status";
     private static final String COLUMN_AMOUNT = "amount";
+    private static final String COLUMN_ID_SERV = "id_transaction";
 
     private static final String COLUMN_DATE = "created_at";
 
@@ -110,6 +111,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_TOKEN_RECEIVER + " TEXT, " +
                 COLUMN_STATUS + " TEXT, " +
                 COLUMN_AMOUNT + " INTEGER, " +
+                COLUMN_ID_SERV + " INTEGER, " +
                 COLUMN_DATE +" DATETIME)";
 
 
@@ -195,7 +197,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         final User user = new User(cursor.getString(1),
                 cursor.getString(2), cursor.getString(3), cursor.getString(4),
                 cursor.getString(5), cursor.getString(6), cursor.getString(7),
-                cursor.getString(8), cursor.getString(9), cursor.getString(10), cursor.getString(11), "");
+                cursor.getString(8), cursor.getString(9), cursor.getString(10),
+                cursor.getString(11), "");
         user.balance = cursor.getInt(12);
         user.pendingAmount = cursor.getInt(13);
         user.pendingType = cursor.getString(14);
@@ -262,6 +265,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_AMOUNT, transaction.amount);
         values.put(COLUMN_STATUS, transaction.status);
         values.put(COLUMN_DATE, transaction.date);
+        values.put(COLUMN_ID_SERV, transaction.id);
         return values;
     }
 
@@ -296,7 +300,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             transaction.tokenSender = cursor.getString(6);
             transaction.tokenReceiver = cursor.getString(7);
             transaction.status = cursor.getString(8);
-            transaction.date = cursor.getString(10);
+            transaction.id = cursor.getInt(10);
+            transaction.date = cursor.getString(11);
             allTransaction.add(transaction);
         }
 

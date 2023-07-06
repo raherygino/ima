@@ -7,6 +7,7 @@ public class Transaction {
     public String nameSender = EMPTY;
     public String numSender = EMPTY;
     public int amount = 0;
+    public int id = 0;
     public String nameReceiver = EMPTY;
     public String numReceiver = EMPTY;
     public String date = EMPTY;
