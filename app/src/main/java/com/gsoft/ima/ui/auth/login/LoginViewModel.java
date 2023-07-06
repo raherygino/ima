@@ -8,14 +8,17 @@ import androidx.databinding.BaseObservable;
 import androidx.databinding.ObservableField;
 
 import com.gsoft.ima.R;
+import com.gsoft.ima.api.FetchData;
 import com.gsoft.ima.api.RetrofitClient;
 import com.gsoft.ima.databinding.FragmentLoginBinding;
 import com.gsoft.ima.di.dialog.AlertDialog;
 import com.gsoft.ima.model.database.DatabaseHelper;
+import com.gsoft.ima.model.models.UserData;
 import com.gsoft.ima.ui.auth.AuthActivity;
 import com.gsoft.ima.ui.auth.forgot.ForgotFragment;
 import com.gsoft.ima.ui.main.MainActivity;
 import com.gsoft.ima.ui.auth.register.RegisterFragment;
+import com.gsoft.ima.utils.UserLogged;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,7 +55,6 @@ public class LoginViewModel extends BaseObservable {
         progressDialog.setCancelable(false);
         progressDialog.setMessage(context.getString(R.string.loading));
         progressDialog.show();
-
         Call<ResponseBody> createUser = RetrofitClient.login(phone.get(), password.get());
         createUser.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -67,9 +69,22 @@ public class LoginViewModel extends BaseObservable {
                                 JSONObject data = new JSONObject(result);
                                 DatabaseHelper db = new DatabaseHelper(context);
                                 db.createUserByObject(data);
-                                Intent intent = new Intent(context, MainActivity.class);
-                                activity.startActivity(intent);
-                                activity.finish();
+                                Thread thread = new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        FetchData.getPendingSender(context, phone.get());
+                                        activity.runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                Intent intent = new Intent(context, MainActivity.class);
+                                                activity.startActivity(intent);
+                                                activity.finish();
+                                            }
+                                        });
+                                    }
+                                });
+                                thread.start();
+
                             } catch (JSONException jsonException) {
                                 jsonException.printStackTrace();
                                 AlertDialog dialog = new AlertDialog(context, EMPTY, jsonException.getMessage());

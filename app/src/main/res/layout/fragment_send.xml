@@ -80,6 +80,30 @@
                     android:layout_gravity="center_horizontal" />
 
                 <com.gsoft.ima.di.components.Label
+                    android:id="@+id/layout_send"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_edit_text"
+                    android:layout_marginStart="@dimen/pd_10"
+                    android:layout_marginTop="@dimen/mt_edit_text"
+                    android:layout_marginEnd="@dimen/pd_10"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_amount"
+                    app:text="@string/send_by">
+
+                    <com.gsoft.ima.di.components.EditText
+                        android:id="@+id/send_by"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/transparent"
+                        android:focusable="false"
+                        android:fontFamily="@font/sf_pro_regular"
+                        android:paddingTop="@dimen/pd_10"
+                        android:singleLine="true"
+                        android:text="@string/bluetooth"
+                        android:textSize="@dimen/headline_5" />
+                </com.gsoft.ima.di.components.Label>
+
+                <com.gsoft.ima.di.components.Label
                     android:id="@+id/layout_name"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/height_edit_text"
@@ -144,30 +168,6 @@
                         android:inputType="number"
                         android:paddingTop="@dimen/pd_10"
                         android:singleLine="true"
-                        android:textSize="@dimen/headline_5" />
-                </com.gsoft.ima.di.components.Label>
-
-                <com.gsoft.ima.di.components.Label
-                    android:id="@+id/layout_send"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/height_edit_text"
-                    android:layout_marginStart="@dimen/pd_10"
-                    android:layout_marginTop="@dimen/mt_edit_text"
-                    android:layout_marginEnd="@dimen/pd_10"
-                    app:layout_constraintTop_toBottomOf="@+id/layout_amount"
-                    app:text="@string/send_by">
-
-                    <com.gsoft.ima.di.components.EditText
-                        android:id="@+id/send_by"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentBottom="true"
-                        android:background="@color/transparent"
-                        android:focusable="false"
-                        android:fontFamily="@font/sf_pro_regular"
-                        android:paddingTop="@dimen/pd_10"
-                        android:singleLine="true"
-                        android:text="@string/bluetooth"
                         android:textSize="@dimen/headline_5" />
                 </com.gsoft.ima.di.components.Label>
 

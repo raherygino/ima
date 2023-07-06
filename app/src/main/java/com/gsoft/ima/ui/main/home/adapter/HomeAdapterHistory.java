@@ -1,15 +1,19 @@
 package com.gsoft.ima.ui.main.home.adapter;
 
 import android.content.Context;
+import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
 
 import com.gsoft.ima.R;
 import com.gsoft.ima.model.models.Transaction;
+import com.gsoft.ima.model.models.User;
+import com.gsoft.ima.utils.UserLogged;
 
 import java.util.ArrayList;
 
@@ -17,10 +21,12 @@ public class HomeAdapterHistory extends BaseAdapter {
 
     private final ArrayList<Transaction> transactions;
     private final Context context;
+    private final User user;
 
     public HomeAdapterHistory(Context context, ArrayList<Transaction> transactions) {
         this.context = context;
         this.transactions = transactions;
+        this.user = UserLogged.data(context);
     }
 
     @Override
@@ -38,6 +44,7 @@ public class HomeAdapterHistory extends BaseAdapter {
         return position;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
@@ -47,13 +54,26 @@ public class HomeAdapterHistory extends BaseAdapter {
         ViewHolder holder = (ViewHolder) convertView.getTag();
         Transaction item = getItem(position);
 
-        holder.icon.setImageDrawable(context.getDrawable(R.drawable.ic_arrow_in));
-        holder.username.setText(item.nameSender);
+        if (item.nameSender.equals(user.firstname)) {
+            holder.username.setText(item.nameReceiver);
+            holder.icon.setImageDrawable(context.getDrawable(R.drawable.ic_arrow_out));
+            holder.icon.setColorFilter(context.getColor(R.color.red_400));
+        } else {
+            holder.username.setText(item.nameSender);
+            holder.icon.setImageDrawable(context.getDrawable(R.drawable.ic_arrow_in));
+            holder.icon.setColorFilter(context.getColor(R.color.green_400));
+        }
+
+        holder.type.setText(item.status);
+
+        if (item.status.equals("sent") && item.nameReceiver.equals(user.firstname)) {
+            holder.type.setText("received");
+        }
+
         holder.date.setText(item.date);
         holder.amount.setText(String.valueOf(item.amount));
-        holder.type.setText(item.method);
-        holder.icon.setOnClickListener(new onClick());
-        holder.username.setOnClickListener(new onClick());
+        holder.icon.setOnClickListener(new onClick(position));
+        holder.username.setOnClickListener(new onClick(position));
 
         return convertView;
     }
@@ -73,9 +93,16 @@ public class HomeAdapterHistory extends BaseAdapter {
     }
 
     class onClick implements View.OnClickListener {
+
+        private final int position ;
+
+        public onClick(int pos) {
+            this.position = pos;
+        }
+
         @Override
         public void onClick(View view) {
-            Toast.makeText(context, "Item clicked", Toast.LENGTH_SHORT).show();
+            HomeAdapterMenu.showDetails(context, position, transactions);
         }
     }
 }

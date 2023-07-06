@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,6 +40,13 @@ public class HomeFragment extends Fragment {
         binding.username.setText(viewModel.user.firstname);
         binding.balance.setText(String.valueOf(user.balance));
         binding.logout.setOnClickListener(new OnClick());
+        binding.refresh.setOnClickListener(new OnClick());
+        binding.countPending.setText(String.valueOf(user.pendingCount));
+
+        if (user.pendingCount == 0) {
+            binding.countPending.setVisibility(View.GONE);
+        }
+
         Utils.setColorBarStatus(getContext());
         configTransactions();
 
@@ -63,6 +72,8 @@ public class HomeFragment extends Fragment {
                 dialog.show();
             } else if (id == R.id.btn_ok) {
                 viewModel.logout();
+            } else if (id == R.id.refresh) {
+                viewModel.refresh();
             }
         }
     }

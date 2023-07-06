@@ -49,6 +49,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_EMAIL = "email";
     private static final String COLUMN_PASSWORD = "password";
     private static final String COLUMN_BALANCE = "balance";
+    private static final String COLUMN_PENDING_AMOUNT = "pending_amount";
+    private static final String COLUMN_PENDING_COUNT = "pending_count";
+    private static final String COLUMN_PENDING_TYPE = "pending_type";
 
 
     private static final String TABLE_DIS = "district";
@@ -64,6 +67,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_TOKEN_RECEIVER = "token_receiver";
     private static final String COLUMN_STATUS = "status";
     private static final String COLUMN_AMOUNT = "amount";
+    private static final String COLUMN_ID_SERV = "id_transaction";
 
     private static final String COLUMN_DATE = "created_at";
 
@@ -90,6 +94,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_EMAIL + " TEXT, " +
                 COLUMN_PASSWORD + " TEXT, " +
                 COLUMN_BALANCE + " INTEGER, " +
+                COLUMN_PENDING_AMOUNT + " INTEGER, " +
+                COLUMN_PENDING_COUNT + " INTEGER, " +
+                COLUMN_PENDING_TYPE + " TEXT, " +
                 " created_at DATETIME)";
 
         String SQL_CREATE_DISC = "CREATE TABLE "+ TABLE_DIS +" ("+COLUMN_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
@@ -106,6 +113,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_TOKEN_RECEIVER + " TEXT, " +
                 COLUMN_STATUS + " TEXT, " +
                 COLUMN_AMOUNT + " INTEGER, " +
+                COLUMN_ID_SERV + " INTEGER, " +
                 COLUMN_DATE +" DATETIME)";
 
 
@@ -191,8 +199,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         final User user = new User(cursor.getString(1),
                 cursor.getString(2), cursor.getString(3), cursor.getString(4),
                 cursor.getString(5), cursor.getString(6), cursor.getString(7),
-                cursor.getString(8), cursor.getString(9), cursor.getString(10), cursor.getString(11), "");
+                cursor.getString(8), cursor.getString(9), cursor.getString(10),
+                cursor.getString(11), "");
         user.balance = cursor.getInt(12);
+        user.pendingAmount = cursor.getInt(13);
+        user.pendingCount = cursor.getInt(14);
+        user.pendingType = cursor.getString(15);
         return user;
     }
 
@@ -256,12 +268,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_AMOUNT, transaction.amount);
         values.put(COLUMN_STATUS, transaction.status);
         values.put(COLUMN_DATE, transaction.date);
+        values.put(COLUMN_ID_SERV, transaction.id);
         return values;
     }
 
     public long insertTransaction(Transaction transaction) {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.insert(TABLE_TRANSACTION, null, contentValuesTrans(transaction));
+    }
+
+    public long addAmountPending(int amount) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = selectUser();
+        cursor.moveToFirst();
+        updateBalance(amount, "REMOVE");
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_PENDING_AMOUNT, amount);
+        contentValues.put(COLUMN_PENDING_TYPE, "SENT");
+        return db.update(TABLE_USER, contentValues, COLUMN_ID+" = ?", new String[]{cursor.getString(0)});
+    }
+
+    public long addCountPending(int count) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = selectUser();
+        cursor.moveToFirst();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_PENDING_COUNT, count);
+        return db.update(TABLE_USER, contentValues, COLUMN_ID+" = ?", new String[]{cursor.getString(0)});
     }
 
     public ArrayList<Transaction> getAllTransaction() {
@@ -279,7 +312,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             transaction.tokenSender = cursor.getString(6);
             transaction.tokenReceiver = cursor.getString(7);
             transaction.status = cursor.getString(8);
-            transaction.date = cursor.getString(10);
+            transaction.id = cursor.getInt(10);
+            transaction.date = cursor.getString(11);
             allTransaction.add(transaction);
         }
 
@@ -302,6 +336,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             isExist = false;
         }
         return isExist;
+    }
+
+
+    public double deleteTransactionNetwork() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_TRANSACTION, COLUMN_METHOD+" = ?", new String[]{"Network"});
     }
 }
 

@@ -1,5 +1,6 @@
 package com.gsoft.ima.api;
 
+import com.gsoft.ima.model.models.Transaction;
 import com.gsoft.ima.model.models.User;
 
 import static com.gsoft.ima.constants.network.NetworkConstants.BASE_URL;
@@ -20,8 +21,8 @@ public class RetrofitClient {
         return retrofit.create(ApiService.class);
     }
 
-    public static Call<ResponseBody> getUsers(String firstname) {
-        return  getApiService().getUser(firstname);
+    public static Call<ResponseBody> getUser(String phone) {
+        return  getApiService().getUser(phone);
     }
 
     public static Call<ResponseBody> login(String phone, String password) {
@@ -56,4 +57,26 @@ public class RetrofitClient {
                 user.password
         );
     }
+
+    public static Call<ResponseBody> createTransaction(Transaction transaction) {
+        return getApiService().createTransaction(
+                transaction.numSender,
+                transaction.numReceiver,
+                transaction.amount
+        );
+    }
+
+
+    public static Call<ResponseBody> totalPending(String phone) {
+        return getApiService().getTotalSentPending(phone);
+    }
+
+    public static Call<ResponseBody> getPendingSender(String phone) {
+        return getApiService().getPendingSender(phone);
+    }
+
+    public static Call<ResponseBody> confirmTransaction(int id, int amount, String phone) {
+        return getApiService().confirmTransaction(id, amount, phone);
+    }
+
 }

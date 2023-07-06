@@ -23,6 +23,7 @@ public class MainConstants {
     public static final String BACK_ICON_BLUE = "back_icon_blue";
 
     public static final String DATE_FORMAT = "dd-MM-yyyy hh:mm:ss";
+    public static final String DATA_USER = "data_user";
 
     public static final String IC_ARROW_IN = "ic_arrow_in";
     public static final String IC_ARROW_OUT = "ic_arrow_out";

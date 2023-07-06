@@ -10,12 +10,13 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 import static com.gsoft.ima.constants.main.FormConstants.*;
+import static com.gsoft.ima.constants.main.TransactionConstants.*;
 
 public interface ApiService {
     @Headers("Content-Type: application/json")
     @GET("users/")
     Call<ResponseBody> getUser(
-            @Query(FIRSTNAME) String firstname
+            @Query(PHONE) String phone
     );
 
     @FormUrlEncoded
@@ -61,4 +62,32 @@ public interface ApiService {
             @Field(PASSWORD) String password
     );
 
+
+    @FormUrlEncoded
+    @POST("transactions/create")
+    Call<ResponseBody> createTransaction(
+            @Field(NUM_SENDER) String lastname,
+            @Field(NUM_RECEIVER) String firstname,
+            @Field(AMOUNT) int gender
+    );
+
+    @Headers("Content-Type: application/json")
+    @GET("transactions/")
+    Call<ResponseBody> getTotalSentPending(
+            @Query("total") String phone
+    );
+
+    @Headers("Content-Type: application/json")
+    @GET("transactions/")
+    Call<ResponseBody> getPendingSender(
+            @Query("phone") String phone
+    );
+
+    @FormUrlEncoded
+    @POST("transactions/validate")
+    Call<ResponseBody> confirmTransaction(
+            @Field("id") int id,
+            @Field("amount") int amount,
+            @Field("phone") String phone
+    );
 }
