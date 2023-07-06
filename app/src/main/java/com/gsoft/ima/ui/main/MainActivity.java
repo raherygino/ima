@@ -110,6 +110,9 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             binding.messageNetwork.setText("Connected: "+data);
+
+                            /// RECEIVED
+                            /// ADDITION
                             try {
                                 serverSocket.close();
                                 Thread thread1 = new Thread(new Thread1());
@@ -145,6 +148,9 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         binding.messageNetwork.setText("Connected");
+
+                        ///SEND
+                        ///SUBTRACTION
                         if (socket.isConnected()) {
                             try {
                                 socket.close();
@@ -153,8 +159,6 @@ public class MainActivity extends AppCompatActivity {
                                 e.printStackTrace();
                             }
                         }
-                        AlertDialog dialog = new AlertDialog(MainActivity.this, EMPTY, "Connected");
-                        dialog.show();
                     }
                 });
                 new Thread(new Thread2()).start();
