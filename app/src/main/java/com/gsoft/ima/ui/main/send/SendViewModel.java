@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -60,6 +61,13 @@ public class SendViewModel extends ViewModel {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 binding.sendBy.setText(menuItem.getTitle());
+                if (menuItem.getItemId() == R.id.data) {
+                    binding.layoutName.setVisibility(View.GONE);
+                    binding.name.setText("none");
+                } else {
+                    binding.layoutName.setVisibility(View.VISIBLE);
+                    binding.name.setText(EMPTY);
+                }
                 return true;
             }
         });
@@ -207,8 +215,11 @@ public class SendViewModel extends ViewModel {
                             binding.phone.setText(EMPTY);
                             binding.amount.setText(EMPTY);
                             binding.password.setText(EMPTY);
-                            db.addAmountPending(object.getInt("total"));
-                            RetrofitClient.getPendingSender(user.phone).enqueue(new enqueue(ALL_PENDING));
+                            db.addAmountPending(object.getInt("total"));/*
+                            RetrofitClient.getUser(user.phone).enqueue(new );
+                            RetrofitClient.getPendingSender(user.phone).enqueue(new enqueue(ALL_PENDING));*/
+                            FetchData.getDataUserByPhone(context, user.phone);
+                            FetchData.getPendingSender(context, user.phone);
                         } else if (type.equals("all_pending")) {
                             FetchData.getPendingSender(context, user.phone);
                         }

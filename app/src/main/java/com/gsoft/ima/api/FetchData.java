@@ -88,6 +88,7 @@ public class FetchData {
                     transaction1.nameReceiver = item.getString(NAME_RECEIVER);
                     transaction1.status = item.getString("status");
                     transaction1.id = item.getInt("id_transaction");
+                    transaction1.date = item.getString("created_at");
                     db.insertTransaction(transaction1);
                 }
             } catch (JSONException e) {

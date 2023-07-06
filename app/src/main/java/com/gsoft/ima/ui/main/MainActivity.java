@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         setFragment(new HomeFragment());
         configBottomNav();
         configServer();
-       // hideLayoutNetwork();
+        hideLayoutNetwork();
     }
 
     private void configBottomNav() {

@@ -17,6 +17,7 @@ import com.gsoft.ima.model.models.User;
 import com.gsoft.ima.utils.UserLogged;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class HomeAdapterHistory extends BaseAdapter {
 
@@ -64,7 +65,12 @@ public class HomeAdapterHistory extends BaseAdapter {
             holder.icon.setImageDrawable(context.getDrawable(R.drawable.ic_arrow_in));
             holder.icon.setColorFilter(context.getColor(R.color.green_400));
         }
+
         holder.type.setText(item.status);
+
+        if (item.status.equals("sent") && item.nameReceiver.equals(user.firstname)) {
+            holder.type.setText("received");
+        }
         holder.date.setText(item.date);
         holder.amount.setText(String.valueOf(item.amount));
         holder.icon.setOnClickListener(new onClick(position));
