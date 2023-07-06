@@ -24,6 +24,7 @@ public class User {
     public String token;
     public int balance = 0;
     public int pendingAmount = 0;
+    public int pendingCount = 0;
     public String pendingType = EMPTY;
 
     public User(

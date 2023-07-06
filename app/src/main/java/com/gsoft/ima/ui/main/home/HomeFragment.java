@@ -37,11 +37,14 @@ public class HomeFragment extends Fragment {
         user = UserLogged.data(getContext());
         binding.username.setText(viewModel.user.firstname);
         binding.balance.setText(String.valueOf(user.balance));
-        binding.pendingAmount.setText(String.valueOf(user.pendingAmount));
-        if (user.pendingAmount == 0 ) {
-            binding.layoutPending.setVisibility(View.GONE);
-        }
         binding.logout.setOnClickListener(new OnClick());
+        binding.refresh.setOnClickListener(new OnClick());
+        binding.countPending.setText(String.valueOf(user.pendingCount));
+
+        if (user.pendingCount == 0) {
+            binding.countPending.setVisibility(View.GONE);
+        }
+
         Utils.setColorBarStatus(getContext());
         configTransactions();
 
@@ -67,6 +70,8 @@ public class HomeFragment extends Fragment {
                 dialog.show();
             } else if (id == R.id.btn_ok) {
                 viewModel.logout();
+            } else if (id == R.id.refresh) {
+                viewModel.refresh();
             }
         }
     }

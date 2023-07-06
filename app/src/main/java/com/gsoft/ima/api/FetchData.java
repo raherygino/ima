@@ -1,6 +1,7 @@
 package com.gsoft.ima.api;
 
 import static com.gsoft.ima.constants.main.MainConstants.DATA_USER;
+import static com.gsoft.ima.constants.main.MainConstants.STAT_PENDING;
 import static com.gsoft.ima.constants.main.TransactionConstants.ALL_PENDING;
 import static com.gsoft.ima.constants.main.TransactionConstants.AMOUNT;
 import static com.gsoft.ima.constants.main.TransactionConstants.NAME_RECEIVER;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import com.gsoft.ima.model.database.DatabaseHelper;
 import com.gsoft.ima.model.models.Transaction;
 import com.gsoft.ima.model.models.User;
+import com.gsoft.ima.utils.UserLogged;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -74,10 +76,12 @@ public class FetchData {
 
         public void getPendingSender(JSONObject object) {
             DatabaseHelper db = new DatabaseHelper(context);
+            db.addCountPending(0);
             JSONArray jsonArray = null;
             try {
                 jsonArray = new JSONArray(object.getString("all"));
                 db.deleteTransactionNetwork();
+                int countPending = 0;
                 for (int i = 0 ; i < jsonArray.length(); i++ ) {
                     JSONObject item = jsonArray.getJSONObject(i);
                     Transaction transaction1 = new Transaction(item.getInt(AMOUNT));
@@ -90,7 +94,11 @@ public class FetchData {
                     transaction1.id = item.getInt("id_transaction");
                     transaction1.date = item.getString("created_at");
                     db.insertTransaction(transaction1);
+                    if (UserLogged.data(context).firstname.equals(transaction1.nameReceiver) && transaction1.status.equals(STAT_PENDING)) {
+                        countPending += 1;
+                    }
                 }
+                db.addCountPending(countPending);
             } catch (JSONException e) {
                 e.printStackTrace();
                 Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();

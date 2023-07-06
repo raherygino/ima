@@ -50,6 +50,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_PASSWORD = "password";
     private static final String COLUMN_BALANCE = "balance";
     private static final String COLUMN_PENDING_AMOUNT = "pending_amount";
+    private static final String COLUMN_PENDING_COUNT = "pending_count";
     private static final String COLUMN_PENDING_TYPE = "pending_type";
 
 
@@ -94,6 +95,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_PASSWORD + " TEXT, " +
                 COLUMN_BALANCE + " INTEGER, " +
                 COLUMN_PENDING_AMOUNT + " INTEGER, " +
+                COLUMN_PENDING_COUNT + " INTEGER, " +
                 COLUMN_PENDING_TYPE + " TEXT, " +
                 " created_at DATETIME)";
 
@@ -201,7 +203,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 cursor.getString(11), "");
         user.balance = cursor.getInt(12);
         user.pendingAmount = cursor.getInt(13);
-        user.pendingType = cursor.getString(14);
+        user.pendingCount = cursor.getInt(14);
+        user.pendingType = cursor.getString(15);
         return user;
     }
 
@@ -282,6 +285,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_PENDING_AMOUNT, amount);
         contentValues.put(COLUMN_PENDING_TYPE, "SENT");
+        return db.update(TABLE_USER, contentValues, COLUMN_ID+" = ?", new String[]{cursor.getString(0)});
+    }
+
+    public long addCountPending(int count) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = selectUser();
+        cursor.moveToFirst();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_PENDING_COUNT, count);
         return db.update(TABLE_USER, contentValues, COLUMN_ID+" = ?", new String[]{cursor.getString(0)});
     }
 
