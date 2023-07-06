@@ -39,6 +39,7 @@ public class SendViewModel extends ViewModel {
     private final Context context;
     private final FragmentSendBinding binding;
     private final User user;
+    private Transaction transaction;
 
     public SendViewModel(Context context, FragmentSendBinding binding) {
         this.binding = binding;
@@ -67,7 +68,7 @@ public class SendViewModel extends ViewModel {
             amount = Integer.parseInt(amountValue);
         }
 
-        Transaction transaction = new Transaction(amount);
+        transaction = new Transaction(amount);
         transaction.nameSender = user.lastname;
         transaction.numSender = user.phone;
         transaction.method = binding.sendBy.getText().toString();
@@ -95,36 +96,7 @@ public class SendViewModel extends ViewModel {
                 dialog.show();
             } else if (method.equals(context.getString(R.string.network))){
                 RetrofitClient.createTransaction(transaction)
-                        .enqueue(new Callback<ResponseBody>() {
-                            @Override
-                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                                if (response.isSuccessful()) {
-                                    try {
-                                        String result = response.body().source().readUtf8();
-                                        JSONObject object = new JSONObject(result);
-                                        if (object.getString(MESSAGE).contains(STAT_SENT)) {
-                                            AlertDialog dialog = new AlertDialog(context, EMPTY, "Amount sent successfully");
-                                            dialog.show();
-                                            binding.name.setText(EMPTY);
-                                            binding.phone.setText(EMPTY);
-                                            binding.amount.setText(EMPTY);
-                                            binding.password.setText(EMPTY);
-                                            db.addAmountPending(transaction.amount);
-                                        }
-                                    } catch (IOException | JSONException e) {
-                                        e.printStackTrace();
-                                        AlertDialog dialog = new AlertDialog(context, EMPTY, e.getMessage());
-                                        dialog.show();
-                                    }
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                                AlertDialog dialog = new AlertDialog(context, EMPTY, t.getMessage());
-                                dialog.show();
-                            }
-                        });
+                        .enqueue(new enqueue(SEND));
             } else {
                 if (db.insertTransaction(transaction) != -1) {
                     AlertDialog dialog = new AlertDialog(context, EMPTY, "Created");
@@ -197,5 +169,50 @@ public class SendViewModel extends ViewModel {
         }
 
         return isValidate;
+    }
+
+    class enqueue implements Callback<ResponseBody> {
+
+        private String type;
+
+        public enqueue(String type) {
+            this.type = type;
+        }
+
+        @Override
+        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                if (response.isSuccessful()) {
+                    try {
+                        String result = response.body().source().readUtf8();
+                        JSONObject object = new JSONObject(result);
+                        if (type.equals(SEND)) {
+                            if (object.getString(MESSAGE).contains(STAT_SENT)) {
+                                RetrofitClient.totalPending(user.phone)
+                                        .enqueue(new enqueue("total"));
+                            }
+                        }else if (type.equals("total")) {
+                            DatabaseHelper db = new DatabaseHelper(context);
+                            AlertDialog dialog = new AlertDialog(context, EMPTY, "Amount sent successfully");
+                            dialog.show();
+                            binding.name.setText(EMPTY);
+                            binding.phone.setText(EMPTY);
+                            binding.amount.setText(EMPTY);
+                            binding.password.setText(EMPTY);
+                            db.addAmountPending(object.getInt("total"));
+                        }
+                    } catch (IOException | JSONException e) {
+                        e.printStackTrace();
+                        AlertDialog dialog = new AlertDialog(context, EMPTY, e.getMessage());
+                        dialog.show();
+                    }
+                }
+        }
+
+        @Override
+        public void onFailure(Call<ResponseBody> call, Throwable t) {
+            AlertDialog dialog = new AlertDialog(context, EMPTY, t.getMessage());
+            dialog.show();
+        }
     }
 }

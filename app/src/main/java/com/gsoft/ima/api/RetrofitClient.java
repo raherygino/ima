@@ -65,4 +65,10 @@ public class RetrofitClient {
                 transaction.amount
         );
     }
+
+
+    public static Call<ResponseBody> totalPending(String phone) {
+        return getApiService().getTotalSentPending(phone);
+    }
+
 }

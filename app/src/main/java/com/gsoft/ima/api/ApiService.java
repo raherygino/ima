@@ -71,4 +71,10 @@ public interface ApiService {
             @Field(AMOUNT) int gender
     );
 
+    @Headers("Content-Type: application/json")
+    @GET("transactions/")
+    Call<ResponseBody> getTotalSentPending(
+            @Query("total") String phone
+    );
+
 }
