@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.lifecycle.ViewModel;
 
 import com.gsoft.ima.R;
+import com.gsoft.ima.api.RetrofitClient;
 import com.gsoft.ima.databinding.FragmentSendBinding;
 import com.gsoft.ima.di.dialog.AlertDialog;
 import com.gsoft.ima.model.database.DatabaseHelper;
@@ -24,7 +25,13 @@ import static com.gsoft.ima.constants.main.TransactionConstants.*;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.net.Socket;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SendViewModel extends ViewModel {
 
@@ -72,7 +79,8 @@ public class SendViewModel extends ViewModel {
         DatabaseHelper db = new DatabaseHelper(context);
 
         if (validation(transaction)) {
-            if (transaction.method.equals(context.getString(R.string.qr_code))) {
+            String method = transaction.method;
+            if (method.equals(context.getString(R.string.qr_code))) {
                /* MainActivity activity = (MainActivity) context;
                 Socket socket = activity.socket;*/
                 String title = EMPTY;
@@ -85,6 +93,38 @@ public class SendViewModel extends ViewModel {
                 //}
                 AlertDialog dialog = new AlertDialog(context, title, message);
                 dialog.show();
+            } else if (method.equals(context.getString(R.string.network))){
+                RetrofitClient.createTransaction(transaction)
+                        .enqueue(new Callback<ResponseBody>() {
+                            @Override
+                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                if (response.isSuccessful()) {
+                                    try {
+                                        String result = response.body().source().readUtf8();
+                                        JSONObject object = new JSONObject(result);
+                                        if (object.getString(MESSAGE).contains(STAT_SENT)) {
+                                            AlertDialog dialog = new AlertDialog(context, EMPTY, "Amount sent successfully");
+                                            dialog.show();
+                                            binding.name.setText(EMPTY);
+                                            binding.phone.setText(EMPTY);
+                                            binding.amount.setText(EMPTY);
+                                            binding.password.setText(EMPTY);
+                                            db.addAmountPending(transaction.amount);
+                                        }
+                                    } catch (IOException | JSONException e) {
+                                        e.printStackTrace();
+                                        AlertDialog dialog = new AlertDialog(context, EMPTY, e.getMessage());
+                                        dialog.show();
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                AlertDialog dialog = new AlertDialog(context, EMPTY, t.getMessage());
+                                dialog.show();
+                            }
+                        });
             } else {
                 if (db.insertTransaction(transaction) != -1) {
                     AlertDialog dialog = new AlertDialog(context, EMPTY, "Created");

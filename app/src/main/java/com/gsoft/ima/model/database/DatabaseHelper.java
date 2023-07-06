@@ -49,6 +49,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_EMAIL = "email";
     private static final String COLUMN_PASSWORD = "password";
     private static final String COLUMN_BALANCE = "balance";
+    private static final String COLUMN_PENDING_AMOUNT = "pending_amount";
+    private static final String COLUMN_PENDING_TYPE = "pending_type";
 
 
     private static final String TABLE_DIS = "district";
@@ -90,6 +92,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_EMAIL + " TEXT, " +
                 COLUMN_PASSWORD + " TEXT, " +
                 COLUMN_BALANCE + " INTEGER, " +
+                COLUMN_PENDING_AMOUNT + " INTEGER, " +
+                COLUMN_PENDING_TYPE + " TEXT, " +
                 " created_at DATETIME)";
 
         String SQL_CREATE_DISC = "CREATE TABLE "+ TABLE_DIS +" ("+COLUMN_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
@@ -193,6 +197,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 cursor.getString(5), cursor.getString(6), cursor.getString(7),
                 cursor.getString(8), cursor.getString(9), cursor.getString(10), cursor.getString(11), "");
         user.balance = cursor.getInt(12);
+        user.pendingAmount = cursor.getInt(13);
+        user.pendingType = cursor.getString(14);
         return user;
     }
 
@@ -262,6 +268,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public long insertTransaction(Transaction transaction) {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.insert(TABLE_TRANSACTION, null, contentValuesTrans(transaction));
+    }
+
+    public long addAmountPending(int amount) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = selectUser();
+        cursor.moveToFirst();
+        updateBalance(amount, "REMOVE");
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_PENDING_AMOUNT, amount);
+        contentValues.put(COLUMN_PENDING_TYPE, "SENT");
+        return db.update(TABLE_USER, contentValues, COLUMN_ID+" = ?", new String[]{cursor.getString(0)});
     }
 
     public ArrayList<Transaction> getAllTransaction() {

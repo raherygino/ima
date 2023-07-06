@@ -1,5 +1,6 @@
 package com.gsoft.ima.api;
 
+import com.gsoft.ima.model.models.Transaction;
 import com.gsoft.ima.model.models.User;
 
 import static com.gsoft.ima.constants.network.NetworkConstants.BASE_URL;
@@ -54,6 +55,14 @@ public class RetrofitClient {
                 user.phone,
                 user.email,
                 user.password
+        );
+    }
+
+    public static Call<ResponseBody> createTransaction(Transaction transaction) {
+        return getApiService().createTransaction(
+                transaction.numSender,
+                transaction.numReceiver,
+                transaction.amount
         );
     }
 }

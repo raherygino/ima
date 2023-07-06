@@ -37,6 +37,10 @@ public class HomeFragment extends Fragment {
         user = UserLogged.data(getContext());
         binding.username.setText(viewModel.user.firstname);
         binding.balance.setText(String.valueOf(user.balance));
+        binding.pendingAmount.setText(String.valueOf(user.pendingAmount));
+        if (user.pendingAmount == 0 ) {
+            binding.layoutPending.setVisibility(View.GONE);
+        }
         binding.logout.setOnClickListener(new OnClick());
         Utils.setColorBarStatus(getContext());
         configTransactions();

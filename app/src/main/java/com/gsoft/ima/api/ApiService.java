@@ -10,6 +10,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 import static com.gsoft.ima.constants.main.FormConstants.*;
+import static com.gsoft.ima.constants.main.TransactionConstants.*;
 
 public interface ApiService {
     @Headers("Content-Type: application/json")
@@ -59,6 +60,15 @@ public interface ApiService {
     Call<ResponseBody> resetPassword(
             @Field(EMAIL) String email,
             @Field(PASSWORD) String password
+    );
+
+
+    @FormUrlEncoded
+    @POST("transactions/create")
+    Call<ResponseBody> createTransaction(
+            @Field(NUM_SENDER) String lastname,
+            @Field(NUM_RECEIVER) String firstname,
+            @Field(AMOUNT) int gender
     );
 
 }
