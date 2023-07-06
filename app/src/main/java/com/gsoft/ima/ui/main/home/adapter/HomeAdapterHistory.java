@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
@@ -17,7 +16,6 @@ import com.gsoft.ima.model.models.User;
 import com.gsoft.ima.utils.UserLogged;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class HomeAdapterHistory extends BaseAdapter {
 
@@ -71,6 +69,7 @@ public class HomeAdapterHistory extends BaseAdapter {
         if (item.status.equals("sent") && item.nameReceiver.equals(user.firstname)) {
             holder.type.setText("received");
         }
+
         holder.date.setText(item.date);
         holder.amount.setText(String.valueOf(item.amount));
         holder.icon.setOnClickListener(new onClick(position));
@@ -95,7 +94,7 @@ public class HomeAdapterHistory extends BaseAdapter {
 
     class onClick implements View.OnClickListener {
 
-        private int position ;
+        private final int position ;
 
         public onClick(int pos) {
             this.position = pos;
@@ -103,8 +102,7 @@ public class HomeAdapterHistory extends BaseAdapter {
 
         @Override
         public void onClick(View view) {
-            Transaction transaction = transactions.get(position);
-            Toast.makeText(context, "Item clicked "+transaction.id, Toast.LENGTH_SHORT).show();
+            HomeAdapterMenu.showDetails(context, position, transactions);
         }
     }
 }

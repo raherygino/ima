@@ -89,87 +89,11 @@ public class HomeAdapterMenu implements SwipeMenuCreator {
 
         @Override
         public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
-            Transaction item = transactions.get(position);
 
+         //   showDetails(context, position, transactions);
             switch (index) {
                 case 0:
-                    String message = "";
-                    if (item.nameReceiver.equals(user.firstname)) {
-                        message = "Vous avez reçu un montant de "+item.amount+" IMA depuis "+item.nameSender;
-                        if (item.status.equals(STAT_PENDING)) {
-                            ConfirmDialog dialog = new ConfirmDialog(context, "Details", message);
-                            dialog.btnOk.setText("Confirmer");
-                            dialog.btnOk.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    dialog.cancel();
-                                    ProgressDialog dialogLoading = new ProgressDialog(context);
-                                    dialogLoading.setMessage("Loading");
-                                    dialogLoading.setCancelable(false);
-                                    dialogLoading.show();
-                                    RetrofitClient.confirmTransaction(item.id, item.amount, item.numReceiver)
-                                            .enqueue(new Callback<ResponseBody>() {
-                                                @Override
-                                                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                                                    dialogLoading.dismiss();
-                                                    String message = "Empty";
-                                                    String result = "";
-                                                    if (response.isSuccessful()) {
-                                                        try {
-                                                            result = response.body().source().readUtf8();
-                                                            JSONObject jsonObject = new JSONObject(result);
-                                                            message = "Montant confirmé";
-                                                            if (!jsonObject.getString(MESSAGE).equals(STAT_SENT)) {
-                                                                message = result;
-                                                            } else {
-                                                                Thread thread = new Thread(new Runnable() {
-                                                                    @Override
-                                                                    public void run() {
-                                                                        MainActivity mainActivity = (MainActivity) context;
-                                                                        FetchData.getDataUserByPhone(context, item.numReceiver);
-                                                                        FetchData.getPendingSender(context, item.numReceiver);
-                                                                        mainActivity.runOnUiThread(new Runnable() {
-                                                                            @Override
-                                                                            public void run() {
-                                                                                mainActivity.setFragment(new HomeFragment());
-                                                                            }
-                                                                        });
-                                                                    }
-                                                                });
-                                                                thread.start();
-                                                            }
-                                                        } catch (IOException | JSONException e) {
-                                                            e.printStackTrace();
-                                                            message = e.getMessage()+ result;
-
-                                                        }
-                                                    } else {
-                                                        message = "Error";
-                                                    }
-                                                    AlertDialog dialog1 = new AlertDialog(context, EMPTY, message);
-                                                    dialog1.show();
-                                                }
-
-                                                @Override
-                                                public void onFailure(Call<ResponseBody> call, Throwable t) {
-                                                    dialogLoading.dismiss();
-                                                    AlertDialog dialog1 = new AlertDialog(context, EMPTY, t.getMessage());
-                                                    dialog1.show();
-                                                }
-                                            });
-
-                                }
-                            });
-                            dialog.show();
-                        } else {
-                            AlertDialog dialog = new AlertDialog(context, "Details", message);
-                            dialog.show();
-                        }
-                    } else {
-                        message = "Vous avez envoyés un montant de "+item.amount+" IMA vers "+item.nameReceiver;
-                        AlertDialog dialog = new AlertDialog(context, "Details", message);
-                        dialog.show();
-                    }
+                    showDetails(context, position, transactions);
                     break;
 
                 case 1:
@@ -186,6 +110,88 @@ public class HomeAdapterMenu implements SwipeMenuCreator {
                     break;
             }
             return false;
+        }
+    }
+
+    public static void showDetails(Context context, int position, ArrayList<Transaction> transactions) {
+        String message = "";
+        User user = UserLogged.data(context);
+        Transaction item = transactions.get(position);
+        if (item.nameReceiver.equals(user.firstname)) {
+            message = "Vous avez reçu un montant de "+item.amount+" IMA depuis "+item.nameSender;
+            if (item.status.equals(STAT_PENDING)) {
+                ConfirmDialog dialog = new ConfirmDialog(context, "Details", message);
+                dialog.btnOk.setText("Confirmer");
+                dialog.btnOk.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.cancel();
+                        ProgressDialog dialogLoading = new ProgressDialog(context);
+                        dialogLoading.setMessage("Loading");
+                        dialogLoading.setCancelable(false);
+                        dialogLoading.show();
+                        RetrofitClient.confirmTransaction(item.id, item.amount, item.numReceiver)
+                                .enqueue(new Callback<ResponseBody>() {
+                                    @Override
+                                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                        dialogLoading.dismiss();
+                                        String message = "Empty";
+                                        String result = "";
+                                        if (response.isSuccessful()) {
+                                            try {
+                                                result = response.body().source().readUtf8();
+                                                JSONObject jsonObject = new JSONObject(result);
+                                                message = "Montant confirmé";
+                                                if (!jsonObject.getString(MESSAGE).equals(STAT_SENT)) {
+                                                    message = result;
+                                                } else {
+                                                    Thread thread = new Thread(new Runnable() {
+                                                        @Override
+                                                        public void run() {
+                                                            MainActivity mainActivity = (MainActivity) context;
+                                                            FetchData.getDataUserByPhone(context, item.numReceiver);
+                                                            FetchData.getPendingSender(context, item.numReceiver);
+                                                            mainActivity.runOnUiThread(new Runnable() {
+                                                                @Override
+                                                                public void run() {
+                                                                    mainActivity.setFragment(new HomeFragment());
+                                                                }
+                                                            });
+                                                        }
+                                                    });
+                                                    thread.start();
+                                                }
+                                            } catch (IOException | JSONException e) {
+                                                e.printStackTrace();
+                                                message = e.getMessage()+ result;
+
+                                            }
+                                        } else {
+                                            message = "Error";
+                                        }
+                                        AlertDialog dialog1 = new AlertDialog(context, EMPTY, message);
+                                        dialog1.show();
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                        dialogLoading.dismiss();
+                                        AlertDialog dialog1 = new AlertDialog(context, EMPTY, t.getMessage());
+                                        dialog1.show();
+                                    }
+                                });
+
+                    }
+                });
+                dialog.show();
+            } else {
+                AlertDialog dialog = new AlertDialog(context, "Details", message);
+                dialog.show();
+            }
+        } else {
+            message = "Vous avez envoyés un montant de "+item.amount+" IMA vers "+item.nameReceiver;
+            AlertDialog dialog = new AlertDialog(context, "Details", message);
+            dialog.show();
         }
     }
 }
