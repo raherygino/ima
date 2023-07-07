@@ -23,6 +23,7 @@ import com.gsoft.ima.model.database.DatabaseHelper;
 import com.gsoft.ima.model.models.User;
 import com.gsoft.ima.ui.auth.AuthActivity;
 import com.gsoft.ima.ui.main.MainActivity;
+import com.gsoft.ima.ui.main.profile.ProfileFragment;
 import com.gsoft.ima.utils.Utils;
 
 import dmax.dialog.SpotsDialog;
@@ -137,5 +138,10 @@ public class HomeViewModel extends ViewModel {
         public void afterTextChanged(Editable editable) {
 
         }
+    }
+    public void moveToProfile() {
+        MainActivity mainActivity = (MainActivity) context;
+        mainActivity.setFragment(new ProfileFragment());
+        mainActivity.nav.setItemActivate(3);
     }
 }

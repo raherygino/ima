@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private String currentFragment;
-    private BottomNav nav;
+    public BottomNav nav;
     private static String SERVER_IP = EMPTY;
     public Socket socket;
     public String convert = "MGA";
@@ -116,9 +116,7 @@ public class MainActivity extends AppCompatActivity {
                         @SuppressLint("SetTextI18n")
                         @Override
                         public void run() {
-                            binding.messageNetwork.setText("Connected: "+data);;
-                            Toast.makeText(MainActivity.this, "Received 2", Toast.LENGTH_LONG).show();
-
+                            binding.messageNetwork.setText("Connected: "+data);
                             /// RECEIVED
                             /// ADDITION
                             try {
@@ -156,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         binding.messageNetwork.setText("Connected");
-                        Toast.makeText(MainActivity.this, "Received 1", Toast.LENGTH_LONG).show();
+
                         ///SEND
                         ///SUBTRACTION
                         if (socket.isConnected()) {

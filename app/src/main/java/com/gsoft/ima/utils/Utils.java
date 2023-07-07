@@ -234,6 +234,8 @@ public class Utils {
         qrgEncoder.setColorWhite(Color.DKGRAY);
         try {
             Bitmap bitmap = qrgEncoder.getBitmap();
+            String filename = "qr_code.png"; // desired filename
+            ImageUtils.saveBitmapToExternalStorage(bitmap, filename);
             imageView.setImageBitmap(bitmap);
         } catch (Exception e) {
             e.printStackTrace();

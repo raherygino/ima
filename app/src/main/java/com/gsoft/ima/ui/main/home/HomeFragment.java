@@ -41,6 +41,7 @@ public class HomeFragment extends Fragment {
         viewModel = new HomeViewModel(getContext(), binding);
         user = UserLogged.data(getContext());
         DecimalFormat decimalFormat = new DecimalFormat("#,###.##");
+        binding.imageViewUser.setOnClickListener(new OnClick());
         binding.username.setText(viewModel.user.firstname);
         binding.phoneNumber.setText(viewModel.user.phone);
         binding.balance.setText(decimalFormat.format(user.balance));
@@ -88,6 +89,8 @@ public class HomeFragment extends Fragment {
                 viewModel.refresh();
             } else if (id == R.id.label) {
                 viewModel.changeConvert(view);
+            } else if (id == R.id.imageViewUser) {
+                viewModel.moveToProfile();
             }
         }
     }
