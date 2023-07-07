@@ -10,15 +10,18 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gsoft.ima.R;
+import com.gsoft.ima.api.FetchData;
 import com.gsoft.ima.di.dialog.AlertDialog;
 import com.gsoft.ima.di.dialog.PromptDialog;
 import com.gsoft.ima.model.models.SettingItem;
+import com.gsoft.ima.utils.UserLogged;
 import com.gsoft.ima.utils.Utils;
 
 import java.util.ArrayList;
@@ -56,6 +59,11 @@ public class SettingAdapterRecycler extends RecyclerView.Adapter<SettingAdapterR
             public void onClick(View view) {
                 Utils.effectClick(context, view);
                 switch (i) {
+                    case 0:
+                        FetchData.getDataUserByPhone(context, UserLogged.data(context).phone);
+                        FetchData.getPendingSender(context, UserLogged.data(context).phone);
+                        Toast.makeText(context, "Request sent!", Toast.LENGTH_LONG).show();
+                        break;
                     case 1:
                         PopupMenu popupMenu = new PopupMenu(context, myHolder.detail_setting);
                         popupMenu.getMenuInflater().inflate(R.menu.language, popupMenu.getMenu());
@@ -70,8 +78,7 @@ public class SettingAdapterRecycler extends RecyclerView.Adapter<SettingAdapterR
 
                         break;
                     case 2:
-                        PromptDialog helpDialog = new PromptDialog(context,context.getString(R.string.help) ,context.getString(R.string.help_details),context.getString(R.string.message));
-                        helpDialog.BTN_OK.setText(context.getString(R.string.send));
+                        AlertDialog helpDialog = new AlertDialog(context,context.getString(R.string.help) ,context.getString(R.string.help_details));
                         helpDialog.show();
                         break;
                     case 3:

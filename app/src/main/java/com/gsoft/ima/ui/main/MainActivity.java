@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void run() {
-                        binding.messageNetwork.setText("Not connected IP: "+SERVER_IP);
+                       // binding.messageNetwork.setText("Not connected IP: "+SERVER_IP);
                     }
                 });
                 try {
@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
                         @SuppressLint("SetTextI18n")
                         @Override
                         public void run() {
-                            binding.messageNetwork.setText("Connected: "+data);
+                          //  binding.messageNetwork.setText("Connected: "+data);
                             /// RECEIVED
                             /// ADDITION
                             try {
