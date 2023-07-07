@@ -118,8 +118,8 @@ public class HomeAdapterMenu implements SwipeMenuCreator {
         Transaction item = transactions.get(position);
         if (item.nameReceiver.equals(user.firstname)) {
             message = "Vous avez reçu un montant de "+item.amount+" IMA depuis "+item.nameSender;
-            if (item.status.equals(STAT_PENDING)) {
-                ConfirmDialog dialog = new ConfirmDialog(context, "Details", message);
+            if (item.status.equals(STAT_PENDING) && item.method.equals(context.getString(R.string.network))) {
+                ConfirmDialog dialog = new ConfirmDialog(context, item.method, message);
                 dialog.btnOk.setText("Confirmer");
                 dialog.btnOk.setOnClickListener(new View.OnClickListener() {
                     @Override

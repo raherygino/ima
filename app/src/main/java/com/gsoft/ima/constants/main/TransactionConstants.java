@@ -13,4 +13,8 @@ public class TransactionConstants {
     public static final String ALL = "all";
     public static final String TOTAL = "total";
     public static final String STATUS = "status";
+    public static final String TYPE = "type";
+    public static final String METHOD = "method";
+
+
 }

@@ -116,7 +116,8 @@ public class MainActivity extends AppCompatActivity {
                         @SuppressLint("SetTextI18n")
                         @Override
                         public void run() {
-                            binding.messageNetwork.setText("Connected: "+data);
+                            binding.messageNetwork.setText("Connected: "+data);;
+                            Toast.makeText(MainActivity.this, "Received 2", Toast.LENGTH_LONG).show();
 
                             /// RECEIVED
                             /// ADDITION
@@ -155,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         binding.messageNetwork.setText("Connected");
-
+                        Toast.makeText(MainActivity.this, "Received 1", Toast.LENGTH_LONG).show();
                         ///SEND
                         ///SUBTRACTION
                         if (socket.isConnected()) {
@@ -240,13 +241,13 @@ public class MainActivity extends AppCompatActivity {
                     Thread thread2 = new Thread(new Thread2());
                     thread2.start();
 
-                    DatabaseHelper db = new DatabaseHelper(this);
-                    /*if (socket != null) {
+                    DatabaseHelper db = new DatabaseHelper(this);/*
+                    if (socket != null) {
                         try {
                             DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
                             String message = "received";
-                            dataOutputStream.writeUTF(message);*/
-
+                            dataOutputStream.writeUTF(message);
+*/
                             if (transaction.numReceiver.equals(UserLogged.data(MainActivity.this).phone)) {
                                 if (!db.checkTransJsonIfExist(result)) {
                                     if (db.insertTransaction(transaction) != -1) {
@@ -254,7 +255,9 @@ public class MainActivity extends AppCompatActivity {
                                         db.insertTransJson(result);
                                         User user = UserLogged.data(MainActivity.this);
                                         FetchData.updateBalance(MainActivity.this, user.phone, user.balance);
-                                        result = "Transaction successfully";
+                                        transaction.status = "received";
+                                        FetchData.createTransaction(MainActivity.this, transaction);
+                                        result = "Transaction successfully "+transaction.numSender;
                                     } else {
                                         result = "Error";
                                     }
@@ -267,7 +270,7 @@ public class MainActivity extends AppCompatActivity {
                         } catch (Exception e) {
                             e.printStackTrace();
                             result = e.getMessage();
-                        }/*
+                        }
                     } else {
                         result = "You are not connected";
                     }*/

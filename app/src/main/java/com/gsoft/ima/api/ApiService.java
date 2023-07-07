@@ -68,7 +68,8 @@ public interface ApiService {
     Call<ResponseBody> createTransaction(
             @Field(NUM_SENDER) String lastname,
             @Field(NUM_RECEIVER) String firstname,
-            @Field(AMOUNT) int gender
+            @Field(AMOUNT) int gender,
+            @Field(TYPE) String type
     );
 
     @Headers("Content-Type: application/json")

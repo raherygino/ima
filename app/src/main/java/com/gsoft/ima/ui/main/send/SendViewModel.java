@@ -215,9 +215,7 @@ public class SendViewModel extends ViewModel {
                             binding.phone.setText(EMPTY);
                             binding.amount.setText(EMPTY);
                             binding.password.setText(EMPTY);
-                            db.addAmountPending(object.getInt(TOTAL));/*
-                            RetrofitClient.getUser(user.phone).enqueue(new );
-                            RetrofitClient.getPendingSender(user.phone).enqueue(new enqueue(ALL_PENDING));*/
+                            db.addAmountPending(object.getInt(TOTAL));
                             FetchData.getDataUserByPhone(context, user.phone);
                             FetchData.getPendingSender(context, user.phone);
                         } else if (type.equals(ALL_PENDING)) {

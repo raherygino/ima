@@ -26,6 +26,9 @@ import retrofit2.Response;
 
 public class FetchData {
 
+    public static void createTransaction(Context context, Transaction transaction) {
+        RetrofitClient.createTransaction(transaction).enqueue(new Enqueue(context, SEND));
+    }
 
     public static void getPendingSender(Context context, String phone) {
         RetrofitClient.getPendingSender(phone).enqueue(new Enqueue(context, ALL_PENDING));
@@ -60,15 +63,13 @@ public class FetchData {
                     } else if (type.equals(DATA_USER)) {
                         JSONObject data = new JSONObject(result);
                         int balanceLocal = UserLogged.data(context).balance;
-                        if (data.getInt(BALANCE) != balanceLocal) {
+                        if (data.getInt(BALANCE) < balanceLocal) {
                             data.put(BALANCE, balanceLocal);
                             updateBalance(context, UserLogged.data(context).phone, balanceLocal);
                         }
                         DatabaseHelper db = new DatabaseHelper(context);
                         db.deleteUser();
                         db.createUserByObject(data);
-                    } else if (type.equals(UPDATE_AMOUNT)) {
-                        Toast.makeText(context, result, Toast.LENGTH_LONG).show();
                     }
                 } catch (IOException | JSONException e) {
                     e.printStackTrace();
@@ -92,7 +93,7 @@ public class FetchData {
                 for (int i = 0 ; i < jsonArray.length(); i++ ) {
                     JSONObject item = jsonArray.getJSONObject(i);
                     Transaction transaction1 = new Transaction(item.getInt(AMOUNT));
-                    transaction1.method = context.getString(R.string.network);
+                    transaction1.method = item.getString(METHOD);
                     transaction1.numSender = item.getString(NUM_SENDER);
                     transaction1.nameSender = item.getString(NAME_SENDER);
                     transaction1.numReceiver = item.getString(NUM_RECEIVER);
@@ -101,7 +102,9 @@ public class FetchData {
                     transaction1.id = item.getInt(ID_TRANSACTION);
                     transaction1.date = item.getString(CREATED_AT);
                     db.insertTransaction(transaction1);
-                    if (UserLogged.data(context).firstname.equals(transaction1.nameReceiver) && transaction1.status.equals(STAT_PENDING)) {
+                    if (UserLogged.data(context).firstname.equals(transaction1.nameReceiver)
+                            && transaction1.status.equals(STAT_PENDING)
+                            && transaction1.method.equals(context.getString(R.string.network))) {
                         countPending += 1;
                     }
                 }

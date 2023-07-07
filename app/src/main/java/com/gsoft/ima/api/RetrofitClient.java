@@ -62,7 +62,8 @@ public class RetrofitClient {
         return getApiService().createTransaction(
                 transaction.numSender,
                 transaction.numReceiver,
-                transaction.amount
+                transaction.amount,
+                transaction.method
         );
     }
 
