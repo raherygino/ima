@@ -62,9 +62,9 @@ public class HomeFragment extends Fragment {
     private void configTransactions() {
         transactions = new DatabaseHelper(getContext()).getAllTransaction();
         if (transactions.size() == 0) {
-            binding.countHistory.setVisibility(View.GONE);
-        } else {
             binding.countHistory.setVisibility(View.VISIBLE);
+        } else {
+            binding.countHistory.setVisibility(View.GONE);
         }
         mAdapter = new HomeAdapterHistory(getContext(), transactions);
         binding.listView.setAdapter(mAdapter);
