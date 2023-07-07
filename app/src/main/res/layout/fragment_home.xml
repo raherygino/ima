@@ -11,7 +11,7 @@
         android:layout_width="@dimen/btn_height"
         android:layout_height="@dimen/btn_height"
         android:layout_marginStart="@dimen/dp_12"
-        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_12"
         app:tint="@color/grey_600"
         android:src="@drawable/ic_user_large"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dp_8"
-        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_12"
         android:orientation="vertical"
         app:layout_constraintStart_toEndOf="@+id/imageViewUser"
         app:layout_constraintTop_toTopOf="parent">
@@ -47,14 +47,13 @@
 
     </LinearLayout>
 
-
     <ImageView
         android:id="@+id/refresh"
         android:layout_width="@dimen/btn_height"
         android:layout_height="@dimen/btn_height"
         android:padding="@dimen/dp_10"
         android:src="@drawable/ic_cloud_download_24"
-        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_12"
         android:layout_marginEnd="@dimen/dp_12"
         android:background="@drawable/back_btn_outline"
         app:layout_constraintEnd_toStartOf="@+id/logout"
@@ -68,246 +67,274 @@
         android:padding="@dimen/dp_10"
         android:src="@drawable/ic_logout"
         android:layout_marginEnd="@dimen/dp_12"
-        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_12"
         app:tint="@color/grey_600"
         android:background="@drawable/back_btn_outline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+    <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_card"
-        android:layout_marginStart="@dimen/dp_12"
-        android:layout_marginTop="@dimen/dp_12"
-        android:layout_marginEnd="@dimen/dp_12"
-        android:background="@drawable/back_card_gradient"
+        android:layout_height="275dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewUser">
 
-        <TextView
-            android:id="@+id/title_balance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/size_item_menu"
-            android:layout_marginTop="@dimen/size_item_menu"
-            android:fontFamily="@font/sf_pro_regular"
-            android:text="@string/your_balance"
-            android:textColor="@color/white"
-            android:textSize="@dimen/sp_18"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/balance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/size_item_menu"
-            android:layout_marginTop="38dp"
-            android:fontFamily="@font/sf_pro_bold"
-            android:text="@string/amount_placeholder"
-            android:textColor="@color/white"
-            android:textSize="38sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="@dimen/height_auth_logo"
-            android:layout_height="@dimen/height_auth_logo"
-            android:layout_marginEnd="@dimen/dp_10"
-            android:src="@drawable/ic_launcher_ima"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/white" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginTop="@dimen/width_auth_logo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-
-        <TextView
-            android:id="@+id/title_converter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/sf_pro_semi_bold"
-            android:text="@string/converter"
-            android:textColor="@color/grey_600"
-            android:textSize="@dimen/sp_18"
-            android:layout_marginStart="@dimen/dp_12"/>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/card_converter"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/height_auth_logo"
-            android:layout_marginStart="@dimen/dp_12"
-            android:layout_marginEnd="@dimen/dp_12"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:background="@drawable/back_card_outline"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title_converter">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/imageViewMg"
-                android:layout_width="@dimen/size_item_menu"
-                android:layout_height="@dimen/size_item_menu"
-                android:layout_marginStart="@dimen/dp_10"
-                android:layout_marginTop="@dimen/dp_10"
-                android:src="@drawable/mg_flag"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.gsoft.ima.di.components.EditText
-                android:id="@+id/editText"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/height_input_home"
-                android:layout_marginStart="@dimen/dp_50"
-                android:layout_marginTop="@dimen/dp_4"
-                android:layout_marginEnd="@dimen/me_input_home"
-                android:background="@color/transparent"
-                android:fontFamily="@font/sf_pro_semi_bold"
-                android:text="0"
-                android:textColor="@color/grey_600"
-                android:textSize="@dimen/dp_20"
-                android:inputType="number"
-                android:singleLine="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageViewMg"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_height="@dimen/height_card"
+                android:layout_marginStart="@dimen/dp_12"
+                android:layout_marginEnd="@dimen/dp_12"
+                android:background="@drawable/back_card_gradient">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/sf_pro_semi_bold"
-                android:text="@string/mga"
-                android:textColor="@color/grey_600"
-                android:textSize="@dimen/sp_18"
-                android:layout_marginEnd="@dimen/dp_10"
-                android:layout_marginTop="@dimen/dp_10"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/title_balance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_item_menu"
+                    android:layout_marginTop="@dimen/size_item_menu"
+                    android:fontFamily="@font/sf_pro_regular"
+                    android:text="@string/your_balance"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_18"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/balance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_item_menu"
+                    android:layout_marginTop="38dp"
+                    android:fontFamily="@font/sf_pro_bold"
+                    android:text="@string/amount_placeholder"
+                    android:textColor="@color/white"
+                    android:textSize="38sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="@dimen/height_auth_logo"
+                    android:layout_height="@dimen/height_auth_logo"
+                    android:layout_marginEnd="@dimen/dp_10"
+                    android:src="@drawable/ic_launcher_ima"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/white" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/height_line"
-                android:layout_marginTop="@dimen/dp_4"
-                android:background="@color/grey_400"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/imageViewIma"
-                android:layout_width="@dimen/size_item_menu"
-                android:layout_height="@dimen/size_item_menu"
-                android:layout_marginStart="@dimen/dp_10"
-                android:layout_marginTop="@dimen/mt_input_home"
-                android:src="@drawable/ic_ima_black"
-                android:tint="@color/blue_600"
+                <TextView
+                    android:id="@+id/title_converter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_12"
+                    android:layout_marginTop="@dimen/dp_4"
+                    android:fontFamily="@font/sf_pro_semi_bold"
+                    android:text="@string/converter"
+                    android:textColor="@color/grey_600"
+                    android:textSize="@dimen/sp_18" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/card_converter"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_auth_logo"
+                    android:layout_marginStart="@dimen/dp_12"
+                    android:layout_marginEnd="@dimen/dp_12"
+                    android:background="@drawable/back_card_outline"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/title_converter">
+
+                    <ImageView
+                        android:id="@+id/imageViewMg"
+                        android:layout_width="@dimen/size_item_menu"
+                        android:layout_height="@dimen/size_item_menu"
+                        android:layout_marginStart="@dimen/dp_10"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:src="@drawable/mg_flag"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/value_to_convert"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/height_input_home"
+                        android:layout_marginStart="@dimen/dp_50"
+                        android:layout_marginTop="@dimen/dp_4"
+                        android:layout_marginEnd="@dimen/me_input_home"
+                        android:background="@color/transparent"
+                        android:fontFamily="@font/sf_pro_semi_bold"
+                        android:inputType="numberDecimal"
+                        android:singleLine="true"
+                        android:text="0"
+                        android:textColor="@color/grey_600"
+                        android:textSize="@dimen/dp_20"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageViewMg"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginEnd="@dimen/dp_4"
+                        android:background="@drawable/back_btn_soft_primary"
+                        android:fontFamily="@font/sf_pro_semi_bold"
+                        android:paddingStart="@dimen/dp_10"
+                        android:paddingTop="@dimen/dp_4"
+                        android:paddingEnd="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_4"
+                        android:text="@string/mga"
+                        android:textColor="@color/blue_500"
+                        android:textSize="@dimen/sp_18"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/height_line"
+                        android:layout_marginTop="@dimen/dp_4"
+                        android:background="@color/grey_400"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/value_to_convert" />
+
+                    <ImageView
+                        android:id="@+id/imageViewIma"
+                        android:layout_width="@dimen/size_item_menu"
+                        android:layout_height="@dimen/size_item_menu"
+                        android:layout_marginStart="@dimen/dp_10"
+                        android:layout_marginTop="@dimen/mt_input_home"
+                        android:src="@drawable/ic_ima_black"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/amount_ima"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/height_input_home"
+                        android:layout_marginStart="@dimen/dp_50"
+                        android:layout_marginTop="@dimen/mt_input_home_2"
+                        android:layout_marginEnd="@dimen/me_input_home"
+                        android:fontFamily="@font/sf_pro_semi_bold"
+                        android:gravity="center_vertical"
+                        android:text="0"
+                        android:textColor="@color/grey_600"
+                        android:textSize="@dimen/dp_20"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageViewMg"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/label_to"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/mt_input_home"
+                        android:layout_marginEnd="@dimen/dp_10"
+                        android:fontFamily="@font/sf_pro_semi_bold"
+                        android:inputType="number"
+                        android:singleLine="true"
+                        android:text="@string/app_name"
+                        android:textColor="@color/grey_600"
+                        android:textSize="@dimen/sp_18"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_12"
+                android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/scrollView2">
 
+                <TextView
+                    android:id="@+id/title_history"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:fontFamily="@font/sf_pro_semi_bold"
+                    android:text="@string/history"
+                    android:textColor="@color/grey_600"
+                    android:textSize="@dimen/sp_18"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/card_converter" />
 
-            <com.gsoft.ima.di.components.EditText
-                android:id="@+id/amount_ima"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/height_input_home"
-                android:layout_marginStart="@dimen/dp_50"
-                android:layout_marginTop="@dimen/mt_input_home_2"
-                android:layout_marginEnd="@dimen/me_input_home"
-                android:background="@color/transparent"
-                android:fontFamily="@font/sf_pro_semi_bold"
-                android:textColor="@color/grey_600"
-                android:textSize="@dimen/dp_20"
-                android:text="0"
-                android:inputType="number"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageViewMg"
-                app:layout_constraintTop_toTopOf="parent"
-                android:autofillHints="@string/ok" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/sf_pro_semi_bold"
-                android:text="@string/app_name"
-                android:textColor="@color/grey_600"
-                android:textSize="@dimen/sp_18"
-                android:inputType="number"
-                android:singleLine="true"
-                android:layout_marginEnd="@dimen/dp_10"
-                android:layout_marginTop="@dimen/mt_input_home"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginStart="@dimen/dp_12"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/card_converter"
-            >
-            <TextView
-                android:id="@+id/title_history"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/sf_pro_semi_bold"
-                android:text="@string/history"
-                android:textColor="@color/grey_600"
-                android:textSize="@dimen/sp_18"
-                android:layout_marginTop="@dimen/dp_10"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/card_converter" />
-
-            <TextView
-                android:id="@+id/count_pending"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/sf_pro_light"
-                android:background="@drawable/back_btn_danger"
-                android:layout_marginStart="@dimen/zero"
-                android:text="5"
-                android:paddingStart="@dimen/dp_4"
-                android:paddingEnd="@dimen/dp_4"
-                android:textColor="@color/white"
-                android:textSize="@dimen/sp_10"/>
+                <TextView
+                    android:id="@+id/count_pending"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/zero"
+                    android:background="@drawable/back_btn_danger"
+                    android:fontFamily="@font/sf_pro_light"
+                    android:paddingStart="@dimen/dp_4"
+                    android:paddingEnd="@dimen/dp_4"
+                    android:text="5"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_10" />
+            </LinearLayout>
         </LinearLayout>
+    </ScrollView>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/back_card_outline"
+        android:layout_marginTop="335dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="80dp"
+        android:layout_marginEnd="12dp">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/count_history"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_12"
-            android:layout_marginEnd="@dimen/dp_12"
-            android:layout_marginTop="@dimen/dp_12"
-            android:background="@drawable/back_card_outline"
-            android:layout_marginBottom="@dimen/mt_recyclerview_home">
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:fontFamily="@font/sf_pro_light"
+            android:gravity="center"
+            android:text="No data"
+            android:textSize="@dimen/sp_18" />
 
-            <!--androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewHistory"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/-->
-            <com.baoyz.swipemenulistview.SwipeMenuListView
-                android:id="@+id/listView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+        <com.baoyz.swipemenulistview.SwipeMenuListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp" />
 
-        </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

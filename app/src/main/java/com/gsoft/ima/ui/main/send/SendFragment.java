@@ -27,6 +27,7 @@ public class SendFragment extends Fragment {
         Utils.setOnHoverLabel(binding.sendBy);
         binding.sendBy.setOnClickListener(new onClick());
         binding.btnSend.setOnClickListener(new onClick());
+        Utils.setColorBarStatus(getContext());
         return binding.getRoot();
     }
 
