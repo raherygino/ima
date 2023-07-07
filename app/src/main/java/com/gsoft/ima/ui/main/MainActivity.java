@@ -1,15 +1,20 @@
 package com.gsoft.ima.ui.main;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -73,8 +78,7 @@ public class MainActivity extends AppCompatActivity {
         binding.fabSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, QrCodeActivity.class);
-                startActivityForResult(intent, REQUEST_CODE_QR_SCAN);
+                checkCameraPermission();
             }
         });
     }
@@ -285,6 +289,60 @@ public class MainActivity extends AppCompatActivity {
             }
         } else {
             Toast.makeText(MainActivity.this, getString(R.string.server_off), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    // Check for camera permission
+    public boolean checkCameraPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        != PackageManager.PERMISSION_GRANTED) {
+            // Permission is not granted
+            // Check if the user has been asked about the permission before
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.CAMERA) || ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.READ_EXTERNAL_STORAGE) ||
+                    ActivityCompat.shouldShowRequestPermissionRationale(this,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            }
+            // Request the permission
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CAMERA,
+                            Manifest.permission.READ_EXTERNAL_STORAGE,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    CAMERA_PERMISSION_REQUEST_CODE);
+            return false;
+        } else {
+            Intent intent = new Intent(MainActivity.this, QrCodeActivity.class);
+            startActivityForResult(intent, REQUEST_CODE_QR_SCAN);
+            return true;
+        }
+    }
+    // Handle the permission request result
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        if (requestCode == CAMERA_PERMISSION_REQUEST_CODE) {
+            // Check if the permission is granted
+            // Check if all permissions are granted
+            boolean allPermissionsGranted = true;
+
+            for (int grantResult : grantResults) {
+                if (grantResult != PackageManager.PERMISSION_GRANTED) {
+                    allPermissionsGranted = false;
+                    break;
+                }
+            }
+            if (allPermissionsGranted) {
+                // Permissions granted
+                Intent intent = new Intent(MainActivity.this, QrCodeActivity.class);
+                startActivityForResult(intent, REQUEST_CODE_QR_SCAN);
+            } else {
+                // Permissions denied
+                Toast.makeText(this, "Storage permission denied.", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }

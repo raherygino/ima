@@ -3,6 +3,7 @@ package com.gsoft.ima.constants.main;
 
 public class MainConstants {
 
+    public static final int CAMERA_PERMISSION_REQUEST_CODE = 100;
     public static final int MAX_CIN = 12;
     public static final int MAX_PHONE = 10;
     public static final int REQUEST_CODE_QR_SCAN = 101;
