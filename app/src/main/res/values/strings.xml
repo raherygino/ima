@@ -78,6 +78,7 @@
     <string name="search">Search</string>
     <string name="transfert_details">Fill the field below</string>
     <!-- Message -->
+    <string name="amount_sent">Amount sent successfully</string>
     <string name="edit_text_required">This field is required</string>
     <string name="email_invalid">Email invalid</string>
     <string name="email_not_found">Your email does not match any user</string>

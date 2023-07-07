@@ -1,20 +1,15 @@
 package com.gsoft.ima.api;
 
-import static com.gsoft.ima.constants.main.MainConstants.DATA_USER;
-import static com.gsoft.ima.constants.main.MainConstants.STAT_PENDING;
-import static com.gsoft.ima.constants.main.TransactionConstants.ALL_PENDING;
-import static com.gsoft.ima.constants.main.TransactionConstants.AMOUNT;
-import static com.gsoft.ima.constants.main.TransactionConstants.NAME_RECEIVER;
-import static com.gsoft.ima.constants.main.TransactionConstants.NAME_SENDER;
-import static com.gsoft.ima.constants.main.TransactionConstants.NUM_RECEIVER;
-import static com.gsoft.ima.constants.main.TransactionConstants.NUM_SENDER;
+import static com.gsoft.ima.constants.main.FormConstants.CREATED_AT;
+import static com.gsoft.ima.constants.main.MainConstants.*;
+import static com.gsoft.ima.constants.main.TransactionConstants.*;
 
 import android.content.Context;
 import android.widget.Toast;
 
+import com.gsoft.ima.R;
 import com.gsoft.ima.model.database.DatabaseHelper;
 import com.gsoft.ima.model.models.Transaction;
-import com.gsoft.ima.model.models.User;
 import com.gsoft.ima.utils.UserLogged;
 
 import org.json.JSONArray;
@@ -79,20 +74,20 @@ public class FetchData {
             db.addCountPending(0);
             JSONArray jsonArray = null;
             try {
-                jsonArray = new JSONArray(object.getString("all"));
+                jsonArray = new JSONArray(object.getString(ALL));
                 db.deleteTransactionNetwork();
                 int countPending = 0;
                 for (int i = 0 ; i < jsonArray.length(); i++ ) {
                     JSONObject item = jsonArray.getJSONObject(i);
                     Transaction transaction1 = new Transaction(item.getInt(AMOUNT));
-                    transaction1.method = "Network";
+                    transaction1.method = context.getString(R.string.network);
                     transaction1.numSender = item.getString(NUM_SENDER);
                     transaction1.nameSender = item.getString(NAME_SENDER);
                     transaction1.numReceiver = item.getString(NUM_RECEIVER);
                     transaction1.nameReceiver = item.getString(NAME_RECEIVER);
-                    transaction1.status = item.getString("status");
-                    transaction1.id = item.getInt("id_transaction");
-                    transaction1.date = item.getString("created_at");
+                    transaction1.status = item.getString(STATUS);
+                    transaction1.id = item.getInt(ID_TRANSACTION);
+                    transaction1.date = item.getString(CREATED_AT);
                     db.insertTransaction(transaction1);
                     if (UserLogged.data(context).firstname.equals(transaction1.nameReceiver) && transaction1.status.equals(STAT_PENDING)) {
                         countPending += 1;

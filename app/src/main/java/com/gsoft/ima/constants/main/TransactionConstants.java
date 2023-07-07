@@ -6,6 +6,10 @@ public class TransactionConstants {
     public static final String NAME_RECEIVER = "name_receiver";
     public static final String NUM_RECEIVER = "num_receiver";
     public static final String IP_SENDER = "ip_sender";
+    public static final String ID_TRANSACTION = "id_transaction";
     public static final String AMOUNT = "amount";
     public static final String ALL_PENDING = "all_pending";
+    public static final String ALL = "all";
+    public static final String TOTAL = "total";
+    public static final String STATUS = "status";
 }

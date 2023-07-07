@@ -1,6 +1,7 @@
 package com.gsoft.ima.constants.main;
 
 public class FormConstants {
+    public static final String ID = "id";
     public static final String FIRSTNAME = "firstname";
     public static final String LASTNAME = "lastname";
     public static final String GENDER = "gender";
