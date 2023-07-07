@@ -42,6 +42,7 @@ public class HomeFragment extends Fragment {
         user = UserLogged.data(getContext());
         DecimalFormat decimalFormat = new DecimalFormat("#,###.##");
         binding.username.setText(viewModel.user.firstname);
+        binding.phoneNumber.setText(viewModel.user.phone);
         binding.balance.setText(decimalFormat.format(user.balance));
         binding.logout.setOnClickListener(new OnClick());
         binding.refresh.setOnClickListener(new OnClick());

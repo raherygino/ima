@@ -9,7 +9,12 @@ public class TransactionConstants {
     public static final String ID_TRANSACTION = "id_transaction";
     public static final String AMOUNT = "amount";
     public static final String ALL_PENDING = "all_pending";
+    public static final String UPDATE_AMOUNT = "update_amount";
     public static final String ALL = "all";
     public static final String TOTAL = "total";
     public static final String STATUS = "status";
+    public static final String TYPE = "type";
+    public static final String METHOD = "method";
+
+
 }

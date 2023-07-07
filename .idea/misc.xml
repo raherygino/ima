@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Users/HP/AndroidStudioProjects/ima/app/src/main/res/drawable/back_icon_red.xml" value="0.246875" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/ima/app/src/main/res/drawable/ic_phone.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/ima/app/src/main/res/layout/activity_auth.xml" value="0.29791666666666666" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/ima/app/src/main/res/layout/activity_list.xml" value="0.371875" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/ima/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/ima/app/src/main/res/layout/dialog_prompt.xml" value="0.20471014492753623" />
@@ -14,7 +15,7 @@
         <entry key="..\:/Users/HP/AndroidStudioProjects/ima/app/src/main/res/layout/fragment_send.xml" value="0.33" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/ima/app/src/main/res/layout/item_list_app.xml" value="0.5" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/ima/app/src/main/res/layout/item_setting.xml" value="0.362962962962963" />
-        <entry key="..\:/Users/HP/AndroidStudioProjects/ima/app/src/main/res/layout/item_transaction.xml" value="0.362962962962963" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/ima/app/src/main/res/layout/item_transaction.xml" value="0.67" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/ima/app/src/main/res/menu/type_send.xml" value="0.23541666666666666" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/ima/app/src/main/res/menu/unity.xml" value="0.2125" />
       </map>

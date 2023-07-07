@@ -68,7 +68,8 @@ public interface ApiService {
     Call<ResponseBody> createTransaction(
             @Field(NUM_SENDER) String lastname,
             @Field(NUM_RECEIVER) String firstname,
-            @Field(AMOUNT) int gender
+            @Field(AMOUNT) int gender,
+            @Field(TYPE) String type
     );
 
     @Headers("Content-Type: application/json")
@@ -88,6 +89,13 @@ public interface ApiService {
     Call<ResponseBody> confirmTransaction(
             @Field(ID) int id,
             @Field(AMOUNT) int amount,
+            @Field(PHONE) String phone
+    );
+
+    @FormUrlEncoded
+    @POST("users/update")
+    Call<ResponseBody> updateBalance(
+            @Field(UPDATE_AMOUNT) int amount,
             @Field(PHONE) String phone
     );
 }

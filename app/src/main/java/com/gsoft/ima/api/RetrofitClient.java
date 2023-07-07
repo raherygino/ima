@@ -62,7 +62,8 @@ public class RetrofitClient {
         return getApiService().createTransaction(
                 transaction.numSender,
                 transaction.numReceiver,
-                transaction.amount
+                transaction.amount,
+                transaction.method
         );
     }
 
@@ -77,6 +78,10 @@ public class RetrofitClient {
 
     public static Call<ResponseBody> confirmTransaction(int id, int amount, String phone) {
         return getApiService().confirmTransaction(id, amount, phone);
+    }
+
+    public static Call<ResponseBody> updateBalance(int amount, String phone) {
+        return getApiService().updateBalance(amount, phone);
     }
 
 }

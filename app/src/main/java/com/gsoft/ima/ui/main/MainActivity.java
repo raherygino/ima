@@ -1,26 +1,33 @@
 package com.gsoft.ima.ui.main;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.blikoon.qrcodescanner.QrCodeActivity;
 import com.gsoft.ima.R;
+import com.gsoft.ima.api.FetchData;
 import com.gsoft.ima.databinding.ActivityMainBinding;
 import com.gsoft.ima.di.components.BottomNav;
 import com.gsoft.ima.di.dialog.AlertDialog;
 import com.gsoft.ima.model.database.DatabaseHelper;
 import com.gsoft.ima.model.models.Transaction;
+import com.gsoft.ima.model.models.User;
 import com.gsoft.ima.ui.main.home.HomeFragment;
 import com.gsoft.ima.utils.UserLogged;
 import com.gsoft.ima.utils.Utils;
@@ -73,8 +80,7 @@ public class MainActivity extends AppCompatActivity {
         binding.fabSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, QrCodeActivity.class);
-                startActivityForResult(intent, REQUEST_CODE_QR_SCAN);
+                checkCameraPermission();
             }
         });
     }
@@ -110,7 +116,8 @@ public class MainActivity extends AppCompatActivity {
                         @SuppressLint("SetTextI18n")
                         @Override
                         public void run() {
-                            binding.messageNetwork.setText("Connected: "+data);
+                            binding.messageNetwork.setText("Connected: "+data);;
+                            Toast.makeText(MainActivity.this, "Received 2", Toast.LENGTH_LONG).show();
 
                             /// RECEIVED
                             /// ADDITION
@@ -149,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         binding.messageNetwork.setText("Connected");
-
+                        Toast.makeText(MainActivity.this, "Received 1", Toast.LENGTH_LONG).show();
                         ///SEND
                         ///SUBTRACTION
                         if (socket.isConnected()) {
@@ -234,19 +241,23 @@ public class MainActivity extends AppCompatActivity {
                     Thread thread2 = new Thread(new Thread2());
                     thread2.start();
 
-                    DatabaseHelper db = new DatabaseHelper(this);
+                    DatabaseHelper db = new DatabaseHelper(this);/*
                     if (socket != null) {
                         try {
                             DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
                             String message = "received";
                             dataOutputStream.writeUTF(message);
-
+*/
                             if (transaction.numReceiver.equals(UserLogged.data(MainActivity.this).phone)) {
                                 if (!db.checkTransJsonIfExist(result)) {
                                     if (db.insertTransaction(transaction) != -1) {
                                         db.updateBalance(transaction.amount, "ADD");
                                         db.insertTransJson(result);
-                                        result = "Transaction successfully";
+                                        User user = UserLogged.data(MainActivity.this);
+                                        FetchData.updateBalance(MainActivity.this, user.phone, user.balance);
+                                        transaction.status = "received";
+                                        FetchData.createTransaction(MainActivity.this, transaction);
+                                        result = "Transaction successfully "+transaction.numSender;
                                     } else {
                                         result = "Error";
                                     }
@@ -255,14 +266,14 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             } else {
                                 result = "The recipient's number does not match your number";
-                            }
+                            }/*
                         } catch (Exception e) {
                             e.printStackTrace();
                             result = e.getMessage();
                         }
                     } else {
                         result = "You are not connected";
-                    }
+                    }*/
                 } catch (JSONException e) {
                     e.printStackTrace();
                     result = e.getMessage();
@@ -285,6 +296,60 @@ public class MainActivity extends AppCompatActivity {
             }
         } else {
             Toast.makeText(MainActivity.this, getString(R.string.server_off), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    // Check for camera permission
+    public boolean checkCameraPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        != PackageManager.PERMISSION_GRANTED) {
+            // Permission is not granted
+            // Check if the user has been asked about the permission before
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.CAMERA) || ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.READ_EXTERNAL_STORAGE) ||
+                    ActivityCompat.shouldShowRequestPermissionRationale(this,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            }
+            // Request the permission
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CAMERA,
+                            Manifest.permission.READ_EXTERNAL_STORAGE,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    CAMERA_PERMISSION_REQUEST_CODE);
+            return false;
+        } else {
+            Intent intent = new Intent(MainActivity.this, QrCodeActivity.class);
+            startActivityForResult(intent, REQUEST_CODE_QR_SCAN);
+            return true;
+        }
+    }
+    // Handle the permission request result
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        if (requestCode == CAMERA_PERMISSION_REQUEST_CODE) {
+            // Check if the permission is granted
+            // Check if all permissions are granted
+            boolean allPermissionsGranted = true;
+
+            for (int grantResult : grantResults) {
+                if (grantResult != PackageManager.PERMISSION_GRANTED) {
+                    allPermissionsGranted = false;
+                    break;
+                }
+            }
+            if (allPermissionsGranted) {
+                // Permissions granted
+                Intent intent = new Intent(MainActivity.this, QrCodeActivity.class);
+                startActivityForResult(intent, REQUEST_CODE_QR_SCAN);
+            } else {
+                // Permissions denied
+                Toast.makeText(this, "Storage permission denied.", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }

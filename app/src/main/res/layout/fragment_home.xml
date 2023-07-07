@@ -28,22 +28,23 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/sf_pro_regular"
-            android:text="@string/hello"
-            android:textColor="@color/grey_600"
-            android:textSize="@dimen/sp_12" />
-
-        <TextView
             android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/neg_5"
             android:fontFamily="@font/sf_pro_semi_bold"
             android:text="@string/username"
             android:textColor="@color/grey_600"
             android:textSize="@dimen/sp_18" />
+
+        <TextView
+            android:id="@+id/phone_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/neg_2"
+            android:fontFamily="@font/sf_pro_light"
+            android:text="@string/hello"
+            android:textColor="@color/grey_600"
+            android:textSize="@dimen/sp_14" />
 
     </LinearLayout>
 
