@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     private BottomNav nav;
     private static String SERVER_IP = EMPTY;
     public Socket socket;
+    public String convert = "MGA";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
