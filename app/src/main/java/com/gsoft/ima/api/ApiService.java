@@ -74,20 +74,20 @@ public interface ApiService {
     @Headers("Content-Type: application/json")
     @GET("transactions/")
     Call<ResponseBody> getTotalSentPending(
-            @Query("total") String phone
+            @Query(TOTAL) String phone
     );
 
     @Headers("Content-Type: application/json")
     @GET("transactions/")
     Call<ResponseBody> getPendingSender(
-            @Query("phone") String phone
+            @Query(PHONE) String phone
     );
 
     @FormUrlEncoded
     @POST("transactions/validate")
     Call<ResponseBody> confirmTransaction(
-            @Field("id") int id,
-            @Field("amount") int amount,
-            @Field("phone") String phone
+            @Field(ID) int id,
+            @Field(AMOUNT) int amount,
+            @Field(PHONE) String phone
     );
 }

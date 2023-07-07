@@ -90,7 +90,6 @@ public class HomeAdapterMenu implements SwipeMenuCreator {
         @Override
         public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
 
-         //   showDetails(context, position, transactions);
             switch (index) {
                 case 0:
                     showDetails(context, position, transactions);

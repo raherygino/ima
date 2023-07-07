@@ -198,7 +198,7 @@ public class SendViewModel extends ViewModel {
             dialogLoading.cancel();
                 if (response.isSuccessful()) {
                     DatabaseHelper db = new DatabaseHelper(context);
-                    String result = "";
+                    String result = EMPTY;
                     try {
                         result = response.body().source().readUtf8();
                         JSONObject object = new JSONObject(result);
@@ -206,21 +206,21 @@ public class SendViewModel extends ViewModel {
                         if (type.equals(SEND)) {
                             if (object.getString(MESSAGE).contains(STAT_SENT)) {
                                 RetrofitClient.totalPending(user.phone)
-                                        .enqueue(new enqueue("total"));
+                                        .enqueue(new enqueue(TOTAL));
                             }
-                        }else if (type.equals("total")) {
-                            AlertDialog dialog = new AlertDialog(context, EMPTY, "Amount sent successfully");
+                        }else if (type.equals(TOTAL)) {
+                            AlertDialog dialog = new AlertDialog(context, EMPTY, context.getString(R.string.amount_sent));
                             dialog.show();
                             binding.name.setText(EMPTY);
                             binding.phone.setText(EMPTY);
                             binding.amount.setText(EMPTY);
                             binding.password.setText(EMPTY);
-                            db.addAmountPending(object.getInt("total"));/*
+                            db.addAmountPending(object.getInt(TOTAL));/*
                             RetrofitClient.getUser(user.phone).enqueue(new );
                             RetrofitClient.getPendingSender(user.phone).enqueue(new enqueue(ALL_PENDING));*/
                             FetchData.getDataUserByPhone(context, user.phone);
                             FetchData.getPendingSender(context, user.phone);
-                        } else if (type.equals("all_pending")) {
+                        } else if (type.equals(ALL_PENDING)) {
                             FetchData.getPendingSender(context, user.phone);
                         }
                     } catch (IOException | JSONException e) {
