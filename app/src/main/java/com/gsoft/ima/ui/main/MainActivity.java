@@ -239,11 +239,11 @@ public class MainActivity extends AppCompatActivity {
                     thread2.start();
 
                     DatabaseHelper db = new DatabaseHelper(this);
-                    if (socket != null) {
+                    /*if (socket != null) {
                         try {
                             DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
                             String message = "received";
-                            dataOutputStream.writeUTF(message);
+                            dataOutputStream.writeUTF(message);*/
 
                             if (transaction.numReceiver.equals(UserLogged.data(MainActivity.this).phone)) {
                                 if (!db.checkTransJsonIfExist(result)) {
@@ -259,14 +259,14 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             } else {
                                 result = "The recipient's number does not match your number";
-                            }
+                            }/*
                         } catch (Exception e) {
                             e.printStackTrace();
                             result = e.getMessage();
-                        }
+                        }/*
                     } else {
                         result = "You are not connected";
-                    }
+                    }*/
                 } catch (JSONException e) {
                     e.printStackTrace();
                     result = e.getMessage();

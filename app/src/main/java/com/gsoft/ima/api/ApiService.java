@@ -90,4 +90,11 @@ public interface ApiService {
             @Field(AMOUNT) int amount,
             @Field(PHONE) String phone
     );
+
+    @FormUrlEncoded
+    @POST("users/update")
+    Call<ResponseBody> updateBalance(
+            @Field(UPDATE_AMOUNT) int amount,
+            @Field(PHONE) String phone
+    );
 }

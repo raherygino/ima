@@ -1,5 +1,6 @@
 package com.gsoft.ima.api;
 
+import static com.gsoft.ima.constants.main.FormConstants.BALANCE;
 import static com.gsoft.ima.constants.main.FormConstants.CREATED_AT;
 import static com.gsoft.ima.constants.main.MainConstants.*;
 import static com.gsoft.ima.constants.main.TransactionConstants.*;
@@ -34,6 +35,10 @@ public class FetchData {
         RetrofitClient.getUser(phone).enqueue(new Enqueue(context, DATA_USER));
     }
 
+    public static void updateBalance(Context context, String phone, int amount) {
+        RetrofitClient.updateBalance(amount, phone).enqueue(new Enqueue(context, UPDATE_AMOUNT));
+    }
+
     static class Enqueue implements Callback<ResponseBody> {
 
         private final Context context;
@@ -54,9 +59,16 @@ public class FetchData {
                         getPendingSender(object);
                     } else if (type.equals(DATA_USER)) {
                         JSONObject data = new JSONObject(result);
+                        int balanceLocal = UserLogged.data(context).balance;
+                        if (data.getInt(BALANCE) != balanceLocal) {
+                            data.put(BALANCE, balanceLocal);
+                            updateBalance(context, UserLogged.data(context).phone, balanceLocal);
+                        }
                         DatabaseHelper db = new DatabaseHelper(context);
                         db.deleteUser();
                         db.createUserByObject(data);
+                    } else if (type.equals(UPDATE_AMOUNT)) {
+                        Toast.makeText(context, result, Toast.LENGTH_LONG).show();
                     }
                 } catch (IOException | JSONException e) {
                     e.printStackTrace();

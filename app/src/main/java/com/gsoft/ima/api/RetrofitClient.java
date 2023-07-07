@@ -79,4 +79,8 @@ public class RetrofitClient {
         return getApiService().confirmTransaction(id, amount, phone);
     }
 
+    public static Call<ResponseBody> updateBalance(int amount, String phone) {
+        return getApiService().updateBalance(amount, phone);
+    }
+
 }
