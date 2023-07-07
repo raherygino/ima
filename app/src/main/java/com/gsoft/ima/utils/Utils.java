@@ -36,6 +36,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -237,6 +238,11 @@ public class Utils {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static String formatNumber(double number) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.##");
+        return decimalFormat.format(number);
     }
 
 

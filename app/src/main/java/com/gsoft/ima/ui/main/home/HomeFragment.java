@@ -47,6 +47,7 @@ public class HomeFragment extends Fragment {
         binding.refresh.setOnClickListener(new OnClick());
         binding.countPending.setText(String.valueOf(user.pendingCount));
         binding.label.setOnClickListener(new OnClick());
+        binding.valueToConvert.addTextChangedListener(new HomeViewModel.convert(getContext()));
 
         if (user.pendingCount == 0) {
             binding.countPending.setVisibility(View.GONE);
@@ -60,6 +61,11 @@ public class HomeFragment extends Fragment {
 
     private void configTransactions() {
         transactions = new DatabaseHelper(getContext()).getAllTransaction();
+        if (transactions.size() == 0) {
+            binding.countHistory.setVisibility(View.GONE);
+        } else {
+            binding.countHistory.setVisibility(View.VISIBLE);
+        }
         mAdapter = new HomeAdapterHistory(getContext(), transactions);
         binding.listView.setAdapter(mAdapter);
         binding.listView.setMenuCreator(new HomeAdapterMenu(getContext()));

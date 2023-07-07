@@ -5,8 +5,11 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
@@ -20,6 +23,7 @@ import com.gsoft.ima.model.database.DatabaseHelper;
 import com.gsoft.ima.model.models.User;
 import com.gsoft.ima.ui.auth.AuthActivity;
 import com.gsoft.ima.ui.main.MainActivity;
+import com.gsoft.ima.utils.Utils;
 
 import dmax.dialog.SpotsDialog;
 
@@ -97,5 +101,41 @@ public class HomeViewModel extends ViewModel {
             }
         });
         menu.show();
+    }
+
+    public static class convert implements TextWatcher {
+        private Context context;
+
+        public convert(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            MainActivity mainActivity = (MainActivity) context;
+            TextView textView = ((Activity) context).findViewById(R.id.amount_ima);
+            if (charSequence.length() > 0 ) {
+                double result = 0;
+                if (mainActivity.convert.equals(context.getString(R.string.mga))) {
+                    result = Double.parseDouble(charSequence.toString()) / 200;
+                } else {
+                    result = Double.parseDouble(charSequence.toString()) * 200;
+                }
+
+                textView.setText(Utils.formatNumber(result));
+            } else {
+                textView.setText("0");
+            }
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+        }
     }
 }
