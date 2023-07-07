@@ -21,11 +21,13 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.blikoon.qrcodescanner.QrCodeActivity;
 import com.gsoft.ima.R;
+import com.gsoft.ima.api.FetchData;
 import com.gsoft.ima.databinding.ActivityMainBinding;
 import com.gsoft.ima.di.components.BottomNav;
 import com.gsoft.ima.di.dialog.AlertDialog;
 import com.gsoft.ima.model.database.DatabaseHelper;
 import com.gsoft.ima.model.models.Transaction;
+import com.gsoft.ima.model.models.User;
 import com.gsoft.ima.ui.main.home.HomeFragment;
 import com.gsoft.ima.utils.UserLogged;
 import com.gsoft.ima.utils.Utils;
@@ -250,6 +252,8 @@ public class MainActivity extends AppCompatActivity {
                                     if (db.insertTransaction(transaction) != -1) {
                                         db.updateBalance(transaction.amount, "ADD");
                                         db.insertTransJson(result);
+                                        User user = UserLogged.data(MainActivity.this);
+                                        FetchData.updateBalance(MainActivity.this, user.phone, user.balance);
                                         result = "Transaction successfully";
                                     } else {
                                         result = "Error";

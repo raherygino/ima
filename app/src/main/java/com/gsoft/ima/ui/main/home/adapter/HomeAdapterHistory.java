@@ -14,6 +14,7 @@ import com.gsoft.ima.R;
 import com.gsoft.ima.model.models.Transaction;
 import com.gsoft.ima.model.models.User;
 import com.gsoft.ima.utils.UserLogged;
+import com.gsoft.ima.utils.Utils;
 
 import java.util.ArrayList;
 
@@ -64,14 +65,15 @@ public class HomeAdapterHistory extends BaseAdapter {
             holder.icon.setColorFilter(context.getColor(R.color.green_400));
         }
 
-        holder.type.setText(item.status);
+        holder.type.setText(item.method);
+        holder.status.setText(item.status);
 
         if (item.status.equals("sent") && item.nameReceiver.equals(user.firstname)) {
-            holder.type.setText("received");
+            holder.status.setText("received");
         }
 
         holder.date.setText(item.date);
-        holder.amount.setText(String.valueOf(item.amount));
+        holder.amount.setText(Utils.formatNumber(Double.parseDouble(String.valueOf(item.amount))));
         holder.icon.setOnClickListener(new onClick(position));
         holder.username.setOnClickListener(new onClick(position));
 
@@ -80,7 +82,7 @@ public class HomeAdapterHistory extends BaseAdapter {
 
     class ViewHolder {
         ImageView icon;
-        TextView username, type, date, amount;
+        TextView username, type, date, amount, status;
 
         public ViewHolder(View view) {
             icon = (ImageView) view.findViewById(R.id.icon);
@@ -88,6 +90,7 @@ public class HomeAdapterHistory extends BaseAdapter {
             type = (TextView) view.findViewById(R.id.type);
             amount = (TextView) view.findViewById(R.id.amount);
             date = (TextView) view.findViewById(R.id.date);
+            status = (TextView) view.findViewById(R.id.status);
             view.setTag(this);
         }
     }
