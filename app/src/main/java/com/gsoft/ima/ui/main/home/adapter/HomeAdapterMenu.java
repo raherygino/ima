@@ -96,7 +96,7 @@ public class HomeAdapterMenu implements SwipeMenuCreator {
                     break;
 
                 case 1:
-                    ConfirmDialog confirmDialog = new ConfirmDialog(context, EMPTY, "You want to delete it ?");
+                    ConfirmDialog confirmDialog = new ConfirmDialog(context, EMPTY, context.getString(R.string.delete_confirm));
                     confirmDialog.btnOk.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -113,20 +113,20 @@ public class HomeAdapterMenu implements SwipeMenuCreator {
     }
 
     public static void showDetails(Context context, int position, ArrayList<Transaction> transactions) {
-        String message = "";
+        String message = EMPTY;
         User user = UserLogged.data(context);
         Transaction item = transactions.get(position);
         if (item.nameReceiver.equals(user.firstname)) {
-            message = "Vous avez reçu un montant de "+item.amount+" IMA depuis "+item.nameSender;
+            message = context.getString(R.string.message_received_amount, String.valueOf(item.amount), item.nameSender);
             if (item.status.equals(STAT_PENDING) && item.method.equals(context.getString(R.string.network))) {
                 ConfirmDialog dialog = new ConfirmDialog(context, item.method, message);
-                dialog.btnOk.setText("Confirmer");
+                dialog.btnOk.setText(context.getString(R.string.confirm));
                 dialog.btnOk.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         dialog.cancel();
                         ProgressDialog dialogLoading = new ProgressDialog(context);
-                        dialogLoading.setMessage("Loading");
+                        dialogLoading.setMessage(context.getString(R.string.loading));
                         dialogLoading.setCancelable(false);
                         dialogLoading.show();
                         RetrofitClient.confirmTransaction(item.id, item.amount, item.numReceiver)
@@ -135,12 +135,12 @@ public class HomeAdapterMenu implements SwipeMenuCreator {
                                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                                         dialogLoading.dismiss();
                                         String message = "Empty";
-                                        String result = "";
+                                        String result = EMPTY;
                                         if (response.isSuccessful()) {
                                             try {
                                                 result = response.body().source().readUtf8();
                                                 JSONObject jsonObject = new JSONObject(result);
-                                                message = "Montant confirmé";
+                                                message = context.getString(R.string.amount_approved);
                                                 if (!jsonObject.getString(MESSAGE).equals(STAT_SENT)) {
                                                     message = result;
                                                 } else {
@@ -166,7 +166,7 @@ public class HomeAdapterMenu implements SwipeMenuCreator {
 
                                             }
                                         } else {
-                                            message = "Error";
+                                            message = context.getString(R.string.error);
                                         }
                                         AlertDialog dialog1 = new AlertDialog(context, EMPTY, message);
                                         dialog1.show();
@@ -184,12 +184,12 @@ public class HomeAdapterMenu implements SwipeMenuCreator {
                 });
                 dialog.show();
             } else {
-                AlertDialog dialog = new AlertDialog(context, "Details", message);
+                AlertDialog dialog = new AlertDialog(context, context.getString(R.string.details), message);
                 dialog.show();
             }
         } else {
-            message = "Vous avez envoyés un montant de "+item.amount+" IMA vers "+item.nameReceiver;
-            AlertDialog dialog = new AlertDialog(context, "Details", message);
+            message = context.getString(R.string.message_sent_amount, String.valueOf(item.amount), item.nameReceiver);
+            AlertDialog dialog = new AlertDialog(context, context.getString(R.string.details), message);
             dialog.show();
         }
     }

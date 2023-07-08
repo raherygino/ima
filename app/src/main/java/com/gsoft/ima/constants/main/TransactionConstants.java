@@ -1,6 +1,7 @@
 package com.gsoft.ima.constants.main;
 
 public class TransactionConstants {
+    public static final String ADD = "add";
     public static final String NAME_SENDER = "name_sender";
     public static final String NUM_SENDER = "num_sender";
     public static final String NAME_RECEIVER = "name_receiver";
@@ -15,6 +16,8 @@ public class TransactionConstants {
     public static final String STATUS = "status";
     public static final String TYPE = "type";
     public static final String METHOD = "method";
+    public static final String SENT = "sent";
+    public static final String RECEIVED = "received";
 
 
 }

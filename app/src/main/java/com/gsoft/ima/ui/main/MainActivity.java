@@ -40,6 +40,7 @@ import static com.gsoft.ima.constants.main.TransactionConstants.NAME_RECEIVER;
 import static com.gsoft.ima.constants.main.TransactionConstants.NAME_SENDER;
 import static com.gsoft.ima.constants.main.TransactionConstants.NUM_RECEIVER;
 import static com.gsoft.ima.constants.main.TransactionConstants.NUM_SENDER;
+import static com.gsoft.ima.constants.main.TransactionConstants.RECEIVED;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private String currentFragment;
     public BottomNav nav;
-    private static String SERVER_IP = EMPTY;
+    public String SERVER_IP = EMPTY;
     public Socket socket;
     public String convert = "MGA";
 
@@ -87,91 +88,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void configServer() {
         SERVER_IP = Utils.getIpAddress(MainActivity.this);
-        Thread thread1 = new Thread(new Thread1());
+        MainServer server = new MainServer(this, binding);
+        Thread thread1 = new Thread(server);
         thread1.start();
-    }
-
-    class Thread1 implements Runnable {
-
-        @Override
-        public void run() {
-            try {
-                ServerSocket serverSocket = new ServerSocket(SERVER_PORT);
-                runOnUiThread(new Runnable() {
-
-                    @SuppressLint("SetTextI18n")
-                    @Override
-                    public void run() {
-                       // binding.messageNetwork.setText("Not connected IP: "+SERVER_IP);
-                    }
-                });
-                try {
-                    socket = serverSocket.accept();
-                    // Send data over the socket
-                    DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
-                    String data = "sent";
-                    dataOutputStream.writeUTF(data);
-
-                    runOnUiThread(new Runnable() {
-                        @SuppressLint("SetTextI18n")
-                        @Override
-                        public void run() {
-                          //  binding.messageNetwork.setText("Connected: "+data);
-                            /// RECEIVED
-                            /// ADDITION
-                            try {
-                                serverSocket.close();
-                                Thread thread1 = new Thread(new Thread1());
-                                thread1.start();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    class Thread2 implements Runnable {
-
-        @Override
-        public void run() {
-            Socket socket;
-            try {
-                socket = new Socket(SERVER_IP, SERVER_PORT);
-
-                // Received data over the socket
-                DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
-                String data = dataInputStream.readUTF();
-
-                runOnUiThread(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        binding.messageNetwork.setText("Connected");
-
-                        ///SEND
-                        ///SUBTRACTION
-                        if (socket.isConnected()) {
-                            try {
-                                socket.close();
-                                binding.messageNetwork.setText("Closed!");
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-                });
-                new Thread(new Thread2()).start();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     public void setFragment(Fragment fragment) {
@@ -233,11 +152,11 @@ public class MainActivity extends AppCompatActivity {
                     transaction.numReceiver = jsonObject.getString(NUM_RECEIVER);
                     transaction.ipAddress = jsonObject.getString(IP_SENDER);
                     SERVER_IP = transaction.ipAddress;
-                    transaction.status = "success";
-                    transaction.method = "QR Code";
+                    transaction.status = SUCCESS;
+                    transaction.method = getString(R.string.qr_code);
 
-                    Thread thread2 = new Thread(new Thread2());
-                    thread2.start();
+                    Thread server2 = new Thread((Thread) new MainServer(MainActivity.this, binding).MainServer2);
+                    server2.start();
 
                     DatabaseHelper db = new DatabaseHelper(this);/*
                     if (socket != null) {
@@ -249,21 +168,21 @@ public class MainActivity extends AppCompatActivity {
                             if (transaction.numReceiver.equals(UserLogged.data(MainActivity.this).phone)) {
                                 if (!db.checkTransJsonIfExist(result)) {
                                     if (db.insertTransaction(transaction) != -1) {
-                                        db.updateBalance(transaction.amount, "ADD");
+                                        db.updateBalance(transaction.amount, "");
                                         db.insertTransJson(result);
                                         User user = UserLogged.data(MainActivity.this);
                                         FetchData.updateBalance(MainActivity.this, user.phone, user.balance);
-                                        transaction.status = "received";
+                                        transaction.status = RECEIVED;
                                         FetchData.createTransaction(MainActivity.this, transaction);
-                                        result = "Transaction successfully "+transaction.numSender;
+                                        result = getString(R.string.message_transaction_success);
                                     } else {
-                                        result = "Error";
+                                        result = getString(R.string.error);
                                     }
                                 } else {
-                                    result = "Transaction already saved";
+                                    result = getString(R.string.message_transaction_already_saved);
                                 }
                             } else {
-                                result = "The recipient's number does not match your number";
+                                result = getString(R.string.message_not_recipient);
                             }/*
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -346,7 +265,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_CODE_QR_SCAN);
             } else {
                 // Permissions denied
-                Toast.makeText(this, "Storage permission denied.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.permission_strg_denied), Toast.LENGTH_SHORT).show();
             }
         }
     }

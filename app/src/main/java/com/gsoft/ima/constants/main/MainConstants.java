@@ -12,6 +12,7 @@ public class MainConstants {
     public static final String CLASS = "class";
     public static final String EMPTY = "";
     public static final String FEMALE = "female";
+    public static final String FORMAT_NUMBER = "#,###.##";
     public static final String FRG_FORGOT = "ForgotFragment";
     public static final String FRG_HOME = "HomeFragment";
     public static final String FRG_REGISTER = "RegisterFragment";

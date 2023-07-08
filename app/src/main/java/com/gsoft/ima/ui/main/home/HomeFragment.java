@@ -1,5 +1,7 @@
 package com.gsoft.ima.ui.main.home;
 
+import static com.gsoft.ima.constants.main.MainConstants.FORMAT_NUMBER;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,7 +42,7 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         viewModel = new HomeViewModel(getContext(), binding);
         user = UserLogged.data(getContext());
-        DecimalFormat decimalFormat = new DecimalFormat("#,###.##");
+        DecimalFormat decimalFormat = new DecimalFormat(FORMAT_NUMBER);
         binding.imageViewUser.setOnClickListener(new OnClick());
         binding.username.setText(viewModel.user.firstname);
         binding.phoneNumber.setText(viewModel.user.phone);

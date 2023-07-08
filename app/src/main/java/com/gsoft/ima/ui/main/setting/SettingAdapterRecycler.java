@@ -62,7 +62,6 @@ public class SettingAdapterRecycler extends RecyclerView.Adapter<SettingAdapterR
                     case 0:
                         FetchData.getDataUserByPhone(context, UserLogged.data(context).phone);
                         FetchData.getPendingSender(context, UserLogged.data(context).phone);
-                        Toast.makeText(context, "Request sent!", Toast.LENGTH_LONG).show();
                         break;
                     case 1:
                         PopupMenu popupMenu = new PopupMenu(context, myHolder.detail_setting);

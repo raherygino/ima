@@ -103,17 +103,17 @@ public class SendViewModel extends ViewModel {
                 dialog.show();
             } else if (method.equals(context.getString(R.string.network))){
                 dialogLoading = new ProgressDialog(context);
-                dialogLoading.setMessage("Loading");
+                dialogLoading.setMessage(context.getString(R.string.loading));
                 dialogLoading.setCancelable(false);
                 dialogLoading.show();
                 RetrofitClient.createTransaction(transaction)
                         .enqueue(new enqueue(SEND));
             } else {
                 if (db.insertTransaction(transaction) != -1) {
-                    AlertDialog dialog = new AlertDialog(context, EMPTY, "Created");
+                    AlertDialog dialog = new AlertDialog(context, EMPTY, IS_CREATED);
                     dialog.show();
                 } else {
-                    AlertDialog dialog = new AlertDialog(context, EMPTY, "Error");
+                    AlertDialog dialog = new AlertDialog(context, EMPTY, context.getString(R.string.error));
                     dialog.show();
                 }
             }
@@ -227,7 +227,7 @@ public class SendViewModel extends ViewModel {
                         dialog.show();
                     }
                 } else {
-                    Toast.makeText(context, "Error", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, context.getString(R.string.error), Toast.LENGTH_LONG).show();
                 }
         }
 

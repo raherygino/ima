@@ -1,6 +1,7 @@
 <resources>
     <!-- Button -->
     <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
     <string name="ok">Ok</string>
     <string name="no">No</string>
     <string name="resend">Re-send</string>
@@ -13,6 +14,9 @@
     <string name="bluetooth">Bluetooth</string>
     <string name="close_app">Exit?</string>
     <string name="converter">Converter</string>
+    <string name="connected">Connected</string>
+    <string name="closed">closed</string>
+    <string name="details">Details</string>
     <string name="english">English</string>
     <string name="error">Error</string>
     <string name="french">French</string>
@@ -64,6 +68,7 @@
     <string name="about_details">IMA v2.0 Designed and Developed by Gino</string>
     <string name="accepting_signup">Je confirme que ces informations sont véritables et j\'accepte les termes et les conditions d\'utilisation des services affiliés à la plateforme IMA.</string>
     <string name="amount_placeholder">800 000</string>
+    <string name="amount_approved">Amount approved</string>
     <string name="close_app_details">You want to exit the app?</string>
     <string name="date_placeholder">20 June 2023 15:10:00</string>
     <string name="female">Female</string>
@@ -75,6 +80,7 @@
     <string name="male">Male</string>
     <string name="logout_details">You want to logout?</string>
     <string name="or">or</string>
+    <string name="permission_strg_denied">Storage permission denied.</string>
     <string name="search">Search</string>
     <string name="transfert_details">Fill the field below</string>
     <!-- Message -->
@@ -87,6 +93,7 @@
     <string name="check_the_form">Check the form</string>
     <string name="cin_invalid">CIN invalid</string>
     <string name="code_invalid">Code invalid</string>
+    <string name="delete_confirm">You want to delete it ?</string>
     <string name="email_sent_to">Email sent to %1$s successfully!</string>
     <string name="error_con_to_phone">You are not connected to another phone</string>
     <string name="error_balance">Your balance is insufficient</string>
@@ -102,8 +109,13 @@
     <string name="error_scan">Scan Error</string>
     <string name="error_scan_details">QR Code could not be scanned</string>
     <string name="message_create_client">Create a client and server</string>
+    <string name="message_not_recipient">The recipient\'s number is not your number</string>
     <string name="message_not_sent">Failed to send message!</string>
+    <string name="message_received_amount">You received amount %1$s IMA from %2$s</string>
     <string name="message_sent">Message sent!</string>
+    <string name="message_sent_amount">You sent amount %1$s IMA to %2$s</string>
+    <string name="message_transaction_already_saved">Transaction already saved</string>
+    <string name="message_transaction_success">Transaction successfully !</string>
     <string name="password_must">Password must contain 6 character minimum</string>
     <string name="password_not_match">Password not match</string>
     <string name="phone_invalid">Phone number invalid</string>
