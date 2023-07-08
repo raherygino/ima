@@ -1,5 +1,8 @@
 package com.gsoft.ima.ui.main.home.adapter;
 
+import static com.gsoft.ima.constants.main.TransactionConstants.RECEIVED;
+import static com.gsoft.ima.constants.main.TransactionConstants.SENT;
+
 import android.content.Context;
 import android.os.Build;
 import android.view.View;
@@ -68,8 +71,8 @@ public class HomeAdapterHistory extends BaseAdapter {
         holder.type.setText(item.method);
         holder.status.setText(item.status);
 
-        if (item.status.equals("sent") && item.nameReceiver.equals(user.firstname)) {
-            holder.status.setText("received");
+        if (item.status.equals(SENT) && item.nameReceiver.equals(user.firstname)) {
+            holder.status.setText(RECEIVED);
         }
 
         holder.date.setText(item.date);
