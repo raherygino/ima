@@ -226,6 +226,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             id = cursor.getString(0);
         }
         db.execSQL("DELETE FROM "+TABLE_TRANSACTION);
+        db.execSQL("DELETE FROM "+TABLE_JSON);
         return db.delete(TABLE_USER, COLUMN_ID+" = ?", new String[]{id});
     }
 
