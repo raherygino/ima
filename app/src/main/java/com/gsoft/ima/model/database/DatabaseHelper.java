@@ -1,13 +1,12 @@
 package com.gsoft.ima.model.database;
 
 
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
+import static com.gsoft.ima.constants.main.TransactionConstants.*;
 
 import com.gsoft.ima.model.models.Transaction;
 import com.gsoft.ima.model.models.User;
@@ -17,19 +16,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import static com.gsoft.ima.constants.main.FormConstants.BALANCE;
-import static com.gsoft.ima.constants.main.FormConstants.BIRTHDAY;
-import static com.gsoft.ima.constants.main.FormConstants.BIRTHPLACE;
-import static com.gsoft.ima.constants.main.FormConstants.CITY;
-import static com.gsoft.ima.constants.main.FormConstants.COUNTRY;
-import static com.gsoft.ima.constants.main.FormConstants.EMAIL;
-import static com.gsoft.ima.constants.main.FormConstants.FIRSTNAME;
-import static com.gsoft.ima.constants.main.FormConstants.GENDER;
-import static com.gsoft.ima.constants.main.FormConstants.ID_CARD;
-import static com.gsoft.ima.constants.main.FormConstants.LASTNAME;
-import static com.gsoft.ima.constants.main.FormConstants.PASSWORD;
-import static com.gsoft.ima.constants.main.FormConstants.PHONE;
-import static com.gsoft.ima.constants.main.MainConstants.EMPTY;
+import static com.gsoft.ima.constants.main.FormConstants.*;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -221,7 +208,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.moveToFirst();
         int balance = cursor.getInt(12) - amount;
 
-        if (type.equals("ADD")) {
+        if (type.equals(ADD)) {
             balance = cursor.getInt(12) + amount;
         }
 

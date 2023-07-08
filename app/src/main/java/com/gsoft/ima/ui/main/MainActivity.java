@@ -34,13 +34,7 @@ import com.gsoft.ima.utils.Utils;
 
 import static com.gsoft.ima.constants.main.MainConstants.*;
 import static com.gsoft.ima.constants.main.ScanConstaints.*;
-import static com.gsoft.ima.constants.main.TransactionConstants.AMOUNT;
-import static com.gsoft.ima.constants.main.TransactionConstants.IP_SENDER;
-import static com.gsoft.ima.constants.main.TransactionConstants.NAME_RECEIVER;
-import static com.gsoft.ima.constants.main.TransactionConstants.NAME_SENDER;
-import static com.gsoft.ima.constants.main.TransactionConstants.NUM_RECEIVER;
-import static com.gsoft.ima.constants.main.TransactionConstants.NUM_SENDER;
-import static com.gsoft.ima.constants.main.TransactionConstants.RECEIVED;
+import static com.gsoft.ima.constants.main.TransactionConstants.*;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -154,9 +148,9 @@ public class MainActivity extends AppCompatActivity {
                     SERVER_IP = transaction.ipAddress;
                     transaction.status = SUCCESS;
                     transaction.method = getString(R.string.qr_code);
-
+/*
                     Thread server2 = new Thread((Thread) new MainServer(MainActivity.this, binding).MainServer2);
-                    server2.start();
+                    server2.start();*/
 
                     DatabaseHelper db = new DatabaseHelper(this);/*
                     if (socket != null) {
@@ -168,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
                             if (transaction.numReceiver.equals(UserLogged.data(MainActivity.this).phone)) {
                                 if (!db.checkTransJsonIfExist(result)) {
                                     if (db.insertTransaction(transaction) != -1) {
-                                        db.updateBalance(transaction.amount, "");
+                                        db.updateBalance(transaction.amount, ADD);
                                         db.insertTransJson(result);
                                         User user = UserLogged.data(MainActivity.this);
                                         FetchData.updateBalance(MainActivity.this, user.phone, user.balance);
